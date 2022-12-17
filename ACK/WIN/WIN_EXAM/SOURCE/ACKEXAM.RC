@@ -1,0 +1,54 @@
+#include "ackres.h"
+
+ackicon ICON "ackicon.ico"
+
+
+ACKMENU MENU 
+{
+ POPUP "&File"
+ {
+  MENUITEM "&Open Resource ...", CM_FILEOPEN
+  MENUITEM "Save &as ...", CM_FILESAVE_AS_
+  MENUITEM "&Save", CM_FILESAVE
+  MENUITEM "&Exit", CM_FILEEXIT
+ }
+
+ POPUP "&Edit"
+ {
+  MENUITEM "&Map", CM_EDITMAP
+  MENUITEM "&Objects", CM_EDITOBJECTS
+ }
+
+ POPUP "&Bitmap"
+ {
+  MENUITEM "&Load ...", CM_BITMAPLOAD
+  MENUITEM "&Delete", CM_BITMAPDELETE
+ }
+
+ POPUP "&View"
+ {
+  MENUITEM "&Walls", CM_VIEWWALLS
+  MENUITEM "&Floor", CM_VIEWFLOOR
+  MENUITEM "&Ceiling", CM_VIEWCEILING
+  MENUITEM SEPARATOR
+  MENUITEM "Times One", CM_VIEWTIMES_ONE
+  MENUITEM "Times Two", CM_VIEWTIMES_TWO
+ }
+
+ POPUP "&Goodies"
+ {
+  MENUITEM "&Attributes ...", CM_GOODIESATTRIBUTES
+  POPUP "&Fill"
+  {
+   MENUITEM "&Border", CM_FILLBORDER
+   MENUITEM "&Entire Map", CM_FILLENTIRE_MAP
+  }
+
+  MENUITEM "&Clear Map", CM_GOODIESCLEAR_MAP
+  MENUITEM "&Load Backdrop ...", CM_GOODIESLOAD_BACKDROP
+ }
+
+}
+
+
+

@@ -1,0 +1,21 @@
+---------------------------------------------------------------------------
+
+	File:			TMACOMP.TXT
+	Programmer: 	Bob Provencher
+	Create Date:	11/6/94
+	Last Mod Date:	1/8/95
+	Description:	README file for TMACOMP text map compiler
+
+	Copyright (c) 1994, 1995. Aesir Software, Inc.
+	All Rights Reserved.
+
+---------------------------------------------------------------------------
+
+The text map compiler compiles a text .TMA file into a binary .CMA
+(compiled map) file which can then be included as a resource in a Windows
+.EXE.
+
+TMACOMP.CPP includes the source code for TMACOMP.
+
+
+

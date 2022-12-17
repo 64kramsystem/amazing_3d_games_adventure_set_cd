@@ -1,0 +1,63 @@
+Welcome to Slob Zone 3D:
+
+Here are a few quick instructions to get you going.
+
+	1. Grab all the trash you see, it's worth CASH. Just run over 
+	   an item to pick it up. You can trade your money for weapons 
+	   at any vending machine.
+		Water Balloons are good and cheap
+		Soap is better
+		Deodorant is powerful but expensive
+
+	2. Watch out for those crazy animals, they just hate seeing 
+	   you so nice and clean. They'll start throwing disgusting
+	   stuff at you unless you clean them up first. 
+	   HINT: Keep moving, he who hesitates is slobbed!
+
+	3. Pick up the colored keys, you'll need them to open locked 
+	   doors.
+
+	4. When your dirt meter rises it's time to think about cleaning 
+	   off. You can use a pay shower or look around for RAINCOATS,
+	   UMBRELLAS, & MOIST TOWELETTES. If you don't you'll get slobbed
+	   and have to start the level over again.
+
+	5. Save your game often, that way you can always come back.
+
+
+
+Controls:
+
+	MOUSE
+	  Right Mouse button fires your currently selected weapon.
+	  Moving the mouse Forward, Back, Left and Right causes 
+	  you to move in the game
+
+	KEYBOARD
+
+	" Arrow Keys " - Cause you to move in the game
+	
+	" CTRL " - Holding ctrl and left or right arrow slides you left or right
+
+	" ALT " - Throws your currently selected weapon
+
+	" 1,2,or 3 " - Select Water Balloon, Soap, or Deodorant
+
+	" ENTER " - Spin 180 degrees, good for running away.
+
+	" SPACE BAR " - Operates doors, Showers, Vending Machines, etc..
+	
+	" TAB " - Turns map on and off
+	
+	" ESC " - Displays menu
+	
+	" P " - Pause Game
+	
+	" D " - Turn off Floor & Ceiling (increase speed on slow PC's)
+	
+	" Q " - Quit
+	
+	" +/- " - Music volume
+
+GOOD LUCK and HAVE FUN! 
+

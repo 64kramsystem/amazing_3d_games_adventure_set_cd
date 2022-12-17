@@ -1,0 +1,212 @@
+
+			    ACK-3D Demonstration
+			    --------------------
+
+Introduction:
+
+    Station Escape is a simple demonstration of what can be done with the
+ACK-3D (Animation Construction Kit) engine. This demo is not meant to be viewed
+as a full-fledged game, just a collection of routines to experiment with the
+engine. Read the file STORY.DOC for a short background story about the game.
+
+
+Disclaimer:
+
+    The ACK-3D demo and associated files are being released to the public
+domain "as-is" with no warranty either expressed or implied, concerning the
+use of this software. You are free to use and distribute the demo to others
+in any form. The artwork supplied with the demo is under individual copyright
+and any use for commercial purposes must be granted by the original artist.
+
+    The only request I will make is that if you do use the ACK engine in your
+own game or application, that you put my name in the credits somewhere. This
+is only a request and only if you feel the ACK engine contributed to your
+overall project. Thank You.
+
+
+System Requirements:
+
+    PC 386 or above
+    Minimum of 570k system memory
+    Minimum of 2 Meg EXTENDED memory
+    Microsoft compatable mouse
+    VGA monitor
+    Minimum of 3 Meg disk space
+    Sound Blaster or Adlib card (optional)
+
+
+    Make sure you have HIMEM.SYS, or some other XMS memory manager, in your
+CONFIG.SYS file to allow the demo to take advantage of Extended Memory.
+
+***** NOTE *****
+
+    It has been observed that on some machines HIMEM.SYS doesn't seem to
+allocate enough XMS handles to properly run the demo. If you notice random
+patterns on the screen where walls should be then try the following in your
+CONFIG.SYS file;
+
+
+	device=HIMEM.SYS /numhandles=64	    (or higher...maybe 96)
+
+
+    Hopefully this will solve the problem.
+
+
+What the ZIP file contains: (Installation)
+
+    Copy DEMO.ZIP to a subdirectory on your hard disk. Use something like
+ACKDEMO or DEMO as an example of the directory name. DO NOT unzip into the
+root directory!
+
+
+
+********* READ THIS! ********** READ THIS! *********** READ THIS! **********
+
+    Use the -d option when unzipping the file ACKDEMO.ZIP to create the
+required subdirectories. You should see \BITMAPS and \SOUND created as sub-
+directories in the directory you placed DEMO.ZIP.
+
+    The demo will not run properly if the subdirectories are not created and
+may require a hard reboot to correct! Also, be sure to look at the batch
+file descriptions below for various configurations to run the demo.
+
+********* READ THIS! ********** READ THIS! *********** READ THIS! **********
+
+
+
+    The main directory contains the batch files, readme.1st and story.doc files
+that you should take a look at before running the demo.
+
+    The BITMAPS directory holds all the screen and wall bitmaps used by the
+demo. These are all in Deluxe Paint II format.
+
+    The SOUND directory holds the background music .CMF files as well as the
+sound effect files (.VOC and .PWM) used by the demo.
+
+
+
+Starting the Demo:
+
+    Several .BAT files have been included to start the demo in a variety of
+configurations. These are listed below;
+
+    RUN.BAT	<- Starts the demo with no sound and the mouse in mode 1.
+
+    RUNPC.BAT	<- Starts the demo using the PC speaker and the mouse in mode 1.
+
+    RUNSND.BAT	<- Starts the demo with sound effects but no background music,
+		   and the mouse in mode 1.
+
+    RUNMUS.BAT	<- Starts the demo with music and sound effects and the mouse
+		   in mode 1.
+
+
+Mouse Modes:
+
+    The demo allows two different ways of handling the mouse. Mode 0 (the
+default mode) displays a mouse cursor that can be positioned in the viewing
+window and changes to show which direction the player will move. This mode is
+similiar to that used in games like Underworld II. Mouse Mode 1 causes the
+mouse cursor to dissappear and allows the motion of the mouse to move the player
+around the space station. This mode is similiar to Wolfenstein-3D. Pressing the
+F1 key toggles the mouse mode once the game is started.
+
+    In either mode the RIGHT mouse button fires your plasma gun. Be careful!
+When your energy bar reaches empty all bets are off! Your life support will
+fail and it's all over but the shouting.
+
+
+
+Command Line Switches:
+
+    The following options are available when starting the demo and may be used
+in place of the batch files if desired;
+
+    -m1 <- Starts the demo up with mouse mode 1 verses mode 0 which is default.
+
+    -st <- Starts the demo and skips the startup screen.
+
+    -ns <- Starts the demo with No Sound at all.
+
+    -sp <- Starts the demo with sound through the PC speaker.
+
+    -nm <- Starts the demo with no background music, just sound effects.
+
+
+
+Keys used by the ACK demo:
+
+F1  = Toggles mouse mode from Wolf style to Underworld style (Use -M1 on command
+      line to start up in Wolf style).
+
+ D  = Drop an object
+
+ H  = Help Screen
+
+ I  = Shows example inventory HUD display
+
+ M  = Shows overhead map
+
+Esc = Exit game
+
+
+
+Known problems:
+
+    The current version of the ACK engine displays a peculiar problem when
+dealing with objects. Ghost objects appear when the player is facing certain
+angles and at certain distances. This is a bug, pure and simple, and I haven't
+found the cause yet. An update to DEMO.EXE will be uploaded once this has been
+corrected. The ghost objects cause no harm to the game or machine, they are
+just annoying!
+
+
+
+
+
+Credits:
+
+    I wish to thank the following people for contributing to the ACK3D project
+and helping with the demonstration. I wish I could say in words what a great
+help they have been through all my frustrating times.
+
+
+	Jaimi McEntire who helped a great deal with programming and graphics.
+	    Jaimi also did the neat space station picture in the title!
+
+	Steve Salter who did ALOT of the wall and object graphics!
+
+	Frank Sachse who provided the sound routine interface and music!
+
+	Ron Sachse who provided some of the wall bitmaps!
+
+	Mark Betz who allowed me to use his fading routines!
+
+	Bart Stewart who built an image editor for this thing!
+
+	Mystic Software for allowing me to use thier WORX light package for
+	    this demonstration!
+
+
+    Thanks guys! Without you the ACK engine and demo would not have been
+possible!
+
+
+Conclusion:
+
+    Thank you for trying the ACK-3D demonstration. Its purpose is to show what
+can be done with the ACK-3D library to create a 3D game or application. The demo
+is not complete by any means and is only provided "as-is" to give some examples
+for using the ACK-3D library. I hope you like it. Please view the file STORY.DOC
+to read the short background story behind the game. Thank You!
+
+
+    I can be reached on CompuServe at 76004,1574 if you have any questions or
+comments regarding the ACK-3D demonstration or engine.
+
+
+    Sincerely,
+    Lary Myers
+
+
+

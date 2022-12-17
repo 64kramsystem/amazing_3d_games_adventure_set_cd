@@ -1,0 +1,1567 @@
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000F568H _TEXT                  CODE
+ 0002:00000000 000001718H _DATA                  DATA
+ 0002:00001718 000000000H _TLSCBA                TLSCBA
+ 0002:00001718 000000036H _INIT_                 INITDATA
+ 0002:0000174E 000000000H _INITEND_              INITDATA
+ 0002:0000174E 000000006H _EXIT_                 EXITDATA
+ 0002:00001754 000000000H _EXITEND_              EXITDATA
+ 0002:00001754 000000000H CONST                  CONST
+ 0002:00001754 000051EB8H _BSS                   BSS
+ 0002:0005360C 000000000H _BSSEND                BSS
+
+
+Detailed map of segments
+
+ 0001:00000000 00000078 C=CODE    S=_TEXT    G=(none)   M=clib\c0nt.ASM ACBP=A9
+ 0001:00000080 00002EAC C=CODE    S=_TEXT    G=(none)   M=FDEMO.C    ACBP=69
+ 0001:00002F30 0000020A C=CODE    S=_TEXT    G=(none)   M=MOUSE.C    ACBP=69
+ 0001:0000313C 000006D9 C=CODE    S=_TEXT    G=(none)   M=C:\BC4\ACK\ackrtn.asm ACBP=A9
+ 0001:00003820 00000000 C=CODE    S=_TEXT    G=(none)   M=ACKDATA.C  ACBP=69
+ 0001:00003830 00000B8E C=CODE    S=_TEXT    G=(none)   M=ACKDOOR.C  ACBP=69
+ 0001:000043C0 00000506 C=CODE    S=_TEXT    G=(none)   M=ACKIFF.C   ACBP=69
+ 0001:000048D0 00000E95 C=CODE    S=_TEXT    G=(none)   M=ACKINIT.C  ACBP=69
+ 0001:00005770 000018C4 C=CODE    S=_TEXT    G=(none)   M=ACKPOV.C   ACBP=69
+ 0001:00007040 0000038C C=CODE    S=_TEXT    G=(none)   M=ACKUTIL.C  ACBP=69
+ 0001:000073D0 00001CC1 C=CODE    S=_TEXT    G=(none)   M=ACKVIEW.C  ACBP=69
+ 0001:00009094 00000416 C=CODE    S=_TEXT    G=(none)   M=clib\genint.ASM ACBP=A9
+ 0001:000094AA 000000AD C=CODE    S=_TEXT    G=(none)   M=clib\int386.cas ACBP=29
+ 0001:00009557 0000001B C=CODE    S=_TEXT    G=(none)   M=clib\nowin32.c ACBP=29
+ 0001:00009572 00000019 C=CODE    S=_TEXT    G=(none)   M=clib\segread.cas ACBP=29
+ 0001:0000958C 00000030 C=CODE    S=_TEXT    G=(none)   M=..\common\abort.c ACBP=49
+ 0001:000095BC 00000086 C=CODE    S=_TEXT    G=(none)   M=..\common\allocbuf.c ACBP=49
+ 0001:00009642 00000099 C=CODE    S=_TEXT    G=(none)   M=..\common\atol.c ACBP=49
+ 0001:000096DC 00000008 C=CODE    S=_TEXT    G=(none)   M=..\common\close.ASM ACBP=A9
+ 0001:000096E4 00000000 C=CODE    S=_TEXT    G=(none)   M=..\common\ctype.c ACBP=49
+ 0001:000096E4 00000018 C=CODE    S=_TEXT    G=(none)   M=..\common\cvtentry.ASM ACBP=A9
+ 0001:000096FC 00000024 C=CODE    S=_TEXT    G=(none)   M=..\common\cvtfak.c ACBP=49
+ 0001:00009720 00000000 C=CODE    S=_TEXT    G=(none)   M=..\common\deflt87.c ACBP=49
+ 0001:00009720 00000000 C=CODE    S=_TEXT    G=(none)   M=..\common\errno.c ACBP=49
+ 0001:00009720 00000140 C=CODE    S=_TEXT    G=(none)   M=..\common\except.c ACBP=49
+ 0001:00009860 000000BA C=CODE    S=_TEXT    G=(none)   M=..\common\exit.c ACBP=49
+ 0001:0000991A 0000000A C=CODE    S=_TEXT    G=(none)   M=..\common\defhandl.c ACBP=49
+ 0001:00009924 000000A9 C=CODE    S=_TEXT    G=(none)   M=..\common\fclose.c ACBP=49
+ 0001:000099D0 00000008 C=CODE    S=_TEXT    G=(none)   M=..\common\fdopen.ASM ACBP=A9
+ 0001:000099D8 0000009F C=CODE    S=_TEXT    G=(none)   M=..\common\fflush.c ACBP=49
+ 0001:00009A78 00000000 C=CODE    S=_TEXT    G=(none)   M=..\common\files.c ACBP=49
+ 0001:00009A78 00000000 C=CODE    S=_TEXT    G=(none)   M=..\common\files2.c ACBP=49
+ 0001:00009A7C 00000008 C=CODE    S=_TEXT    G=(none)   M=..\common\flushall.ASM ACBP=A9
+ 0001:00009A84 0000000D C=CODE    S=_TEXT    G=(none)   M=..\common\fmodeptr.c ACBP=49
+ 0001:00009A92 0000021D C=CODE    S=_TEXT    G=(none)   M=..\common\fopen.c ACBP=49
+ 0001:00009CB0 000000F6 C=CODE    S=_TEXT    G=(none)   M=..\common\fputn.c ACBP=49
+ 0001:00009DA6 00000056 C=CODE    S=_TEXT    G=(none)   M=..\common\fputs.c ACBP=49
+ 0001:00009DFC 00000197 C=CODE    S=_TEXT    G=(none)   M=..\common\fread.c ACBP=49
+ 0001:00009F94 00000186 C=CODE    S=_TEXT    G=(none)   M=..\common\fseek.c ACBP=49
+ 0001:0000A11A 000000CE C=CODE    S=_TEXT    G=(none)   M=..\common\getmem.c ACBP=49
+ 0001:0000A1E8 00000336 C=CODE    S=_TEXT    G=(none)   M=..\common\heap.c ACBP=49
+ 0001:0000A51E 0000001E C=CODE    S=_TEXT    G=(none)   M=..\common\labs.c ACBP=49
+ 0001:0000A53C 000001A0 C=CODE    S=_TEXT    G=(none)   M=..\common\lgetc.c ACBP=49
+ 0001:0000A6DC 000000A9 C=CODE    S=_TEXT    G=(none)   M=..\common\longtoa.c ACBP=49
+ 0001:0000A786 00000110 C=CODE    S=_TEXT    G=(none)   M=..\common\lputc.c ACBP=49
+ 0001:0000A898 00000008 C=CODE    S=_TEXT    G=(none)   M=..\common\lseek.ASM ACBP=A9
+ 0001:0000A8A0 0000001E C=CODE    S=_TEXT    G=(none)   M=..\common\memchr.ASM ACBP=A9
+ 0001:0000A8BE 0000003C C=CODE    S=_TEXT    G=(none)   M=..\common\memcmp.c ACBP=49
+ 0001:0000A8FC 00000024 C=CODE    S=_TEXT    G=(none)   M=..\common\memcpy.ASM ACBP=A9
+ 0001:0000A920 0000004A C=CODE    S=_TEXT    G=(none)   M=..\common\memmove.ASM ACBP=A9
+ 0001:0000A96C 0000002E C=CODE    S=_TEXT    G=(none)   M=..\common\memset.ASM ACBP=A9
+ 0001:0000A99A 0000009B C=CODE    S=_TEXT    G=(none)   M=..\common\mkname.c ACBP=49
+ 0001:0000AA38 00000008 C=CODE    S=_TEXT    G=(none)   M=..\common\open.ASM ACBP=A9
+ 0001:0000AA40 00000085 C=CODE    S=_TEXT    G=(none)   M=..\common\perror.c ACBP=49
+ 0001:0000AAC6 00000022 C=CODE    S=_TEXT    G=(none)   M=..\common\printf.c ACBP=49
+ 0001:0000AAE8 00000078 C=CODE    S=_TEXT    G=(none)   M=..\common\rand.c ACBP=49
+ 0001:0000AB60 00000008 C=CODE    S=_TEXT    G=(none)   M=..\common\read.ASM ACBP=A9
+ 0001:0000AB68 000002F9 C=CODE    S=_TEXT    G=(none)   M=..\common\realloc.c ACBP=49
+ 0001:0000AE62 00000332 C=CODE    S=_TEXT    G=(none)   M=..\common\setargv.c ACBP=49
+ 0001:0000B194 00000065 C=CODE    S=_TEXT    G=(none)   M=..\common\setvbuf.c ACBP=49
+ 0001:0000B1FA 00000074 C=CODE    S=_TEXT    G=(none)   M=..\common\sprintf.c ACBP=49
+ 0001:0000B26E 0000030C C=CODE    S=_TEXT    G=(none)   M=..\common\startup.c ACBP=49
+ 0001:0000B57C 0000003C C=CODE    S=_TEXT    G=(none)   M=..\common\strcat.ASM ACBP=A9
+ 0001:0000B5B8 0000002B C=CODE    S=_TEXT    G=(none)   M=..\common\strcmp.ASM ACBP=A9
+ 0001:0000B5E4 0000002F C=CODE    S=_TEXT    G=(none)   M=..\common\strcpy.ASM ACBP=A9
+ 0001:0000B614 00000110 C=CODE    S=_TEXT    G=(none)   M=..\common\streams.c ACBP=49
+ 0001:0000B724 00000019 C=CODE    S=_TEXT    G=(none)   M=..\common\strlen.ASM ACBP=A9
+ 0001:0000B73E 00000071 C=CODE    S=_TEXT    G=(none)   M=..\common\strnicmp.c ACBP=49
+ 0001:0000B7B0 0000002E C=CODE    S=_TEXT    G=(none)   M=..\common\strrchr.c ACBP=49
+ 0001:0000B7DE 0000009D C=CODE    S=_TEXT    G=(none)   M=..\common\strstr.c ACBP=49
+ 0001:0000B87C 00000025 C=CODE    S=_TEXT    G=(none)   M=..\common\strupr.c ACBP=49
+ 0001:0000B8A2 0000003D C=CODE    S=_TEXT    G=(none)   M=..\common\toupper.c ACBP=49
+ 0001:0000B8E0 0000084D C=CODE    S=_TEXT    G=(none)   M=..\common\vprinter.c ACBP=49
+ 0001:0000C12E 00000033 C=CODE    S=_TEXT    G=(none)   M=..\common\xfclose.c ACBP=49
+ 0001:0000C162 0000002E C=CODE    S=_TEXT    G=(none)   M=..\common\xfflush.c ACBP=49
+ 0001:0000C190 000000B5 C=CODE    S=_TEXT    G=(none)   M=..\common\__eof.c ACBP=49
+ 0001:0000C246 000001DB C=CODE    S=_TEXT    G=(none)   M=..\common\__read.c ACBP=49
+ 0001:0000C422 000001FD C=CODE    S=_TEXT    G=(none)   M=..\common\__write.c ACBP=49
+ 0001:0000C620 00000013 C=CODE    S=_TEXT    G=(none)   M=..\common\_cfinfo.c ACBP=49
+ 0001:0000C634 00000038 C=CODE    S=_TEXT    G=(none)   M=..\common\_fdopen.c ACBP=49
+ 0001:0000C66C 0000003F C=CODE    S=_TEXT    G=(none)   M=..\common\_flshall.c ACBP=49
+ 0001:0000C6AC 0000002F C=CODE    S=_TEXT    G=(none)   M=..\common\_stpcpy.c ACBP=49
+ 0001:0000C6DC 0000001B C=CODE    S=_TEXT    G=(none)   M=..\common\_umask.c ACBP=49
+ 0001:0000C6F8 00000015 C=CODE    S=_TEXT    G=(none)   M=..\common\clear87.ASM ACBP=A9
+ 0001:0000C710 00000028 C=CODE    S=_TEXT    G=(none)   M=..\common\ctrl87.ASM ACBP=A9
+ 0001:0000C738 00000017 C=CODE    S=_TEXT    G=(none)   M=..\common\fpreset.ASM ACBP=A9
+ 0001:0000C750 00000015 C=CODE    S=_TEXT    G=(none)   M=..\common\mathptr.c ACBP=49
+ 0001:0000C766 00000010 C=CODE    S=_TEXT    G=(none)   M=..\common\del.cpp ACBP=49
+ 0001:0000C776 00000010 C=CODE    S=_TEXT    G=(none)   M=..\common\delarray.cpp ACBP=49
+ 0001:0000C788 00000022 C=CODE    S=_TEXT    G=(none)   M=..\common\ta.ASM ACBP=A9
+ 0001:0000C7AA 00001C51 C=CODE    S=_TEXT    G=(none)   M=..\common\xx.cpp ACBP=49
+ 0001:0000E3FC 00000000 C=CODE    S=_TEXT    G=(none)   M=..\common\fmode.c ACBP=49
+ 0001:0000E3FE 00000038 C=CODE    S=_TEXT    G=(none)   M=..\common\matherr.c ACBP=49
+ 0001:0000E436 00000042 C=CODE    S=_TEXT    G=(none)   M=..\common\matherrl.c ACBP=49
+ 0001:0000E478 00000005 C=CODE    S=_TEXT    G=(none)   M=..\common\nowild.c ACBP=49
+ 0001:0000E47E 0000003E C=CODE    S=_TEXT    G=(none)   M=..\common\xxa.cpp ACBP=49
+ 0001:0000E4BC 000001F7 C=CODE    S=_TEXT    G=(none)   M=..\common\xxv.cpp ACBP=49
+ 0001:0000E6B4 00000043 C=CODE    S=_TEXT    G=(none)   M=clib\__access.c ACBP=49
+ 0001:0000E6F8 00000059 C=CODE    S=_TEXT    G=(none)   M=clib\__close.c ACBP=49
+ 0001:0000E752 00000035 C=CODE    S=_TEXT    G=(none)   M=clib\__isatty.c ACBP=49
+ 0001:0000E788 0000008E C=CODE    S=_TEXT    G=(none)   M=clib\__lseek.c ACBP=49
+ 0001:0000E816 00000221 C=CODE    S=_TEXT    G=(none)   M=clib\__open.c ACBP=49
+ 0001:0000EA38 00000027 C=CODE    S=_TEXT    G=(none)   M=clib\__unlink.c ACBP=49
+ 0001:0000EA60 0000006B C=CODE    S=_TEXT    G=(none)   M=clib\_read.c ACBP=49
+ 0001:0000EACC 0000006B C=CODE    S=_TEXT    G=(none)   M=clib\_write.c ACBP=49
+ 0001:0000EB38 0000001F C=CODE    S=_TEXT    G=(none)   M=clib\clock.c ACBP=49
+ 0001:0000EB58 0000014A C=CODE    S=_TEXT    G=(none)   M=clib\errormsg.c ACBP=49
+ 0001:0000ECA2 0000037E C=CODE    S=_TEXT    G=(none)   M=clib\handles.c ACBP=49
+ 0001:0000F020 00000087 C=CODE    S=_TEXT    G=(none)   M=clib\ioerror.c ACBP=49
+ 0001:0000F0A8 0000004C C=CODE    S=_TEXT    G=(none)   M=clib\platform.c ACBP=49
+ 0001:0000F0F4 00000046 C=CODE    S=_TEXT    G=(none)   M=clib\setexc.ASM ACBP=A9
+ 0001:0000F13A 00000307 C=CODE    S=_TEXT    G=(none)   M=clib\signal.c ACBP=49
+ 0001:0000F442 00000126 C=CODE    S=_TEXT    G=(none)   M=clib\virtmem.c ACBP=49
+ 0002:00000000 0000006A C=DATA    S=_DATA    G=DGROUP   M=clib\c0nt.ASM ACBP=A9
+ 0002:0000006C 000005EA C=DATA    S=_DATA    G=DGROUP   M=FDEMO.C    ACBP=A9
+ 0002:00000658 00000004 C=DATA    S=_DATA    G=DGROUP   M=MOUSE.C    ACBP=A9
+ 0002:0000065C 0000001E C=DATA    S=_DATA    G=DGROUP   M=C:\BC4\ACK\ackrtn.asm ACBP=A9
+ 0002:0000067C 00000018 C=DATA    S=_DATA    G=DGROUP   M=ACKDATA.C  ACBP=A9
+ 0002:00000694 00000000 C=DATA    S=_DATA    G=DGROUP   M=ACKDOOR.C  ACBP=A9
+ 0002:00000694 0000001F C=DATA    S=_DATA    G=DGROUP   M=ACKIFF.C   ACBP=A9
+ 0002:000006B4 00000009 C=DATA    S=_DATA    G=DGROUP   M=ACKINIT.C  ACBP=A9
+ 0002:000006C0 00000000 C=DATA    S=_DATA    G=DGROUP   M=ACKPOV.C   ACBP=A9
+ 0002:000006C4 00000070 C=DATA    S=_DATA    G=DGROUP   M=ACKUTIL.C  ACBP=A9
+ 0002:00000734 00000014 C=DATA    S=_DATA    G=DGROUP   M=ACKVIEW.C  ACBP=A9
+ 0002:00000748 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\int386.cas ACBP=A9
+ 0002:00000748 0000002A C=DATA    S=_DATA    G=DGROUP   M=clib\nowin32.c ACBP=A9
+ 0002:00000774 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\segread.cas ACBP=A9
+ 0002:00000778 0000001D C=DATA    S=_DATA    G=DGROUP   M=..\common\abort.c ACBP=A9
+ 0002:00000798 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\allocbuf.c ACBP=A9
+ 0002:00000798 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\atol.c ACBP=A9
+ 0002:00000798 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\close.ASM ACBP=A9
+ 0002:0000079C 00000101 C=DATA    S=_DATA    G=DGROUP   M=..\common\ctype.c ACBP=A9
+ 0002:000008A0 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\cvtentry.ASM ACBP=A9
+ 0002:000008A4 00000065 C=DATA    S=_DATA    G=DGROUP   M=..\common\cvtfak.c ACBP=A9
+ 0002:0000090C 00000004 C=DATA    S=_DATA    G=DGROUP   M=..\common\deflt87.c ACBP=A9
+ 0002:00000910 00000004 C=DATA    S=_DATA    G=DGROUP   M=..\common\errno.c ACBP=A9
+ 0002:00000914 00000014 C=DATA    S=_DATA    G=DGROUP   M=..\common\except.c ACBP=A9
+ 0002:00000928 00000010 C=DATA    S=_DATA    G=DGROUP   M=..\common\exit.c ACBP=A9
+ 0002:00000938 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\defhandl.c ACBP=A9
+ 0002:00000938 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\fclose.c ACBP=A9
+ 0002:00000938 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\fdopen.ASM ACBP=A9
+ 0002:00000938 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\fflush.c ACBP=A9
+ 0002:00000938 000003C0 C=DATA    S=_DATA    G=DGROUP   M=..\common\files.c ACBP=A9
+ 0002:00000CF8 000000A4 C=DATA    S=_DATA    G=DGROUP   M=..\common\files2.c ACBP=A9
+ 0002:00000D9C 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\flushall.ASM ACBP=A9
+ 0002:00000D9C 00000004 C=DATA    S=_DATA    G=DGROUP   M=..\common\fmodeptr.c ACBP=A9
+ 0002:00000DA0 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\fopen.c ACBP=A9
+ 0002:00000DA0 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\fputn.c ACBP=A9
+ 0002:00000DA0 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\fputs.c ACBP=A9
+ 0002:00000DA0 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\fread.c ACBP=A9
+ 0002:00000DA0 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\fseek.c ACBP=A9
+ 0002:00000DA0 00000008 C=DATA    S=_DATA    G=DGROUP   M=..\common\getmem.c ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\heap.c ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\labs.c ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\lgetc.c ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\longtoa.c ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\lputc.c ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\lseek.ASM ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\memchr.ASM ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\memcmp.c ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\memcpy.ASM ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\memmove.ASM ACBP=A9
+ 0002:00000DA8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\memset.ASM ACBP=A9
+ 0002:00000DA8 00000009 C=DATA    S=_DATA    G=DGROUP   M=..\common\mkname.c ACBP=A9
+ 0002:00000DB4 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\open.ASM ACBP=A9
+ 0002:00000DB8 00000479 C=DATA    S=_DATA    G=DGROUP   M=..\common\perror.c ACBP=A9
+ 0002:00001234 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\printf.c ACBP=A9
+ 0002:00001238 00000008 C=DATA    S=_DATA    G=DGROUP   M=..\common\rand.c ACBP=A9
+ 0002:00001240 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\read.ASM ACBP=A9
+ 0002:00001240 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\realloc.c ACBP=A9
+ 0002:00001240 00000077 C=DATA    S=_DATA    G=DGROUP   M=..\common\setargv.c ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\setvbuf.c ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\sprintf.c ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\startup.c ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\strcat.ASM ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\strcmp.ASM ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\strcpy.ASM ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\streams.c ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\strlen.ASM ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\strnicmp.c ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\strrchr.c ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\strstr.c ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\strupr.c ACBP=A9
+ 0002:000012B8 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\toupper.c ACBP=A9
+ 0002:000012BC 00000068 C=DATA    S=_DATA    G=DGROUP   M=..\common\vprinter.c ACBP=A9
+ 0002:00001324 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\xfclose.c ACBP=A9
+ 0002:00001324 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\xfflush.c ACBP=A9
+ 0002:00001324 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\__eof.c ACBP=A9
+ 0002:00001324 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\__read.c ACBP=A9
+ 0002:00001324 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\__write.c ACBP=A9
+ 0002:00001324 00000004 C=DATA    S=_DATA    G=DGROUP   M=..\common\_cfinfo.c ACBP=A9
+ 0002:00001328 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\_fdopen.c ACBP=A9
+ 0002:00001328 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\_flshall.c ACBP=A9
+ 0002:00001328 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\_stpcpy.c ACBP=A9
+ 0002:00001328 00000004 C=DATA    S=_DATA    G=DGROUP   M=..\common\_umask.c ACBP=A9
+ 0002:0000132C 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\clear87.ASM ACBP=A9
+ 0002:0000132C 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\ctrl87.ASM ACBP=A9
+ 0002:0000132C 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\fpreset.ASM ACBP=A9
+ 0002:0000132C 00000008 C=DATA    S=_DATA    G=DGROUP   M=..\common\mathptr.c ACBP=A9
+ 0002:00001334 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\del.cpp ACBP=A9
+ 0002:00001334 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\delarray.cpp ACBP=A9
+ 0002:00001334 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\ta.ASM ACBP=A9
+ 0002:00001334 00000116 C=DATA    S=_DATA    G=DGROUP   M=..\common\xx.cpp ACBP=A9
+ 0002:0000144C 00000004 C=DATA    S=_DATA    G=DGROUP   M=..\common\fmode.c ACBP=A9
+ 0002:00001450 00000008 C=DATA    S=_DATA    G=DGROUP   M=..\common\matherr.c ACBP=A9
+ 0002:00001458 0000000A C=DATA    S=_DATA    G=DGROUP   M=..\common\matherrl.c ACBP=A9
+ 0002:00001464 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\nowild.c ACBP=A9
+ 0002:00001464 00000000 C=DATA    S=_DATA    G=DGROUP   M=..\common\xxa.cpp ACBP=A9
+ 0002:00001468 000000EF C=DATA    S=_DATA    G=DGROUP   M=..\common\xxv.cpp ACBP=A9
+ 0002:00001558 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\__access.c ACBP=A9
+ 0002:00001558 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\__close.c ACBP=A9
+ 0002:00001558 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\__isatty.c ACBP=A9
+ 0002:00001558 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\__lseek.c ACBP=A9
+ 0002:00001558 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\__open.c ACBP=A9
+ 0002:00001558 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\__unlink.c ACBP=A9
+ 0002:00001558 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\_read.c ACBP=A9
+ 0002:00001558 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\_write.c ACBP=A9
+ 0002:0000155C 00000004 C=DATA    S=_DATA    G=DGROUP   M=clib\clock.c ACBP=A9
+ 0002:00001560 00000006 C=DATA    S=_DATA    G=DGROUP   M=clib\errormsg.c ACBP=A9
+ 0002:00001568 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\handles.c ACBP=A9
+ 0002:0000156C 0000012B C=DATA    S=_DATA    G=DGROUP   M=clib\ioerror.c ACBP=A9
+ 0002:00001698 00000017 C=DATA    S=_DATA    G=DGROUP   M=clib\platform.c ACBP=A9
+ 0002:000016B0 00000000 C=DATA    S=_DATA    G=DGROUP   M=clib\setexc.ASM ACBP=A9
+ 0002:000016B4 0000005E C=DATA    S=_DATA    G=DGROUP   M=clib\signal.c ACBP=A9
+ 0002:00001714 00000004 C=DATA    S=_DATA    G=DGROUP   M=clib\virtmem.c ACBP=A9
+ 0002:00001718 00000000 C=TLSCBA  S=_TLSCBA  G=DGROUP   M=clib\c0nt.ASM ACBP=A9
+ 0002:00001718 00000000 C=INITDATA S=_INIT_   G=DGROUP   M=clib\c0nt.ASM ACBP=49
+ 0002:00001718 00000006 C=INITDATA S=_INIT_   G=DGROUP   M=clib\nowin32.c ACBP=49
+ 0002:0000171E 00000006 C=INITDATA S=_INIT_   G=DGROUP   M=..\common\except.c ACBP=49
+ 0002:00001724 00000006 C=INITDATA S=_INIT_   G=DGROUP   M=..\common\files.c ACBP=49
+ 0002:0000172A 00000006 C=INITDATA S=_INIT_   G=DGROUP   M=..\common\files2.c ACBP=49
+ 0002:00001730 00000006 C=INITDATA S=_INIT_   G=DGROUP   M=..\common\heap.c ACBP=49
+ 0002:00001736 00000006 C=INITDATA S=_INIT_   G=DGROUP   M=..\common\setargv.c ACBP=49
+ 0002:0000173C 00000006 C=INITDATA S=_INIT_   G=DGROUP   M=..\common\startup.c ACBP=49
+ 0002:00001742 00000006 C=INITDATA S=_INIT_   G=DGROUP   M=clib\clock.c ACBP=49
+ 0002:00001748 00000006 C=INITDATA S=_INIT_   G=DGROUP   M=clib\platform.c ACBP=49
+ 0002:0000174E 00000000 C=INITDATA S=_INITEND_ G=DGROUP   M=clib\c0nt.ASM ACBP=49
+ 0002:0000174E 00000000 C=EXITDATA S=_EXIT_   G=DGROUP   M=clib\c0nt.ASM ACBP=49
+ 0002:0000174E 00000006 C=EXITDATA S=_EXIT_   G=DGROUP   M=..\common\except.c ACBP=49
+ 0002:00001754 00000000 C=EXITDATA S=_EXITEND_ G=DGROUP   M=clib\c0nt.ASM ACBP=49
+ 0002:00001754 00000000 C=CONST   S=CONST    G=DGROUP   M=clib\c0nt.ASM ACBP=A9
+ 0002:00001754 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\c0nt.ASM ACBP=A9
+ 0002:00001754 000002C6 C=BSS     S=_BSS     G=DGROUP   M=FDEMO.C    ACBP=A9
+ 0002:00001A1C 00000000 C=BSS     S=_BSS     G=DGROUP   M=MOUSE.C    ACBP=A9
+ 0002:00001A20 0000DBA0 C=BSS     S=_BSS     G=DGROUP   M=ACKDATA.C  ACBP=A9
+ 0002:0000F5C0 00000000 C=BSS     S=_BSS     G=DGROUP   M=ACKDOOR.C  ACBP=A9
+ 0002:0000F5C0 0000158A C=BSS     S=_BSS     G=DGROUP   M=ACKIFF.C   ACBP=A9
+ 0002:00010B4C 000038A4 C=BSS     S=_BSS     G=DGROUP   M=ACKINIT.C  ACBP=A9
+ 0002:000143F0 00000000 C=BSS     S=_BSS     G=DGROUP   M=ACKPOV.C   ACBP=A9
+ 0002:000143F0 00000006 C=BSS     S=_BSS     G=DGROUP   M=ACKUTIL.C  ACBP=A9
+ 0002:000143F8 0003EDB4 C=BSS     S=_BSS     G=DGROUP   M=ACKVIEW.C  ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\int386.cas ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\nowin32.c ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\segread.cas ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\abort.c ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\allocbuf.c ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\atol.c ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\close.ASM ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\ctype.c ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\cvtentry.ASM ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\cvtfak.c ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\deflt87.c ACBP=A9
+ 0002:000531AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\errno.c ACBP=A9
+ 0002:000531AC 00000008 C=BSS     S=_BSS     G=DGROUP   M=..\common\except.c ACBP=A9
+ 0002:000531B4 00000080 C=BSS     S=_BSS     G=DGROUP   M=..\common\exit.c ACBP=A9
+ 0002:00053234 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\defhandl.c ACBP=A9
+ 0002:00053234 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fclose.c ACBP=A9
+ 0002:00053234 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fdopen.ASM ACBP=A9
+ 0002:00053234 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fflush.c ACBP=A9
+ 0002:00053234 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\files.c ACBP=A9
+ 0002:00053234 00000140 C=BSS     S=_BSS     G=DGROUP   M=..\common\files2.c ACBP=A9
+ 0002:00053374 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\flushall.ASM ACBP=A9
+ 0002:00053374 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fmodeptr.c ACBP=A9
+ 0002:00053374 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fopen.c ACBP=A9
+ 0002:00053374 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fputn.c ACBP=A9
+ 0002:00053374 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fputs.c ACBP=A9
+ 0002:00053374 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fread.c ACBP=A9
+ 0002:00053374 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fseek.c ACBP=A9
+ 0002:00053374 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\getmem.c ACBP=A9
+ 0002:00053374 0000021C C=BSS     S=_BSS     G=DGROUP   M=..\common\heap.c ACBP=A9
+ 0002:00053590 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\labs.c ACBP=A9
+ 0002:00053590 00000001 C=BSS     S=_BSS     G=DGROUP   M=..\common\lgetc.c ACBP=A9
+ 0002:00053594 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\longtoa.c ACBP=A9
+ 0002:00053594 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\lputc.c ACBP=A9
+ 0002:00053594 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\lseek.ASM ACBP=A9
+ 0002:00053594 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\memchr.ASM ACBP=A9
+ 0002:00053594 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\memcmp.c ACBP=A9
+ 0002:00053594 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\memcpy.ASM ACBP=A9
+ 0002:00053594 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\memmove.ASM ACBP=A9
+ 0002:00053594 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\memset.ASM ACBP=A9
+ 0002:00053598 00000011 C=BSS     S=_BSS     G=DGROUP   M=..\common\mkname.c ACBP=A9
+ 0002:000535AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\open.ASM ACBP=A9
+ 0002:000535AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\perror.c ACBP=A9
+ 0002:000535AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\printf.c ACBP=A9
+ 0002:000535AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\rand.c ACBP=A9
+ 0002:000535AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\read.ASM ACBP=A9
+ 0002:000535AC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\realloc.c ACBP=A9
+ 0002:000535B0 0000000C C=BSS     S=_BSS     G=DGROUP   M=..\common\setargv.c ACBP=A9
+ 0002:000535BC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\setvbuf.c ACBP=A9
+ 0002:000535BC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\sprintf.c ACBP=A9
+ 0002:000535BC 00000030 C=BSS     S=_BSS     G=DGROUP   M=..\common\startup.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\strcat.ASM ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\strcmp.ASM ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\strcpy.ASM ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\streams.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\strlen.ASM ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\strnicmp.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\strrchr.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\strstr.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\strupr.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\toupper.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\vprinter.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\xfclose.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\xfflush.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\__eof.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\__read.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\__write.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\_cfinfo.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\_fdopen.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\_flshall.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\_stpcpy.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\_umask.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\clear87.ASM ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\ctrl87.ASM ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fpreset.ASM ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\mathptr.c ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\del.cpp ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\delarray.cpp ACBP=A9
+ 0002:000535EC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\ta.ASM ACBP=A9
+ 0002:000535EC 0000000D C=BSS     S=_BSS     G=DGROUP   M=..\common\xx.cpp ACBP=A9
+ 0002:000535FC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\fmode.c ACBP=A9
+ 0002:000535FC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\matherr.c ACBP=A9
+ 0002:000535FC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\matherrl.c ACBP=A9
+ 0002:000535FC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\nowild.c ACBP=A9
+ 0002:000535FC 00000000 C=BSS     S=_BSS     G=DGROUP   M=..\common\xxa.cpp ACBP=A9
+ 0002:00053600 00000004 C=BSS     S=_BSS     G=DGROUP   M=..\common\xxv.cpp ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\__access.c ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\__close.c ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\__isatty.c ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\__lseek.c ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\__open.c ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\__unlink.c ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\_read.c ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\_write.c ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\clock.c ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\errormsg.c ACBP=A9
+ 0002:00053604 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\handles.c ACBP=A9
+ 0002:00053604 00000004 C=BSS     S=_BSS     G=DGROUP   M=clib\ioerror.c ACBP=A9
+ 0002:00053608 00000004 C=BSS     S=_BSS     G=DGROUP   M=clib\platform.c ACBP=A9
+ 0002:0005360C 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\setexc.ASM ACBP=A9
+ 0002:0005360C 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\signal.c ACBP=A9
+ 0002:0005360C 00000000 C=BSS     S=_BSS     G=DGROUP   M=clib\virtmem.c ACBP=A9
+ 0002:0005360C 00000000 C=BSS     S=_BSSEND  G=DGROUP   M=clib\c0nt.ASM ACBP=A9
+
+  Address         Publics by Name
+
+ 0001:0000C766       operator delete(void*)
+ 0001:0000C776       operator delete[](void*)
+ 0001:0000E37B       __tpdsc__[Bad_typeid]
+ 0001:0000E397       __tpdsc__[Bad_cast]
+ 0001:0000E3B3       __tpdsc__[typeinfo]
+ 0001:0000E364       __tpdsc__[typeinfo*]
+ 0001:000055A3  Idle @AckBuildGrid
+ 0001:00005499  Idle @AckBuildHeightTables
+ 0001:00004D08  Idle @AckBuildTables
+ 0001:000076D8  Idle @AckBuildView
+ 0001:00003E77  Idle @AckCheckDoorOpen
+ 0001:00006D5C       @AckCheckHit
+ 0001:00006F90  Idle @AckCheckObjectMovement
+ 0001:00005770  Idle @AckCheckObjPosn
+ 0001:00004B6B  Idle @AckCloseResource
+ 0001:0000733C  Idle @AckDeleteObject
+ 0001:000083ED  Idle @AckDrawFloorHz
+ 0001:00008678  Idle @AckDrawOneFloor
+ 0001:000070AB       @AckFree
+ 0001:000073B5  Idle @AckFreeBitmap
+ 0001:000088CD  Idle @AckGetObjectAngle
+ 0001:00007326  Idle @AckGetObjectHit
+ 0001:00007331  Idle @AckGetWallHit
+ 0001:000048D0  Idle @AckInitialize
+ 0001:000070FF  Idle @AckLoadAndSetPalette
+ 0001:00007040       @AckMalloc
+ 0001:0000660E  Idle @AckMoveObjectPOV
+ 0001:00005DFB  Idle @AckMovePOV
+ 0001:00004A7E  Idle @AckOpenResource
+ 0001:000044A8       @AckReadiff
+ 0001:0000518A  Idle @AckReadMapFile
+ 0001:000073D0  Idle @AckRegisterStructure
+ 0001:0000738E  Idle @AckSetNewBitmap
+ 0001:000071CB  Idle @AckSetupPalRanges
+ 0001:000043E7  Idle @aRead
+ 0001:00007770  Idle @BuildSlice
+ 0001:00007EB5  Idle @BuildSliceMulti
+ 0001:00004BB0  Idle @BuildWallDstTables
+ 0001:0000486D  Idle @ByteFlipLong
+ 0001:00003830  Idle @CheckDoors
+ 0001:00005A31  Idle @CheckMapPosn
+ 0001:00004468  Idle @CloseFile
+ 0001:00005BE1  Idle @Dist2Wall
+ 0001:00003DB5       @FindDoor
+ 0001:00003E0A  Idle @FindDoorSlot
+ 0001:00008A98  Idle @FindObject
+ 0001:00005DAB  Idle @GetWallX
+ 0001:00005DD3  Idle @GetWallY
+ 0001:00005CF3  Idle @HitWall
+ 0001:000048A4  Idle @iffswab
+ 0001:0000C7A3       invokeHnd()
+ 0001:0000C788  Idle jump()
+ 0001:000057FE  Idle @lines_intersect
+ 0001:00008A1F  Idle @long_sqrt
+ 0001:000043C0  Idle @ReadNxtBlock
+ 0001:000081A1       @SetupFloors
+ 0001:0000E4C6  Idle set_terminate(void(*)())
+ 0001:0000E54D  Idle set_unexpected(void(*)())
+ 0001:0000776B  Idle @ShowNone
+ 0001:0000E4BC  Idle terminate()
+ 0001:0000DFBE  Idle typeinfo::operator =(const typeinfo&)
+ 0001:0000DF85  Idle typeinfo::typeinfo(const typeinfo&)
+ 0001:0000DFC6  Idle typeinfo::~typeinfo()
+ 0001:0000DFEC  Idle typeinfo::operator ==(const typeinfo&) const
+ 0001:0000E006  Idle typeinfo::operator !=(const typeinfo&) const
+ 0002:0000143A       typeinfo::
+ 0001:0000E01E  Idle typeinfo::before(const typeinfo&) const
+ 0001:0000E074  Idle typeinfo::name() const
+ 0001:0000E543  Idle unexpected()
+ 0001:00006B8C  Idle @xxxAckMoveObjectPOV
+ 0001:00006340  Idle @xxxAckMovePOV
+ 0001:0000D10D       _CatchCleanup()
+ 0001:0000CF93  Idle _ReThrowException(unsigned int,unsigned char*)
+ 0001:0000CF66       _ThrowException(void*,void*,void*,void*,unsigned int,unsigned int,unsigned int,unsigned char*)
+ 0001:0000E26F  Idle __DynamicCast(void*,void*,void*,void*,int)
+ 0001:0000E599       __GetPolymorphicDTC(void*,unsigned int)
+ 0001:0000E087  Idle __GetTypeInfo(void*,void*,void*,void*)
+ 0001:0000E47E       @__InitExceptBlock
+ 0001:0000DF74  Idle __ThrowExceptionName()
+ 0001:0000DF52  Idle __ThrowFileName()
+ 0001:0000DF63  Idle __ThrowLineNumber()
+ 0001:000095A8       _abort
+ 0001:000031E9       _AckCopyToVideo
+ 0002:000143F4  Idle _AckDisplayErrors
+ 0001:0000319B       _AckDisplayScreen
+ 0001:000032AA  Idle _AckDrawPage
+ 0001:00003231  Idle _AckGetIntVector
+ 0001:000031C8  Idle _AckGetVideo
+ 0001:00003211       _AckInitVideoSelector
+ 0001:0000313C       _AckInkey
+ 0001:0000315A  Idle _AckKbdInt
+ 0002:000143F0  Idle _AckMemUsed
+ 0001:000031A5       _AckPutVideo
+ 0001:00003246  Idle _AckSetIntVector
+ 0001:00003261       _AckSetPalette
+ 0001:0000329D       _AckSetTextmode
+ 0001:00003290       _AckSetVGAmode
+ 0002:000000F4  Idle _AckTmCount
+ 0002:000000F6  Idle _AckTmDelay
+ 0002:000050B0       _AdjustTable
+ 0002:00001754  Idle _ae
+ 0002:00001A44       _aeGlobal
+ 0001:000096CB  Idle _atoi
+ 0001:00009642       _atol
+ 0002:00009534       _BackArray
+ 0002:00001A2C       _BackDropRows
+ 0002:0001449C  Idle _BegX
+ 0002:000018E8  Idle _BGmusic
+ 0002:00001A28       _bmDistance
+ 0002:000017E4  Idle _bmFlash
+ 0002:000017EC  Idle _bmFlash1
+ 0002:00001A24       _bmWall
+ 0002:0000B1C0  Idle _BotRowTable
+ 0002:00000692       _CeilingHeight
+ 0002:0000D440       _CeilMap
+ 0002:000000EE  Idle _cframes
+ 0001:00001894  Idle _CheckMonsters
+ 0001:000004A7  Idle _CheckMouse
+ 0001:0000EB38       _clock
+ 0001:000096DC       _close
+ 0001:00001D51  Idle _ClsBmpBox
+ 0002:0000F5C0       _colordat
+ 0002:000050C8       _CosTable
+ 0002:000000F0  Idle _count
+ 0002:0000F8C0  Idle _cplanes
+ 0001:000006F3  Idle _CreateObject
+ 0002:000018F0  Idle _Demoht
+ 0002:000018EC  Idle _DemoPtr
+ 0002:000018F2  Idle _Demowt
+ 0002:000531A8  Idle _dFactor
+ 0002:00000680  Idle _DirAngle
+ 0002:000040AC       _DistanceTable
+ 0001:00001D56  Idle _DoTest
+ 0001:00001BB9  Idle _DrawBmpBox
+ 0001:000001D5  Idle _EndBGmusic
+ 0002:0001449E  Idle _EndX
+ 0002:00000910       _errno
+ 0002:00001A94       _ErrorCode
+ 0002:000000F8  Idle _ErrorMsgs
+ 0001:000098CC       _exit
+ 0001:00009924       _fclose
+ 0001:000099D0       _fdopen
+ 0001:000099D8       _fflush
+ 0001:0000A5F5       _fgetc
+ 0002:000017E2  Idle _FlashCount
+ 0002:000017E0  Idle _FlashIndex
+ 0002:0000B180       _Floorbm
+ 0002:000143F8       _FloorCeilRtn
+ 0002:00013EEC       _FloorCosTable
+ 0002:0000B160       _Floordu
+ 0002:0000B164       _Floordv
+ 0002:0000B1A2       _Flooreht
+ 0002:0000B198       _Floorht
+ 0002:0000B178       _Floorkdu
+ 0002:0000B17C       _Floorkdv
+ 0002:0000B170       _Floorku
+ 0002:0000B174       _Floorkv
+ 0002:0000B168       _Floorkx
+ 0002:0000B16C       _Floorky
+ 0002:0000B1A8       _FloorLastbm
+ 0002:0000B1A4       _FloorLastbNum
+ 0002:0000B440       _FloorMap
+ 0002:0000B18C       _Floorptr2
+ 0002:0000B190       _Floors1
+ 0002:0000B194       _Floors2
+ 0002:0000B184       _Floorscr
+ 0002:0000B188       _FloorscrTop
+ 0002:0000B158       _Flooru
+ 0002:0000B15C       _Floorv
+ 0002:0000B1A0       _Floorvht
+ 0002:0000B19C       _Floorwt
+ 0001:00009A7C       _flushall
+ 0002:000018C1  Idle _FontColor
+ 0002:000018C0  Idle _FontTransparent
+ 0001:00009C88       _fopen
+ 0002:0000892E       _FoundObjectCount
+ 0001:0000A786       _fputc
+ 0001:00009DA6       _fputs
+ 0002:000000EC  Idle _framespersec
+ 0001:00009F61       _fread
+ 0001:0000A27E       _free
+ 0001:0000A009       _fseek
+ 0001:0000A088       _ftell
+ 0002:0001447E  Idle _gBitmapColumn
+ 0002:0001447C  Idle _gBitmapNumber
+ 0002:00014430       _gBkgdBuffer
+ 0002:00014445       _gBottomColor
+ 0002:00014424       _gBottomOff
+ 0002:00014420       _gCenterOff
+ 0002:0001441E       _gCenterRow
+ 0002:0001448C       _gDoor
+ 0002:00014490  Idle _gDoorPosn
+ 0001:0000056D  Idle _GetNextParm
+ 0002:00014488  Idle _gmPos
+ 0002:00014478  Idle _gmPtr
+ 0002:00014438       _gMultiWalls
+ 0002:00014434       _gPalTable
+ 0002:00014474  Idle _gPtr
+ 0002:00001AA0       _Grid
+ 0002:0001442C       _gScrnBuffer
+ 0002:00014428       _gScrnBufferCenter
+ 0002:00014444       _gTopColor
+ 0002:00014484  Idle _gWallDistance
+ 0002:00014408       _gWinDWORDS
+ 0002:00014414       _gWinEndX
+ 0002:00014416       _gWinEndY
+ 0002:00014404       _gWinFullWidth
+ 0002:0001441A       _gWinHalfHeight
+ 0002:00014418       _gWinHeight
+ 0002:0001440C       _gWinStartOffset
+ 0002:00014410       _gWinStartX
+ 0002:00014412       _gWinStartY
+ 0002:0001441C       _gWinWidth
+ 0002:00014482  Idle _gyBitmapColumn
+ 0002:00014480  Idle _gyBitmapNumber
+ 0002:000018FA  Idle _Handh1
+ 0002:00001902  Idle _Handh2
+ 0002:000018F8  Idle _Handw1
+ 0002:00001900  Idle _Handw2
+ 0002:000017DC  Idle _HaveMouse
+ 0001:00002F92  Idle _HideMouse
+ 0002:00001A68       _iLastX
+ 0002:00001A6C       _iLastY
+ 0001:0000114C  Idle _Initialize
+ 0001:000094AA       _int386
+ 0001:000094D1  Idle _int386x
+ 0002:000050D4       _InvCosTable
+ 0002:00006CF4       _InvSinTable
+ 0002:00000738       _kduFactor
+ 0002:0000073C  Idle _kdvFactor
+ 0002:00001759  Idle _KeyPressed
+ 0002:0000175C       _Keys
+ 0002:00000740  Idle _kxFactor
+ 0002:00000744  Idle _kyFactor
+ 0001:0000A51E       _labs
+ 0002:0000067C  Idle _LastFloorAngle
+ 0002:00008924  Idle _LastFloorX
+ 0002:00008926  Idle _LastFloorY
+ 0002:00008928       _LastMapPosn
+ 0002:0000892A       _LastObjectHit
+ 0002:00001A10  Idle _LastObjectIndex
+ 0002:000144A0  Idle _LastVht
+ 0002:0000B1AC       _LastWallHeight
+ 0002:00001A60       _LastX1
+ 0002:00001A64       _LastY1
+ 0002:00001A18  Idle _LevelFlag
+ 0002:00001A92       _LightFlag
+ 0002:000017F4  Idle _LineBuffer
+ 0001:0000142D  Idle _LoadAndShow
+ 0001:00001475  Idle _LoadBackDrop
+ 0001:000010A2  Idle _LoadDemoBitmap
+ 0001:000020CE  Idle _LoadNewLevel
+ 0001:0000063A  Idle _LoadObject
+ 0001:000001E3  Idle _LoadSmallFont
+ 0001:000005B4  Idle _LoadWall
+ 0002:00008914       _LongCosTable
+ 0002:000050D0       _LongInvTanTable
+ 0002:000050CC       _LongTanTable
+ 0002:00012E6C  Idle _LowerLen
+ 0002:00010B4C       _LowerTable
+ 0001:0000A898       _lseek
+ 0002:000018D0  Idle _MagAmount
+ 0001:000022DE       _main
+ 0001:0000A41A       _malloc
+ 0002:000018D8  Idle _MapResource
+ 0002:00001A90       _MaxDistance
+ 0001:0000A8A0       _memchr
+ 0001:0000A8BE       _memcmp
+ 0001:0000A8FC       _memcpy
+ 0001:0000A920       _memmove
+ 0001:0000A96C       _memset
+ 0002:000531A4  Idle _mFactor
+ 0002:00014498  Idle _mgPtr
+ 0002:0000175A  Idle _MiniKey
+ 0001:000001B6  Idle _MODFreeModule
+ 0001:0000013B  Idle _MODLoadModule
+ 0001:00002F30       _MouseInstalled
+ 0002:00000658  Idle _MouseModifier
+ 0001:0000312C       _MouseReleased
+ 0002:00008A30       _MoveObjectCount
+ 0002:00008A34       _MoveObjectList
+ 0002:0001443C       _mxGridGlobal
+ 0002:00014440       _myGridGlobal
+ 0001:00000080  Idle _myInt
+ 0001:000000EF  Idle _myTimer
+ 0002:00009034       _ObjAngle
+ 0002:00008E34       _ObjColumn
+ 0002:00001908  Idle _ObjCounter
+ 0002:00008930       _ObjectsSeen
+ 0002:00001AA4       _ObjGrid
+ 0002:00008B34       _ObjNumber
+ 0002:00008C34       _ObjRelDist
+ 0002:00001A0C  Idle _oldTimer
+ 0002:00001A08  Idle _oldvec
+ 0001:0000AA38       _open
+ 0002:000018DC  Idle _PalResource
+ 0001:0000AA40  Idle _perror
+ 0002:000018F4  Idle _pHand1
+ 0002:000018FC  Idle _pHand2
+ 0002:0000B1AE       _PlayerAngle
+ 0002:00000694  Idle _pplanes
+ 0001:0000AAC6       _printf
+ 0001:00000A11  Idle _ProcessInfoFile
+ 0001:0000F396       _raise
+ 0001:0000AAF5       _rand
+ 0002:0000006C  Idle _ranges
+ 0002:00001A58       _rbaTable
+ 0002:0000FB48  Idle _rdBuffer
+ 0002:0000FB40  Idle _rdbufpos
+ 0002:0000FB44  Idle _rdSize
+ 0001:0000AB60       _read
+ 0001:00000517  Idle _ReadLine
+ 0001:0000301D  Idle _ReadMouseButtons
+ 0001:00002FC4       _ReadMouseCursor
+ 0001:0000ACB2       _realloc
+ 0002:0000B154       _Resolution
+ 0002:000018E0  Idle _ResScreenBack
+ 0002:000018E4  Idle _ResScrollBack
+ 0002:00001A5C       _rsHandle
+ 0002:00013E6C       _rsName
+ 0002:00001758  Idle _scanCode
+ 0002:0000F440       _scantables
+ 0002:00014468       _scbNum
+ 0002:0001445C       _scbotht
+ 0002:00014470       _scColumn
+ 0002:00014454       _scdst
+ 0002:00014460       _scmulcnt
+ 0002:0001446C       _scMulData
+ 0002:00014458       _scmulti
+ 0002:00014450       _scPal
+ 0002:00001A20       _scPtr
+ 0002:00001A30       _ScreenOffset
+ 0002:00014464       _scsavVid
+ 0002:0001445E       _scsavwht
+ 0002:0001445A       _sctopht
+ 0002:00014448       _scVid
+ 0002:0001444C       _scWall
+ 0002:00014456       _scwht
+ 0001:00009572       _segread
+ 0001:00003053       _SetMouseCursor
+ 0001:0000309B  Idle _SetMouseMinMaxColumns
+ 0001:000030EA  Idle _SetMouseMinMaxRows
+ 0001:0000B194       _setvbuf
+ 0002:000018C8  Idle _Shooting
+ 0001:0000101A  Idle _ShowBitmap
+ 0001:00001588  Idle _ShowHit
+ 0002:000018D4  Idle _ShowHitFlag
+ 0001:00002F60  Idle _ShowMouse
+ 0001:00001BB4  Idle _ShowStatus
+ 0002:000018CC  Idle _ShutDownFlag
+ 0001:0000F322  Idle _signal
+ 0002:000050C4       _SinTable
+ 0001:000006C2  Idle _SkipSpaces
+ 0002:00001AA8       _Slice
+ 0002:000018BC  Idle _smFont
+ 0001:00000245  Idle _smWriteChar
+ 0001:00000470  Idle _smWriteHUD
+ 0001:00000400  Idle _smWriteString
+ 0002:0000402C  Idle _SpecialCodes
+ 0001:0000B223       _sprintf
+ 0002:00004028       _sPtr
+ 0001:0000AAE8  Idle _srand
+ 0001:000001CD  Idle _StartBGmusic
+ 0002:000018D2  Idle _StrAmount
+ 0001:0000B57C       _strcat
+ 0001:0000B5B8       _strcmp
+ 0001:0000B5E4       _strcpy
+ 0001:0000B724       _strlen
+ 0001:0000B73E       _strnicmp
+ 0001:0000B7B0       _strrchr
+ 0001:0000B7DE       _strstr
+ 0001:0000B87C       _strupr
+ 0002:0000B1B2       _SysFlags
+ 0002:000018C2  Idle _TextBGcolor
+ 0002:000018C4  Idle _Throwing
+ 0002:000000F2  Idle _ticks
+ 0002:00001904  Idle _TimerCounter
+ 0002:00012B4C  Idle _tmpLowerValue
+ 0002:0000892C       _TotalObjects
+ 0002:000050C0       _TotalSecret
+ 0002:000040A8       _TotalSpecial
+ 0001:0000B8A2       _toupper
+ 0002:00000734  Idle _tuFactor
+ 0002:00000736       _tvFactor
+ 0001:0000174B  Idle _UpdateBlast
+ 0002:0000B1BC       _VidBottom
+ 0002:00001A14       _VidSeg
+ 0002:0000B1B8       _VidTop
+ 0002:0000B1B0       _ViewAngle
+ 0002:000050C2       _ViewColumn
+ 0002:00008918       _ViewCosTable
+ 0002:00000690       _ViewHeight
+ 0001:0000B249  Idle _vsprintf
+ 0002:0000B1B4       _WallbMaps
+ 0002:00052CA4       _WallDistTable
+ 0002:00014400  Idle _WallMaskRtn
+ 0002:000143FC  Idle _WallRtn
+ 0002:00014494  Idle _wFound
+ 0002:00009234  Idle _WorkPalette
+ 0002:00001A3C       _xBegGlobal
+ 0002:00001A48       _xGridGlobal
+ 0002:00001A98       _xMapPosn
+ 0002:0000891C       _xNextTable
+ 0002:00001A34       _xPglobal
+ 0002:00001A50       _xPglobalHI
+ 0001:000033D3       _xRayCast
+ 0001:0000334A       _xRaySetup
+ 0002:000050B8       _xSecretColumn
+ 0002:000050B4       _xSecretmPos
+ 0002:000050B6       _xSecretmPos1
+ 0002:00001A78       _x_xNext
+ 0002:00001A70       _x_xPos
+ 0002:00001A7C       _x_yNext
+ 0002:00001A74       _x_yPos
+ 0002:00001A40       _yBegGlobal
+ 0002:00001A4C       _yGridGlobal
+ 0002:00001A9C       _yMapPosn
+ 0002:00008920       _yNextTable
+ 0002:00001A38       _yPglobal
+ 0002:00001A54       _yPglobalHI
+ 0001:00003635       _yRayCast
+ 0001:000035B6       _yRaySetup
+ 0002:000050BE       _ySecretColumn
+ 0002:000050BA       _ySecretmPos
+ 0002:000050BC       _ySecretmPos1
+ 0002:00001A88       _y_xNext
+ 0002:00001A80       _y_xPos
+ 0002:00001A8C       _y_yNext
+ 0002:00001A84       _y_yPos
+ 0002:000144A4       _zdTable
+ 0001:0000958C       __abort
+ 0001:00000000  Idle __acrtused
+ 0001:0000B0DE       __addarg
+ 0001:000095BC       __allocbuf
+ 0002:000535B0  Idle __argc
+ 0002:000535B4       __argv
+ 0002:00000928       __atexitcnt
+ 0002:000531B4       __atexittbl
+ 0002:000535D0       __C0argc
+ 0002:000535D4       __C0argv
+ 0002:000535D8       __C0environ
+ 0001:000098F4  Idle __cexit
+ 0002:00001324       __cfinfo_get
+ 0001:0000B4CE       __cleanup
+ 0001:0000C6F8       __clear87
+ 0001:0000C710       __control87
+ 0001:0000B26E       __create_shmem
+ 0002:0000079C       __ctype
+ 0001:0000DF1A       __CurrExcContext
+ 0001:00009907  Idle __c_exit
+ 0002:0000090C       __default87
+ 0002:00053600       __DestructorCountPtr
+ 0002:000535BC  Idle __dll_table
+ 0002:00053604       __doserrno
+ 0002:0000156C  Idle __dosErrorToSV
+ 0001:0000ED00       __dup_handle
+ 0001:0000EC88       __ErrorExit
+ 0001:0000EBC4       __ErrorMessage
+ 0001:0000E5C3       __ExceptInit
+ 0001:0000D627       __ExceptionHandler
+ 0002:00001540  Idle __ExceptVarsSize
+ 0002:000535C4       __ExcRegPtr
+ 0001:000098E0       __exit
+ 0002:0000092C       __exitbuf
+ 0002:00000930       __exitfopen
+ 0002:00000934  Idle __exitopen
+ 0001:00009828  Idle __exit_except
+ 0001:0000AB68  Idle __expand
+ 0002:00001244  Idle __expandptr
+ 0001:0000C634       __fdopen
+ 0001:0000A5DF       __fgetc
+ 0001:0000C66C       __flushall
+ 0002:0000144C       __fmode
+ 0002:00000D9C       __fmodeptr
+ 0001:0000C738       __fpreset
+ 0002:00053578  Idle __free_dummy
+ 0001:0000EDAD  Idle __free_handle
+ 0002:00053588       __free_list
+ 0001:00009494       __genericInterrupt
+ 0001:00000073  Idle __GetExceptDLLinfo
+ 0001:0000E68A       __GetExceptDLLinfoInternal
+ 0001:0000A11A       __getmem
+ 0001:0000ECA2       __get_handle
+ 0001:0000CFFE  Idle __Global_unwind
+ 0002:000531AC       __HandlerPtr
+ 0002:000532D4       __handles
+ 0001:0000A33C       __heapadd
+ 0002:00053374       __heaps
+ 0002:00000DA0       __heap_brk
+ 0002:00000DA4  Idle __heap_top
+ 0001:00009844       __InitDefaultHander
+ 0001:00009A84       __initfmode
+ 0001:0000C750       __initmatherr
+ 0001:0000E478       __initwild
+ 0001:0000980F  Idle __init_except
+ 0001:0000B27C       __init_exit_proc
+ 0001:0000EE8A       __init_handles
+ 0001:0000B614       __init_streams
+ 0002:000535E8  Idle __isWindows
+ 0001:0000D59E       __Local_unwind
+ 0001:0000AB19  Idle __lrand
+ 0001:0000E3FE       __matherr
+ 0001:0000E436       __matherrl
+ 0001:0000AE3F  Idle __msize
+ 0002:000008A8       __nextrealptr
+ 0002:00000CF8       __nfile
+ 0002:00053574       __nheaps
+ 0002:00001328       __notUmask
+ 0002:00000CFC       __openfd
+ 0002:000535CC       __oscmd
+ 0002:000535C8       __osenv
+ 0002:00053608       __ostype
+ 0002:00053234       __pidtab
+ 0002:0000132C       __pmatherr
+ 0002:00001330       __pmatherrl
+ 0001:0000EAB5  Idle __read
+ 0002:000008A4       __realcvtptr
+ 0001:0000A226  Idle __release_heap
+ 0001:0000D5B1  Idle __Return_unwind
+ 0002:0005358C       __rover
+ 0001:0000EA60       __rtl_read
+ 0001:0000EACC       __rtl_write
+ 0001:000096F6       __scanrslt
+ 0002:000008B0       __scanrsltptr
+ 0001:000096F0       __scantod
+ 0002:000008AC       __scantodptr
+ 0001:0000AE62  Idle __setargv
+ 0002:00001240       __setargv__
+ 0001:000097BC  Idle __setexc
+ 0001:0000F0F4       __SetExceptionHandler
+ 0001:000097ED  Idle __SetUserHandler
+ 0001:0000B35A       __startup
+ 0002:000535E4  Idle __stkbase
+ 0002:00000914       __stkchk
+ 0001:0000C6AC       __stpcpy
+ 0002:00000938       __streams
+ 0002:00000DB8       __sys_errlist
+ 0002:00000E7C       __sys_nerr
+ 0001:0000B567       __terminate
+ 0002:00000059  Idle __TLS_index
+ 0002:0000005D  Idle __TLS_index4
+ 0002:00053598       __tmpnum
+ 0001:0000C6DC       __umask
+ 0001:000097DD  Idle __unsetexc
+ 0001:0000F109       __UnsetExceptionHandler
+ 0001:00009800  Idle __unsetuserhandler
+ 0001:0000F135  Idle __UnwindException
+ 0002:000531B0  Idle __UserHandlerPtr
+ 0001:0000F4B2       __virt_commit
+ 0001:0000F507       __virt_decommit
+ 0001:0000F546       __virt_release
+ 0001:0000F442       __virt_reserve
+ 0001:0000EB21  Idle __write
+ 0001:0000C12E       __xfclose
+ 0001:0000C162       __xfflush
+ 0001:0000E6B4       ___access
+ 0001:0000E4F3       ___call_terminate
+ 0001:0000E57A       ___call_unexpected
+ 0001:0000E6F8       ___close
+ 0002:00001468  Idle ___CPPexceptionList
+ 0001:0000991A       ___DefHandler
+ 0001:00009557       ___disallowDPMI32onWin32
+ 0001:0000C78E       ___doGlobalUnwind
+ 0001:0000F069       ___DOSerror
+ 0001:0000C190       ___eof
+ 0001:0000EC78  Idle ___ErrorMessage
+ 0002:0000146C  Idle ___exceptFlags
+ 0002:00001488  Idle ___exceptMemAllocVars
+ 0002:00001484  Idle ___exceptStaticBuffP
+ 0002:0000148C  Idle ___ExceptStaticXbuff
+ 0001:00009CB0       ___fputn
+ 0001:00009C54       ___getfp
+ 0001:0000F020       ___IOerror
+ 0001:0000E752       ___isatty
+ 0002:00000058       ___isDLL
+ 0002:00000069       ___isGUI
+ 0001:0000C7AA  Idle ___JumpToCatch__
+ 0001:0000A6DC       ___longtoa
+ 0001:0000E788       ___lseek
+ 0001:0000A99A       ___mkname
+ 0001:000096EA       ___nextreal
+ 0001:0000F08F       ___NTerror
+ 0001:0000E816       ___open
+ 0001:00009B99       ___openfp
+ 0001:0000C2B4       ___read
+ 0001:000096E4       ___realcvt
+ 0002:00001470  Idle ___terminatePTR
+ 0002:00001480  Idle ___throwExceptionName
+ 0002:00001478  Idle ___throwFileName
+ 0002:0000147C  Idle ___throwLineNumber
+ 0001:0000A9F2       ___tmpnam
+ 0002:00001474  Idle ___unexpectdPTR
+ 0001:0000EA38       ___unlink
+ 0001:0000A76B       ___utoa
+ 0001:0000B981       ___vprinter
+ 0001:0000C4F9       ___write
+
+  Address         Publics by Value
+
+ 0001:00000000  Idle __acrtused
+ 0001:00000073  Idle __GetExceptDLLinfo
+ 0001:00000080  Idle _myInt
+ 0001:000000EF  Idle _myTimer
+ 0001:0000013B  Idle _MODLoadModule
+ 0001:000001B6  Idle _MODFreeModule
+ 0001:000001CD  Idle _StartBGmusic
+ 0001:000001D5  Idle _EndBGmusic
+ 0001:000001E3  Idle _LoadSmallFont
+ 0001:00000245  Idle _smWriteChar
+ 0001:00000400  Idle _smWriteString
+ 0001:00000470  Idle _smWriteHUD
+ 0001:000004A7  Idle _CheckMouse
+ 0001:00000517  Idle _ReadLine
+ 0001:0000056D  Idle _GetNextParm
+ 0001:000005B4  Idle _LoadWall
+ 0001:0000063A  Idle _LoadObject
+ 0001:000006C2  Idle _SkipSpaces
+ 0001:000006F3  Idle _CreateObject
+ 0001:00000A11  Idle _ProcessInfoFile
+ 0001:0000101A  Idle _ShowBitmap
+ 0001:000010A2  Idle _LoadDemoBitmap
+ 0001:0000114C  Idle _Initialize
+ 0001:0000142D  Idle _LoadAndShow
+ 0001:00001475  Idle _LoadBackDrop
+ 0001:00001588  Idle _ShowHit
+ 0001:0000174B  Idle _UpdateBlast
+ 0001:00001894  Idle _CheckMonsters
+ 0001:00001BB4  Idle _ShowStatus
+ 0001:00001BB9  Idle _DrawBmpBox
+ 0001:00001D51  Idle _ClsBmpBox
+ 0001:00001D56  Idle _DoTest
+ 0001:000020CE  Idle _LoadNewLevel
+ 0001:000022DE       _main
+ 0001:00002F30       _MouseInstalled
+ 0001:00002F60  Idle _ShowMouse
+ 0001:00002F92  Idle _HideMouse
+ 0001:00002FC4       _ReadMouseCursor
+ 0001:0000301D  Idle _ReadMouseButtons
+ 0001:00003053       _SetMouseCursor
+ 0001:0000309B  Idle _SetMouseMinMaxColumns
+ 0001:000030EA  Idle _SetMouseMinMaxRows
+ 0001:0000312C       _MouseReleased
+ 0001:0000313C       _AckInkey
+ 0001:0000315A  Idle _AckKbdInt
+ 0001:0000319B       _AckDisplayScreen
+ 0001:000031A5       _AckPutVideo
+ 0001:000031C8  Idle _AckGetVideo
+ 0001:000031E9       _AckCopyToVideo
+ 0001:00003211       _AckInitVideoSelector
+ 0001:00003231  Idle _AckGetIntVector
+ 0001:00003246  Idle _AckSetIntVector
+ 0001:00003261       _AckSetPalette
+ 0001:00003290       _AckSetVGAmode
+ 0001:0000329D       _AckSetTextmode
+ 0001:000032AA  Idle _AckDrawPage
+ 0001:0000334A       _xRaySetup
+ 0001:000033D3       _xRayCast
+ 0001:000035B6       _yRaySetup
+ 0001:00003635       _yRayCast
+ 0001:00003830  Idle @CheckDoors
+ 0001:00003DB5       @FindDoor
+ 0001:00003E0A  Idle @FindDoorSlot
+ 0001:00003E77  Idle @AckCheckDoorOpen
+ 0001:000043C0  Idle @ReadNxtBlock
+ 0001:000043E7  Idle @aRead
+ 0001:00004468  Idle @CloseFile
+ 0001:000044A8       @AckReadiff
+ 0001:0000486D  Idle @ByteFlipLong
+ 0001:000048A4  Idle @iffswab
+ 0001:000048D0  Idle @AckInitialize
+ 0001:00004A7E  Idle @AckOpenResource
+ 0001:00004B6B  Idle @AckCloseResource
+ 0001:00004BB0  Idle @BuildWallDstTables
+ 0001:00004D08  Idle @AckBuildTables
+ 0001:0000518A  Idle @AckReadMapFile
+ 0001:00005499  Idle @AckBuildHeightTables
+ 0001:000055A3  Idle @AckBuildGrid
+ 0001:00005770  Idle @AckCheckObjPosn
+ 0001:000057FE  Idle @lines_intersect
+ 0001:00005A31  Idle @CheckMapPosn
+ 0001:00005BE1  Idle @Dist2Wall
+ 0001:00005CF3  Idle @HitWall
+ 0001:00005DAB  Idle @GetWallX
+ 0001:00005DD3  Idle @GetWallY
+ 0001:00005DFB  Idle @AckMovePOV
+ 0001:00006340  Idle @xxxAckMovePOV
+ 0001:0000660E  Idle @AckMoveObjectPOV
+ 0001:00006B8C  Idle @xxxAckMoveObjectPOV
+ 0001:00006D5C       @AckCheckHit
+ 0001:00006F90  Idle @AckCheckObjectMovement
+ 0001:00007040       @AckMalloc
+ 0001:000070AB       @AckFree
+ 0001:000070FF  Idle @AckLoadAndSetPalette
+ 0001:000071CB  Idle @AckSetupPalRanges
+ 0001:00007326  Idle @AckGetObjectHit
+ 0001:00007331  Idle @AckGetWallHit
+ 0001:0000733C  Idle @AckDeleteObject
+ 0001:0000738E  Idle @AckSetNewBitmap
+ 0001:000073B5  Idle @AckFreeBitmap
+ 0001:000073D0  Idle @AckRegisterStructure
+ 0001:000076D8  Idle @AckBuildView
+ 0001:0000776B  Idle @ShowNone
+ 0001:00007770  Idle @BuildSlice
+ 0001:00007EB5  Idle @BuildSliceMulti
+ 0001:000081A1       @SetupFloors
+ 0001:000083ED  Idle @AckDrawFloorHz
+ 0001:00008678  Idle @AckDrawOneFloor
+ 0001:000088CD  Idle @AckGetObjectAngle
+ 0001:00008A1F  Idle @long_sqrt
+ 0001:00008A98  Idle @FindObject
+ 0001:00009494       __genericInterrupt
+ 0001:000094AA       _int386
+ 0001:000094D1  Idle _int386x
+ 0001:00009557       ___disallowDPMI32onWin32
+ 0001:00009572       _segread
+ 0001:0000958C       __abort
+ 0001:000095A8       _abort
+ 0001:000095BC       __allocbuf
+ 0001:00009642       _atol
+ 0001:000096CB  Idle _atoi
+ 0001:000096DC       _close
+ 0001:000096E4       ___realcvt
+ 0001:000096EA       ___nextreal
+ 0001:000096F0       __scantod
+ 0001:000096F6       __scanrslt
+ 0001:000097BC  Idle __setexc
+ 0001:000097DD  Idle __unsetexc
+ 0001:000097ED  Idle __SetUserHandler
+ 0001:00009800  Idle __unsetuserhandler
+ 0001:0000980F  Idle __init_except
+ 0001:00009828  Idle __exit_except
+ 0001:00009844       __InitDefaultHander
+ 0001:000098CC       _exit
+ 0001:000098E0       __exit
+ 0001:000098F4  Idle __cexit
+ 0001:00009907  Idle __c_exit
+ 0001:0000991A       ___DefHandler
+ 0001:00009924       _fclose
+ 0001:000099D0       _fdopen
+ 0001:000099D8       _fflush
+ 0001:00009A7C       _flushall
+ 0001:00009A84       __initfmode
+ 0001:00009B99       ___openfp
+ 0001:00009C54       ___getfp
+ 0001:00009C88       _fopen
+ 0001:00009CB0       ___fputn
+ 0001:00009DA6       _fputs
+ 0001:00009F61       _fread
+ 0001:0000A009       _fseek
+ 0001:0000A088       _ftell
+ 0001:0000A11A       __getmem
+ 0001:0000A226  Idle __release_heap
+ 0001:0000A27E       _free
+ 0001:0000A33C       __heapadd
+ 0001:0000A41A       _malloc
+ 0001:0000A51E       _labs
+ 0001:0000A5DF       __fgetc
+ 0001:0000A5F5       _fgetc
+ 0001:0000A6DC       ___longtoa
+ 0001:0000A76B       ___utoa
+ 0001:0000A786       _fputc
+ 0001:0000A898       _lseek
+ 0001:0000A8A0       _memchr
+ 0001:0000A8BE       _memcmp
+ 0001:0000A8FC       _memcpy
+ 0001:0000A920       _memmove
+ 0001:0000A96C       _memset
+ 0001:0000A99A       ___mkname
+ 0001:0000A9F2       ___tmpnam
+ 0001:0000AA38       _open
+ 0001:0000AA40  Idle _perror
+ 0001:0000AAC6       _printf
+ 0001:0000AAE8  Idle _srand
+ 0001:0000AAF5       _rand
+ 0001:0000AB19  Idle __lrand
+ 0001:0000AB60       _read
+ 0001:0000AB68  Idle __expand
+ 0001:0000ACB2       _realloc
+ 0001:0000AE3F  Idle __msize
+ 0001:0000AE62  Idle __setargv
+ 0001:0000B0DE       __addarg
+ 0001:0000B194       _setvbuf
+ 0001:0000B223       _sprintf
+ 0001:0000B249  Idle _vsprintf
+ 0001:0000B26E       __create_shmem
+ 0001:0000B27C       __init_exit_proc
+ 0001:0000B35A       __startup
+ 0001:0000B4CE       __cleanup
+ 0001:0000B567       __terminate
+ 0001:0000B57C       _strcat
+ 0001:0000B5B8       _strcmp
+ 0001:0000B5E4       _strcpy
+ 0001:0000B614       __init_streams
+ 0001:0000B724       _strlen
+ 0001:0000B73E       _strnicmp
+ 0001:0000B7B0       _strrchr
+ 0001:0000B7DE       _strstr
+ 0001:0000B87C       _strupr
+ 0001:0000B8A2       _toupper
+ 0001:0000B981       ___vprinter
+ 0001:0000C12E       __xfclose
+ 0001:0000C162       __xfflush
+ 0001:0000C190       ___eof
+ 0001:0000C2B4       ___read
+ 0001:0000C4F9       ___write
+ 0001:0000C634       __fdopen
+ 0001:0000C66C       __flushall
+ 0001:0000C6AC       __stpcpy
+ 0001:0000C6DC       __umask
+ 0001:0000C6F8       __clear87
+ 0001:0000C710       __control87
+ 0001:0000C738       __fpreset
+ 0001:0000C750       __initmatherr
+ 0001:0000C766       operator delete(void*)
+ 0001:0000C776       operator delete[](void*)
+ 0001:0000C788  Idle jump()
+ 0001:0000C78E       ___doGlobalUnwind
+ 0001:0000C7A3       invokeHnd()
+ 0001:0000C7AA  Idle ___JumpToCatch__
+ 0001:0000CF66       _ThrowException(void*,void*,void*,void*,unsigned int,unsigned int,unsigned int,unsigned char*)
+ 0001:0000CF93  Idle _ReThrowException(unsigned int,unsigned char*)
+ 0001:0000CFFE  Idle __Global_unwind
+ 0001:0000D10D       _CatchCleanup()
+ 0001:0000D59E       __Local_unwind
+ 0001:0000D5B1  Idle __Return_unwind
+ 0001:0000D627       __ExceptionHandler
+ 0001:0000DF1A       __CurrExcContext
+ 0001:0000DF52  Idle __ThrowFileName()
+ 0001:0000DF63  Idle __ThrowLineNumber()
+ 0001:0000DF74  Idle __ThrowExceptionName()
+ 0001:0000DF85  Idle typeinfo::typeinfo(const typeinfo&)
+ 0001:0000DFBE  Idle typeinfo::operator =(const typeinfo&)
+ 0001:0000DFC6  Idle typeinfo::~typeinfo()
+ 0001:0000DFEC  Idle typeinfo::operator ==(const typeinfo&) const
+ 0001:0000E006  Idle typeinfo::operator !=(const typeinfo&) const
+ 0001:0000E01E  Idle typeinfo::before(const typeinfo&) const
+ 0001:0000E074  Idle typeinfo::name() const
+ 0001:0000E087  Idle __GetTypeInfo(void*,void*,void*,void*)
+ 0001:0000E26F  Idle __DynamicCast(void*,void*,void*,void*,int)
+ 0001:0000E364       __tpdsc__[typeinfo*]
+ 0001:0000E37B       __tpdsc__[Bad_typeid]
+ 0001:0000E397       __tpdsc__[Bad_cast]
+ 0001:0000E3B3       __tpdsc__[typeinfo]
+ 0001:0000E3FE       __matherr
+ 0001:0000E436       __matherrl
+ 0001:0000E478       __initwild
+ 0001:0000E47E       @__InitExceptBlock
+ 0001:0000E4BC  Idle terminate()
+ 0001:0000E4C6  Idle set_terminate(void(*)())
+ 0001:0000E4F3       ___call_terminate
+ 0001:0000E543  Idle unexpected()
+ 0001:0000E54D  Idle set_unexpected(void(*)())
+ 0001:0000E57A       ___call_unexpected
+ 0001:0000E599       __GetPolymorphicDTC(void*,unsigned int)
+ 0001:0000E5C3       __ExceptInit
+ 0001:0000E68A       __GetExceptDLLinfoInternal
+ 0001:0000E6B4       ___access
+ 0001:0000E6F8       ___close
+ 0001:0000E752       ___isatty
+ 0001:0000E788       ___lseek
+ 0001:0000E816       ___open
+ 0001:0000EA38       ___unlink
+ 0001:0000EA60       __rtl_read
+ 0001:0000EAB5  Idle __read
+ 0001:0000EACC       __rtl_write
+ 0001:0000EB21  Idle __write
+ 0001:0000EB38       _clock
+ 0001:0000EBC4       __ErrorMessage
+ 0001:0000EC78  Idle ___ErrorMessage
+ 0001:0000EC88       __ErrorExit
+ 0001:0000ECA2       __get_handle
+ 0001:0000ED00       __dup_handle
+ 0001:0000EDAD  Idle __free_handle
+ 0001:0000EE8A       __init_handles
+ 0001:0000F020       ___IOerror
+ 0001:0000F069       ___DOSerror
+ 0001:0000F08F       ___NTerror
+ 0001:0000F0F4       __SetExceptionHandler
+ 0001:0000F109       __UnsetExceptionHandler
+ 0001:0000F135  Idle __UnwindException
+ 0001:0000F322  Idle _signal
+ 0001:0000F396       _raise
+ 0001:0000F442       __virt_reserve
+ 0001:0000F4B2       __virt_commit
+ 0001:0000F507       __virt_decommit
+ 0001:0000F546       __virt_release
+ 0002:00000058       ___isDLL
+ 0002:00000059  Idle __TLS_index
+ 0002:0000005D  Idle __TLS_index4
+ 0002:00000069       ___isGUI
+ 0002:0000006C  Idle _ranges
+ 0002:000000EC  Idle _framespersec
+ 0002:000000EE  Idle _cframes
+ 0002:000000F0  Idle _count
+ 0002:000000F2  Idle _ticks
+ 0002:000000F4  Idle _AckTmCount
+ 0002:000000F6  Idle _AckTmDelay
+ 0002:000000F8  Idle _ErrorMsgs
+ 0002:00000658  Idle _MouseModifier
+ 0002:0000067C  Idle _LastFloorAngle
+ 0002:00000680  Idle _DirAngle
+ 0002:00000690       _ViewHeight
+ 0002:00000692       _CeilingHeight
+ 0002:00000694  Idle _pplanes
+ 0002:00000734  Idle _tuFactor
+ 0002:00000736       _tvFactor
+ 0002:00000738       _kduFactor
+ 0002:0000073C  Idle _kdvFactor
+ 0002:00000740  Idle _kxFactor
+ 0002:00000744  Idle _kyFactor
+ 0002:0000079C       __ctype
+ 0002:000008A4       __realcvtptr
+ 0002:000008A8       __nextrealptr
+ 0002:000008AC       __scantodptr
+ 0002:000008B0       __scanrsltptr
+ 0002:0000090C       __default87
+ 0002:00000910       _errno
+ 0002:00000914       __stkchk
+ 0002:00000928       __atexitcnt
+ 0002:0000092C       __exitbuf
+ 0002:00000930       __exitfopen
+ 0002:00000934  Idle __exitopen
+ 0002:00000938       __streams
+ 0002:00000CF8       __nfile
+ 0002:00000CFC       __openfd
+ 0002:00000D9C       __fmodeptr
+ 0002:00000DA0       __heap_brk
+ 0002:00000DA4  Idle __heap_top
+ 0002:00000DB8       __sys_errlist
+ 0002:00000E7C       __sys_nerr
+ 0002:00001240       __setargv__
+ 0002:00001244  Idle __expandptr
+ 0002:00001324       __cfinfo_get
+ 0002:00001328       __notUmask
+ 0002:0000132C       __pmatherr
+ 0002:00001330       __pmatherrl
+ 0002:0000143A       typeinfo::
+ 0002:0000144C       __fmode
+ 0002:00001468  Idle ___CPPexceptionList
+ 0002:0000146C  Idle ___exceptFlags
+ 0002:00001470  Idle ___terminatePTR
+ 0002:00001474  Idle ___unexpectdPTR
+ 0002:00001478  Idle ___throwFileName
+ 0002:0000147C  Idle ___throwLineNumber
+ 0002:00001480  Idle ___throwExceptionName
+ 0002:00001484  Idle ___exceptStaticBuffP
+ 0002:00001488  Idle ___exceptMemAllocVars
+ 0002:0000148C  Idle ___ExceptStaticXbuff
+ 0002:00001540  Idle __ExceptVarsSize
+ 0002:0000156C  Idle __dosErrorToSV
+ 0002:00001754  Idle _ae
+ 0002:00001758  Idle _scanCode
+ 0002:00001759  Idle _KeyPressed
+ 0002:0000175A  Idle _MiniKey
+ 0002:0000175C       _Keys
+ 0002:000017DC  Idle _HaveMouse
+ 0002:000017E0  Idle _FlashIndex
+ 0002:000017E2  Idle _FlashCount
+ 0002:000017E4  Idle _bmFlash
+ 0002:000017EC  Idle _bmFlash1
+ 0002:000017F4  Idle _LineBuffer
+ 0002:000018BC  Idle _smFont
+ 0002:000018C0  Idle _FontTransparent
+ 0002:000018C1  Idle _FontColor
+ 0002:000018C2  Idle _TextBGcolor
+ 0002:000018C4  Idle _Throwing
+ 0002:000018C8  Idle _Shooting
+ 0002:000018CC  Idle _ShutDownFlag
+ 0002:000018D0  Idle _MagAmount
+ 0002:000018D2  Idle _StrAmount
+ 0002:000018D4  Idle _ShowHitFlag
+ 0002:000018D8  Idle _MapResource
+ 0002:000018DC  Idle _PalResource
+ 0002:000018E0  Idle _ResScreenBack
+ 0002:000018E4  Idle _ResScrollBack
+ 0002:000018E8  Idle _BGmusic
+ 0002:000018EC  Idle _DemoPtr
+ 0002:000018F0  Idle _Demoht
+ 0002:000018F2  Idle _Demowt
+ 0002:000018F4  Idle _pHand1
+ 0002:000018F8  Idle _Handw1
+ 0002:000018FA  Idle _Handh1
+ 0002:000018FC  Idle _pHand2
+ 0002:00001900  Idle _Handw2
+ 0002:00001902  Idle _Handh2
+ 0002:00001904  Idle _TimerCounter
+ 0002:00001908  Idle _ObjCounter
+ 0002:00001A08  Idle _oldvec
+ 0002:00001A0C  Idle _oldTimer
+ 0002:00001A10  Idle _LastObjectIndex
+ 0002:00001A14       _VidSeg
+ 0002:00001A18  Idle _LevelFlag
+ 0002:00001A20       _scPtr
+ 0002:00001A24       _bmWall
+ 0002:00001A28       _bmDistance
+ 0002:00001A2C       _BackDropRows
+ 0002:00001A30       _ScreenOffset
+ 0002:00001A34       _xPglobal
+ 0002:00001A38       _yPglobal
+ 0002:00001A3C       _xBegGlobal
+ 0002:00001A40       _yBegGlobal
+ 0002:00001A44       _aeGlobal
+ 0002:00001A48       _xGridGlobal
+ 0002:00001A4C       _yGridGlobal
+ 0002:00001A50       _xPglobalHI
+ 0002:00001A54       _yPglobalHI
+ 0002:00001A58       _rbaTable
+ 0002:00001A5C       _rsHandle
+ 0002:00001A60       _LastX1
+ 0002:00001A64       _LastY1
+ 0002:00001A68       _iLastX
+ 0002:00001A6C       _iLastY
+ 0002:00001A70       _x_xPos
+ 0002:00001A74       _x_yPos
+ 0002:00001A78       _x_xNext
+ 0002:00001A7C       _x_yNext
+ 0002:00001A80       _y_xPos
+ 0002:00001A84       _y_yPos
+ 0002:00001A88       _y_xNext
+ 0002:00001A8C       _y_yNext
+ 0002:00001A90       _MaxDistance
+ 0002:00001A92       _LightFlag
+ 0002:00001A94       _ErrorCode
+ 0002:00001A98       _xMapPosn
+ 0002:00001A9C       _yMapPosn
+ 0002:00001AA0       _Grid
+ 0002:00001AA4       _ObjGrid
+ 0002:00001AA8       _Slice
+ 0002:00004028       _sPtr
+ 0002:0000402C  Idle _SpecialCodes
+ 0002:000040A8       _TotalSpecial
+ 0002:000040AC       _DistanceTable
+ 0002:000050B0       _AdjustTable
+ 0002:000050B4       _xSecretmPos
+ 0002:000050B6       _xSecretmPos1
+ 0002:000050B8       _xSecretColumn
+ 0002:000050BA       _ySecretmPos
+ 0002:000050BC       _ySecretmPos1
+ 0002:000050BE       _ySecretColumn
+ 0002:000050C0       _TotalSecret
+ 0002:000050C2       _ViewColumn
+ 0002:000050C4       _SinTable
+ 0002:000050C8       _CosTable
+ 0002:000050CC       _LongTanTable
+ 0002:000050D0       _LongInvTanTable
+ 0002:000050D4       _InvCosTable
+ 0002:00006CF4       _InvSinTable
+ 0002:00008914       _LongCosTable
+ 0002:00008918       _ViewCosTable
+ 0002:0000891C       _xNextTable
+ 0002:00008920       _yNextTable
+ 0002:00008924  Idle _LastFloorX
+ 0002:00008926  Idle _LastFloorY
+ 0002:00008928       _LastMapPosn
+ 0002:0000892A       _LastObjectHit
+ 0002:0000892C       _TotalObjects
+ 0002:0000892E       _FoundObjectCount
+ 0002:00008930       _ObjectsSeen
+ 0002:00008A30       _MoveObjectCount
+ 0002:00008A34       _MoveObjectList
+ 0002:00008B34       _ObjNumber
+ 0002:00008C34       _ObjRelDist
+ 0002:00008E34       _ObjColumn
+ 0002:00009034       _ObjAngle
+ 0002:00009234  Idle _WorkPalette
+ 0002:00009534       _BackArray
+ 0002:0000B154       _Resolution
+ 0002:0000B158       _Flooru
+ 0002:0000B15C       _Floorv
+ 0002:0000B160       _Floordu
+ 0002:0000B164       _Floordv
+ 0002:0000B168       _Floorkx
+ 0002:0000B16C       _Floorky
+ 0002:0000B170       _Floorku
+ 0002:0000B174       _Floorkv
+ 0002:0000B178       _Floorkdu
+ 0002:0000B17C       _Floorkdv
+ 0002:0000B180       _Floorbm
+ 0002:0000B184       _Floorscr
+ 0002:0000B188       _FloorscrTop
+ 0002:0000B18C       _Floorptr2
+ 0002:0000B190       _Floors1
+ 0002:0000B194       _Floors2
+ 0002:0000B198       _Floorht
+ 0002:0000B19C       _Floorwt
+ 0002:0000B1A0       _Floorvht
+ 0002:0000B1A2       _Flooreht
+ 0002:0000B1A4       _FloorLastbNum
+ 0002:0000B1A8       _FloorLastbm
+ 0002:0000B1AC       _LastWallHeight
+ 0002:0000B1AE       _PlayerAngle
+ 0002:0000B1B0       _ViewAngle
+ 0002:0000B1B2       _SysFlags
+ 0002:0000B1B4       _WallbMaps
+ 0002:0000B1B8       _VidTop
+ 0002:0000B1BC       _VidBottom
+ 0002:0000B1C0  Idle _BotRowTable
+ 0002:0000B440       _FloorMap
+ 0002:0000D440       _CeilMap
+ 0002:0000F440       _scantables
+ 0002:0000F5C0       _colordat
+ 0002:0000F8C0  Idle _cplanes
+ 0002:0000FB40  Idle _rdbufpos
+ 0002:0000FB44  Idle _rdSize
+ 0002:0000FB48  Idle _rdBuffer
+ 0002:00010B4C       _LowerTable
+ 0002:00012B4C  Idle _tmpLowerValue
+ 0002:00012E6C  Idle _LowerLen
+ 0002:00013E6C       _rsName
+ 0002:00013EEC       _FloorCosTable
+ 0002:000143F0  Idle _AckMemUsed
+ 0002:000143F4  Idle _AckDisplayErrors
+ 0002:000143F8       _FloorCeilRtn
+ 0002:000143FC  Idle _WallRtn
+ 0002:00014400  Idle _WallMaskRtn
+ 0002:00014404       _gWinFullWidth
+ 0002:00014408       _gWinDWORDS
+ 0002:0001440C       _gWinStartOffset
+ 0002:00014410       _gWinStartX
+ 0002:00014412       _gWinStartY
+ 0002:00014414       _gWinEndX
+ 0002:00014416       _gWinEndY
+ 0002:00014418       _gWinHeight
+ 0002:0001441A       _gWinHalfHeight
+ 0002:0001441C       _gWinWidth
+ 0002:0001441E       _gCenterRow
+ 0002:00014420       _gCenterOff
+ 0002:00014424       _gBottomOff
+ 0002:00014428       _gScrnBufferCenter
+ 0002:0001442C       _gScrnBuffer
+ 0002:00014430       _gBkgdBuffer
+ 0002:00014434       _gPalTable
+ 0002:00014438       _gMultiWalls
+ 0002:0001443C       _mxGridGlobal
+ 0002:00014440       _myGridGlobal
+ 0002:00014444       _gTopColor
+ 0002:00014445       _gBottomColor
+ 0002:00014448       _scVid
+ 0002:0001444C       _scWall
+ 0002:00014450       _scPal
+ 0002:00014454       _scdst
+ 0002:00014456       _scwht
+ 0002:00014458       _scmulti
+ 0002:0001445A       _sctopht
+ 0002:0001445C       _scbotht
+ 0002:0001445E       _scsavwht
+ 0002:00014460       _scmulcnt
+ 0002:00014464       _scsavVid
+ 0002:00014468       _scbNum
+ 0002:0001446C       _scMulData
+ 0002:00014470       _scColumn
+ 0002:00014474  Idle _gPtr
+ 0002:00014478  Idle _gmPtr
+ 0002:0001447C  Idle _gBitmapNumber
+ 0002:0001447E  Idle _gBitmapColumn
+ 0002:00014480  Idle _gyBitmapNumber
+ 0002:00014482  Idle _gyBitmapColumn
+ 0002:00014484  Idle _gWallDistance
+ 0002:00014488  Idle _gmPos
+ 0002:0001448C       _gDoor
+ 0002:00014490  Idle _gDoorPosn
+ 0002:00014494  Idle _wFound
+ 0002:00014498  Idle _mgPtr
+ 0002:0001449C  Idle _BegX
+ 0002:0001449E  Idle _EndX
+ 0002:000144A0  Idle _LastVht
+ 0002:000144A4       _zdTable
+ 0002:00052CA4       _WallDistTable
+ 0002:000531A4  Idle _mFactor
+ 0002:000531A8  Idle _dFactor
+ 0002:000531AC       __HandlerPtr
+ 0002:000531B0  Idle __UserHandlerPtr
+ 0002:000531B4       __atexittbl
+ 0002:00053234       __pidtab
+ 0002:000532D4       __handles
+ 0002:00053374       __heaps
+ 0002:00053574       __nheaps
+ 0002:00053578  Idle __free_dummy
+ 0002:00053588       __free_list
+ 0002:0005358C       __rover
+ 0002:00053598       __tmpnum
+ 0002:000535B0  Idle __argc
+ 0002:000535B4       __argv
+ 0002:000535BC  Idle __dll_table
+ 0002:000535C4       __ExcRegPtr
+ 0002:000535C8       __osenv
+ 0002:000535CC       __oscmd
+ 0002:000535D0       __C0argc
+ 0002:000535D4       __C0argv
+ 0002:000535D8       __C0environ
+ 0002:000535E4  Idle __stkbase
+ 0002:000535E8  Idle __isWindows
+ 0002:00053600       __DestructorCountPtr
+ 0002:00053604       __doserrno
+ 0002:00053608       __ostype

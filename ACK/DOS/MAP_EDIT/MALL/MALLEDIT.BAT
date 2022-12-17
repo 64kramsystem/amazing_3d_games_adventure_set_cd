@@ -1,0 +1,1 @@
+mapedit.exe mall.l01

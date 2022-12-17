@@ -1,0 +1,32 @@
+#ifndef __WINGTD_RH__
+#define __WINGTD_RH__
+
+//---------------------------------------------------------------------------
+//
+//	File:			WINGTD.RH
+//	Programmer: 	Bob Provencher
+//	Create Date:	11/6/94
+//	Last Mod Date:	1/8/95  
+//	Description:	Resource ID definitions
+//
+//	Copyright (c) 1994, 1995. Aesir Software, Inc.
+//	All Rights Reserved.
+//
+//---------------------------------------------------------------------------
+
+#define RT_MAP	                    100
+
+#define IDM_ABOUT                   100
+#define IDD_ABOUT					101
+#define IDM_DEMO					102
+
+#define IDB_FLOOR	                200
+#define IDB_PLAYER					201
+#define IDB_WALL					202
+#define IDB_GOLD					203
+#define IDB_MONSTER					204
+
+#define IDMAP_WINGTD	            300
+
+#endif
+

@@ -1,0 +1,644 @@
+; Description file for ACK-3D demo program
+Walls:
+
+Files:
+1 , bitmaps\swall16.bbm
+2 , bitmaps\swall17.bbm
+3 , bitmaps\swall18.bbm
+4 , bitmaps\swall19.bbm
+5 , bitmaps\swall11.bbm
+6 , bitmaps\swall12.bbm
+7 , bitmaps\swall13.bbm
+8 , bitmaps\swall14.bbm
+9 , bitmaps\swall15.bbm
+10, bitmaps\swall21.bbm
+11, bitmaps\sport1.bbm
+12, bitmaps\sport2.bbm
+13, bitmaps\sport3.bbm
+14, bitmaps\sport4.bbm
+15, bitmaps\cona.bbm
+16, bitmaps\conb.bbm
+17, bitmaps\cong.bbm
+18, bitmaps\cone.bbm
+19, bitmaps\sbay.bbm
+20, bitmaps\srepair.bbm
+21, bitmaps\astrolab.bbm
+22, bitmaps\docklft.bbm
+23, bitmaps\dockmid.bbm
+24, bitmaps\dockrgt.bbm
+25, bitmaps\gunwall.bbm
+26, bitmaps\holo3.bbm
+27, bitmaps\pod1.bbm
+28, bitmaps\swall25.bbm
+29, bitmaps\swall26.bbm
+30, bitmaps\swall27.bbm
+31, bitmaps\scont.bbm
+32, bitmaps\screw.bbm
+33, bitmaps\scomp.bbm
+34, bitmaps\spost.bbm
+35, bitmaps\splasma.bbm
+36, bitmaps\pod.bbm
+37, bitmaps\safe.bbm
+38, bitmaps\safe1.bbm
+39, bitmaps\danger.bbm
+40, bitmaps\cryo.bbm
+41, bitmaps\kwall1.bbm
+42, bitmaps\swall22.bbm
+43, bitmaps\swall23.bbm
+44, bitmaps\swall5.bbm
+45, bitmaps\holowall.bbm
+46, bitmaps\battery.bbm
+55, bitmaps\floor.bbm
+56, bitmaps\sdover1.bbm
+57, bitmaps\sdover.bbm
+60, bitmaps\sdoor1.bbm
+61, bitmaps\swall16.bbm
+62, bitmaps\sdoor.bbm
+EndFiles:
+
+EndWalls:
+
+Objects:
+Files:
+1 , bitmaps\cone1.bbm
+2 , bitmaps\cone2.bbm
+3 , bitmaps\cone3.bbm
+4 , bitmaps\cone4.bbm
+5 , bitmaps\cone5.bbm
+6 , bitmaps\cone6.bbm
+7 , bitmaps\cone7.bbm
+8 , bitmaps\cone1.bbm
+9 , bitmaps\bolt1.bbm
+10, bitmaps\bolt2.bbm
+11, bitmaps\bolt3.bbm
+12, bitmaps\bolt4.bbm
+13, bitmaps\bolt5.bbm
+14, bitmaps\bolt6.bbm
+15, bitmaps\bolt7.bbm
+16, bitmaps\bolt8.bbm
+17, bitmaps\sman1.bbm
+18, bitmaps\sman2.bbm
+
+21, bitmaps\spcobj1.bbm
+22, bitmaps\spcobj2.bbm
+23, bitmaps\light.bbm
+24, bitmaps\bomb1.bbm
+25, bitmaps\bomb2.bbm
+26, bitmaps\bomb3.bbm
+27, bitmaps\bomb4.bbm
+28, bitmaps\can1.bbm
+29, bitmaps\can2.bbm
+30, bitmaps\can3.bbm
+31, bitmaps\can4.bbm
+32, bitmaps\grnkey.bbm
+33, bitmaps\fuel.bbm
+34, bitmaps\eye1.bbm
+35, bitmaps\eye2.bbm
+36, bitmaps\eye3.bbm
+37, bitmaps\zap1.bbm
+38, bitmaps\zap2.bbm
+39, bitmaps\zap3.bbm
+40, bitmaps\zap4.bbm
+41, bitmaps\comp.bbm
+42, bitmaps\table.bbm
+43, bitmaps\table1.bbm
+44, bitmaps\bed.bbm
+45, bitmaps\robo1.bbm
+46, bitmaps\robo1.bbm
+47, bitmaps\robo1.bbm
+48, bitmaps\sman6.bbm
+49, bitmaps\sman5.bbm
+50, bitmaps\sman4.bbm
+51, bitmaps\sman3.bbm
+52, bitmaps\shut1.bbm
+53, bitmaps\shut2.bbm
+54, bitmaps\shut3.bbm
+55, bitmaps\shut4.bbm
+56, bitmaps\shut5.bbm
+57, bitmaps\shut6.bbm
+58, bitmaps\shut7.bbm
+59, bitmaps\shut8.bbm
+60, bitmaps\cons1.bbm
+61, bitmaps\cons2.bbm
+62, bitmaps\cons3.bbm
+63, bitmaps\cons4.bbm
+
+EndFiles:
+
+; Cone object
+Number: 1
+Direction: 10
+Speed: 1
+Bitmaps: 1,2,3,4,5,6,7,8
+
+; Electrical bolt
+Number: 2
+Direction: 10
+Speed: 1
+Bitmaps: 9,9,9,10,10,11,12,13,14,15,16,11,10,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9
+
+; Light
+Number: 3
+Direction: 0
+Speed: 0
+Flags: Passable
+Bitmaps: 23
+
+; Light
+Number: 4
+Direction: 0
+Speed: 0
+Flags: Passable
+Bitmaps: 23
+
+; Shuttle
+Number: 5
+Direction: 0
+Speed: 0
+Bitmaps: 52,53,54,55,56,57,58,59
+
+; Console
+Number: 6
+Direction: 10
+Speed: 1
+Bitmaps: 60,61,62,63
+
+; Can
+Number: 8
+Direction: 10
+Speed: 1
+Bitmaps: 28,29,30,31
+
+; Space object 1
+Number: 9
+Direction: 0
+Speed: 0
+Bitmaps: 21
+
+; Space object 2
+Number: 10
+Direction: 0
+Speed: 0
+Bitmaps: 22
+
+; Light
+Number: 11
+Direction: 0
+Speed: 0
+Flags: Passable
+Bitmaps: 23
+
+; Light
+Number: 12
+Direction: 0
+Speed: 0
+Flags: Passable
+Bitmaps: 23
+
+; Table
+Number: 13
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table
+Number: 14
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table
+Number: 15
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table1
+Number: 16
+Direction: 0
+Speed: 0
+Bitmaps: 43
+
+; Table1
+Number: 17
+Direction: 0
+Speed: 0
+Bitmaps: 43
+
+; Bed
+Number: 18
+Direction: 0
+Speed: 0
+Bitmaps: 44,44,44,44,44,44,44,44,44,44,44,44,44
+
+; Bed
+Number: 19
+Direction: 0
+Speed: 0
+Bitmaps: 44,44,44,44,44,44,44,44,44,44,44,44,44
+
+; Bed
+Number: 20
+Direction: 0
+Speed: 0
+Bitmaps: 44,44,44,44,44,44,44,44,44,44,44,44,44
+
+; Bed
+Number: 21
+Direction: 0
+Speed: 0
+Bitmaps: 44,44,44,44,44,44,44,44,44,44,44,44,44
+
+; Bed
+Number: 22
+Direction: 0
+Speed: 0
+Bitmaps: 44,44,44,44,44,44,44,44,44,44,44,44,44
+
+; Table
+Number: 23
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table
+Number: 24
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+
+; Computer
+Number: 25
+Direction: 0
+Speed: 0
+Bitmaps: 41
+
+; Circuit board
+Number: 26
+Direction: 0
+Speed: 0
+Bitmaps: 32
+
+; Fuel cells
+Number: 27
+Direction: 0
+Speed: 0
+Bitmaps: 33
+
+; Panel with eye
+Number: 28
+Direction: 10
+Speed: 1
+Bitmaps: 34,34,34,35,35,35,35,35,35,36,36,36,36,36,35,35,35,35,35,34,34,34,34,34,34,34
+
+; Lightning zap
+Number: 29
+Direction: 10
+Speed: 10
+Bitmaps: 37,38,39,40,38,40,37,39,38
+
+; Table
+Number: 30
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table
+Number: 31
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table
+Number: 32
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table
+Number: 33
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table
+Number: 34
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table
+Number: 35
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table
+Number: 36
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Table
+Number: 37
+Direction: 0
+Speed: 0
+Bitmaps: 42
+
+; Robot
+Number: 38
+Direction: 10
+Speed: 1
+Bitmaps: 46,47,46,47,46,47,46,45,47,46,47,46,45,47,46,47,46,47
+
+; Space object 2
+Number: 39
+Direction: 0
+Speed: 0
+Bitmaps: 22
+
+
+; Spaceman
+Number: 50
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 51
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 52
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 53
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 54
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 55
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 56
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 57
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 58
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 59
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 60
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 61
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 62
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 63
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 64
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 65
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 66
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 67
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 68
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman
+Number: 69
+Direction: 10
+Speed: 1
+Bitmaps: 17,17,18,18,18,17,17,17,17
+
+; Spaceman bomb
+Number: 70
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 71
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 72
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 73
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 74
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 75
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 76
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 77
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 78
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 79
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 80
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 81
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 82
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 83
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 84
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 85
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 86
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 87
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 88
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+; Spaceman bomb
+Number: 89
+Direction: 10
+Speed: 44
+Bitmaps: 24,25,26,27
+
+
+EndObjects:
+
+MapFile: DEMOMAP.L01
+PalFile: DEMO.PAL
+
+; Sound Files
+;;;SOUND: 1,sound\hitwall.voc
+SOUND: 2,sound\ack3d5.voc
+SOUND: 3,sound\hitbadob.voc
+SOUND: 4,sound\dooropen.voc
+SOUND: 6,sound\phaser3.voc
+SOUND: 7,sound\doorclos.voc
+SOUND: 11,sound\expl.voc
+SOUND: 12,sound\holo2.voc
+SOUND: 13,sound\hitobj1.voc
+
+MUSIC: sound\zardoz.cmf
+
+; Palette ranges - starting color, number of colors
+RANGE: 16,16
+RANGE: 32,16
+RANGE: 48,16
+RANGE: 64,16
+RANGE: 80,16
+RANGE: 96,8
+RANGE: 104,8
+RANGE: 112,8
+RANGE: 120,8
+RANGE: 128,8
+RANGE: 136,8
+RANGE: 144,8
+RANGE: 152,8
+RANGE: 160,8
+RANGE: 168,8
+RANGE: 176,8
+RANGE: 184,8
+RANGE: 192,16
+RANGE: 208,16
+RANGE: 224,8
+RANGE: 232,8
+
+

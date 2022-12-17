@@ -1,0 +1,43 @@
+//---------------------------------------------------------------------------
+//
+//	File:			WINGTD.RC
+//	Programmer: 	Bob Provencher
+//	Create Date:	11/6/94
+//	Last Mod Date:	1/8/95
+//	Description:	WINGTD resource file
+//
+//	Copyright (c) 1994, 1995. Aesir Software, Inc.
+//	All Rights Reserved.
+//
+//---------------------------------------------------------------------------
+
+#include <windows.h>
+#include "wingtd.rh"
+
+IDM_DEMO MENU 
+{
+ POPUP "&Help"
+ {
+  MENUITEM "&About WinG: From the Top Down...", IDM_ABOUT
+ }
+
+}
+
+IDD_ABOUT DIALOG 22, 17, 144, 87
+STYLE DS_MODALFRAME | WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU
+CAPTION "About WinG: From the Top Down"
+FONT 8, "MS Sans Serif"
+{
+ CTEXT "WinG: From the Top Down", -1, 8, 8, 128, 8
+ CTEXT "Copyright (c) 1994, 1995\nAesir Software, Inc.", -1, 8, 28, 128, 19
+ DEFPUSHBUTTON "OK", IDOK, 48, 63, 48, 14
+}
+
+IDB_FLOOR       BITMAP "floor.bmp"
+IDB_WALL        BITMAP "wall.bmp"
+IDB_GOLD        BITMAP "gold.bmp"
+IDB_MONSTER     BITMAP "monster.bmp"
+IDB_PLAYER      BITMAP "player.bmp"
+
+IDMAP_WINGTD    RT_MAP "wingtd.cma"
+

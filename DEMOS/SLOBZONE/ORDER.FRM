@@ -1,0 +1,102 @@
+-----------------------------------------------------------------------
+Slob Zone 3D Order Form
+11/1/94
+-----------------------------------------------------------------------
+This file contains the following topics about Slob Zone 3D:
+
+1) Game Summary
+2) System Requirements 
+3) Ordering Instructions
+4) Order Form
+
+-----------------------------------------------------------------------
+1) Game Summary
+
+        SLOB ZONE is a first-person 3D cartoon game that will entertain the 
+        whole family. Loaded with comical characters and funny locations the 
+        emphasis is on arcade style action and humor not violence. Armed with 
+        just water balloons and soap, your mission is to clean up the Zone and 
+        defeat Bob the Slob. Bob's army of animal bad guys are only interested 
+        in getting you dirty, throwing enough rotten eggs and kitty litter 
+        to completely cover you in slime. 
+
+        SLOB ZONE is a fun filled 3D environment with something interesting 
+        around every corner:
+
+        Ten action packed levels, from the Trashy Trailer Park, Underarm Farm, 
+	Drool School, and Fastfood Alley all the way up to the final 
+	show down at Bob the Slob's Disco Palace.
+
+        Enough hilarious characters to keep you giggling for hours, 
+        no other game features Ricochet Pigs, Bug Eye Frogs, Quack Attackers
+	Sour Puss, Swamp Breath, Baboon Spittoons and Bob The Slob.
+
+        Showers and Vending Machines make it easy for you to clean up 
+        after a particularly slimy encounter.
+
+        If you're feeling chatty, just use one of the many Slob Zone Phones, 
+        Intercoms, or Drive-Thru Windows for an assortment of goofy messages.
+
+        Exciting MIDI music and enough wacky sound effects to make you feel 
+        like you just stepped into a classic cartoon. SPROING!
+
+
+
+        3D Continuos Motion
+
+        SLOB ZONE's wild action is made possible by an up-to-date 3D software 
+        engine that provides the player with the immediacy of 3D continuos 
+        motion, first person gameplay as seen in games like Wolfenstein 3D 
+        and Doom, but utilized for the first time in a family oriented game. 
+        You won't find a single Nazi or Demon in Slob Zone. We guarantee it! 
+
+-----------------------------------------------------------------------
+2) REQUIREMENTS
+
+      386/33 or greater IBM PC compatible
+      VGA graphics card
+      550K free base memory
+      4 Mb Ram minimum with 4 Mb of free memory
+      CD-ROM drive
+      Sound Card ( optional )
+
+-----------------------------------------------------------------------
+3) ORDERING INSTRUCTIONS:
+   
+   SLOB ZONE 3D
+   Special Upgrade Offer..........ONLY $29.95 +S&H
+   (Suggested retail price $49.95)
+
+   Call 207 871-1684 to order today.
+
+   Or print the following form and mail to:
+
+                DEEP RIVER PUBLISHING
+                PO BOX 9715-975
+                PORTLAND, MAINE 04101
+
+-----------------------------------------------------------------------
+4) ORDER FORM:
+
+Shipping and handling charges:
+
+        US Regular...Included      Foreign Regular...$12.00
+        US Express...$12.00        Foreign Express...$25.00
+
+
+                         SLOB ZONE 3D..............$29.95
+                         Shipping and Handling.....$_____
+                         ________________________________
+                         Total.....................$_____
+
+Ship to:
+
+Name____________________________      Payment: Visa  MC  AmX  Exp.Date:_____
+
+Street__________________________      Card #________________________________
+
+City____________________________      Signature_____________________________
+
+State_________  Zip_____________      Daytime Phone_________________________
+
+Country_____________

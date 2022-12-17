@@ -1,0 +1,214 @@
+Date: 03/09/94
+
+			  Using ACK3D Flat-model
+			      By Lary Myers
+			  ----------------------
+
+
+    Here are some general notes and thoughts on using the flat model version
+of the ACK3D engine. Refer to ACK3D.DOC for specifics however anything in this
+document supersedes the information found there.
+
+    Basically much has remained the same as in the older versions of ACK3D. A
+couple of new functions, some additions and deletions to the ACKENG interface
+structure and the conversion from BorlandC to Watcom C version 9.5 are the
+major things that have changed.
+
+    The file FDEMO.C represents a demo that uses the new engine and should be
+referred to when checking how a function is used. Most of the action takes
+place in main() which is at the bottom of the FDEMO.C file.
+
+
+			       Initializing:
+			       -------------
+
+    Just like in the older versions an ACKENG structure is used to communicate
+between the application and the ACK3D engine. Be sure to allocate the structure
+and ZERO it out before use so all relavent fields are zero. The routine
+Initialize() in FDEMO.C shows how things are setup.
+
+    Note the call to AckOpenResource() in the Initialize() routine. The file
+KIT.OVL contains the TRIG.DAT and FLOOR.DAT files used when AckInitialize() is
+called. This file can be called anything you want but it should be kept
+separate from the bitmap data file for now. What this means is that a call to
+AckCloseResource() is required and then another AckOpenResource() with the
+name of the actual bitmap file (in this case PICS.DTF) to begin processing the
+info file.
+
+    Ignore the bmFlash stuff in the Initialize() routine. That was originally
+used to create the flashing wall panels in an earlier demo and is no longer
+being used.
+
+    The ProcessInfoFile() routine can be used directly from FDEMO.C if you
+want, or a whole new one can be made. This is really up to the application and
+only makes use of the engine when loading bitmaps, creating objects, etc needs
+to be done.
+
+
+    Back down in main() the video mode is set to 13h and the main screen is
+loaded and displayed. The palette is taken from the screen LBM and not the
+bitmaps or a separate palette file. (The palette file is still needed for the
+map editor though).
+
+    The FudgeMultiHeightWalls() routine is just that, a fudge. It currently
+makes all multi-height walls 3 in height and assigns sequential bitmaps to
+them based on the starting bitmap number for the wall. This is where some
+additional work will be needed to assign the walls to certain values and
+then save those values somewhere (perhaps the info file) so they can be read
+in and applied to the map as shown in the routine.
+
+    The AckRegisterStructure() is new and *MUST* be performed before calling
+the AckBuildView() routine. In the case of FDEMO there is only one ACKENG
+structure so only one call needs to be made to register the structure. Take a
+look at the function in ACKVIEW.C to see which variables are registered in the
+call. If any one of those variables is changed by the application then the
+AckRegisterFunction() needs to be called again.
+
+    The rest of the code in main() is pretty standard from older versions of
+the ACK stuff. One major change is how the calls to the ACK engine usually
+don't need to include the ACKENG structure in them anymore. This is another
+reason why the AckRegisterStructure() must be called first, since it assigns
+the structure to a global which the engine now uses in most cases. I haven't
+completely converted everything to this method yet, but the time critical
+routines all use this method.
+
+
+			       Objects:
+			       --------
+
+    The way objects are dealt with has changed alot in this version of the
+engine. Objects can now have multiple sequences with different bitmaps that
+can animate. I have defined 5 sequences by default but this can be changed
+in the engine and everything recompiled if need be. The sequences are;
+
+CREATE	    - Used to initially create the object, normally as the ANIMONCE flag
+	      set so it doesn't repeat.
+
+DESTROY	    - Opposite of create, normally used when the object is being
+	      removed from action.
+
+WALK	    - Normally used for walking, continuous animation (which should be
+	      toggled on while moving and then off while standing still).
+
+ATTACK	    - Another ANIMONCE sequence used when attacking.
+
+
+INTERACT    - Can be used for interaction with the player, etc. I haven't used
+	      this sequence at all yet.
+
+
+
+    Look at the routine CreateObject() in FDEMO.C to see how the objects are
+now setup. At the start of the routine is where AckCreateObject() is performed.
+This MUST be called before setting up the object since memory is now allocated
+for the object whereas before the objects where a simple array predefined in
+the ACKENG structure.
+
+    You'll also see that an OBJSEQ structure is used to perform the setup before
+calling the AckSetupObject() routine. This is done to avoid having to pass a
+million or so parameters to the function. The type of object (from the 5 above)
+and the bitmaps and flags for the object are all used by the setup routine.
+Note that the application must determine how many bitmaps are to be used in each
+view of the object (bmPerView and NumViews) so the engine can use this when
+displaying the object.
+
+    Now, once everything is setup, you can use the function AckSetObjectType()
+to change which of the 5 types is currently active. This in effect can be used
+to dynamically change the object from a CREATE type into a WALK type or what-
+ever type you need to set. The application needs to perform checking to see
+when a certain type should be set. Look in main() to see this function being
+used.
+
+
+			    Background Image
+			    ----------------
+
+    The mountains in the background, or BackDrop is taken from a single image
+that is 640 wide and 200 rows high. The function LoadBackDrop() in FDEMO.C is
+called to load in the image and then process it into an array of individual
+columns from 0 to 639. These columns are then used to display the image based
+on the current angle the POV is facing. Currently the ACK engine assumes a
+640 pixel wide image, but this can be changed and probably should be made
+dynamic for future use. The 200 rows of the image are actually two separate
+640x100 images one on top of the other. The LoadBackDrop() routine uses this
+format to build the array.
+
+
+			       Utilities
+			       ---------
+
+    BPIC.EXE - This is the program used to create the .DTF resource file. The
+syntax is;
+
+	BPIC filename.dat filename.dtf
+
+    where filename.dat is an ASCII file containing a list of files to put into
+	  the DTF file and filename.dtf is the actual resource file created.
+
+
+    NEWMAP.EXE - This is just a quick little utility that replaces the MAP
+file in the DTF resource file. It comes in handy when you are just making
+changes to the map and don't want to rebuild the entire resource file. The
+syntax is;
+
+	NEWMAP filename.map filename.dtf
+
+    where filename.map is the map file used by the map editor and filename.dtf
+	  is the name of the resource file.
+
+
+
+			    MAKE/BATCH FILES
+			    ----------------
+
+    The following make and batch files are being used. I've included a copy
+of my MK.EXE program which is what processes the .MAK files.
+
+
+    F.MAK - This will build the ACK3DL.LIB file in the LMOBJ directory and
+	    then build the FDEMO program.
+
+    B.MAK - This will build the BPIC program.
+
+    NM.MAK - This will build the NEWMAP program.
+
+    SETMAP.BAT - This will place the KIT.MAP file from the DATA directory
+		 into the PICS.DTF file in the main directory.
+
+    EDIT.BAT - This is in the DATA directory and will start the Map Editor
+	       program with the KIT.L01 description file.
+
+
+
+			    Map Editor
+			    ----------
+
+    The Map Editor is pretty much the same as the older version of ACK3D's
+editor used to be except it is now in 32 bit flat model.
+
+    I have added buttons on the main screen to select the floor and ceiling
+and map to make it easier to switch between them. The following keys are also
+available;
+
+
+    Alt-B   This will fill the border of the MAP with the currently selected
+	    bitmap. It does NOT clear the interior of the map, just makes it
+	    easier to start with a clean map that has a border all the way
+	    around.
+
+    Alt-C   Selects ceiling mode, just like the ceiling button.
+
+    Alt-F   Selects floor mode, just like the floor button.
+
+    Alt-M   Selects map mode, just like the map button.
+
+
+
+
+    Well, so far that's about it. I'll add to this file as new things come up
+and development continues on the engine.
+
+---------------------------- End of Text ---------------------------------------
+
+
+

@@ -1,0 +1,45 @@
+NAME= STATIC
+
+CC  = cl /c /AL /G3 /GA /Oxwt /W3 /Zi $(DEF)
+ASM = masm -Mx
+LINK= link /NOE /NOD /MAP /NOPACKCODE /STACK:10240 /ALIGN:16 /ONERROR:NOEXE
+DEF = -DSTRICT
+RC  = rc
+
+OBJDIR = .
+OBJ  = $(OBJDIR)\$(NAME).obj
+
+INCLUDE = $(INCLUDE);C:\WING\INCLUDE
+LIB     = $(LIB);C:\WING\LIB
+
+LIBS = libw llibcew commdlg wing mmsystem
+
+.c{$(OBJDIR)}.obj:
+	$(CC) /Fo$*.obj $<
+
+.asm{$(OBJDIR)}.obj:
+	$(ASM) $<,$*.obj;
+
+goal: $(NAME).exe
+
+$(NAME).exe: $(OBJ) $(NAME).res $(NAME).def
+	$(LINK) $(OBJ), $(NAME), $(NAME), $(LIBS), $(NAME).def
+	rc $(NAME).res
+	-mapsym $(NAME).map
+
+$(NAME).res: $(NAME).rc $(NAME).ico
+	$(RC) -r $(NAME).rc
+
+clean:
+	del $(NAME).exe
+	del *.res
+	del *.err
+	del *.obj
+	del *.map
+	del *.sym
+	del *.cod
+	del *.pdb
+	del *.wsp
+	del *.vcw
+	del *.sbr
+	del *.bsc

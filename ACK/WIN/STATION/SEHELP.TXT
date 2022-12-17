@@ -1,0 +1,24 @@
+
+        Station Escape
+An ACK-3D Windows Demonstration
+
+Use the following keys for demo:
+  Up,Down,Left,Right arrows moves player
+  Press Ctrl with arrows to run
+
+  TAB fires plasma bolt
+
+  F1 gives this help screen
+  F2 Toggles solid floor on/off
+  F3 Toggles solid ceiling on/off
+
+Object of demo:
+  Find all the parts required to repair
+the shuttle craft and leave the station
+before the orbit decays. You only have
+a certain amount of time before the
+station falls back into the atmosphere.
+You MUST take all the repair parts to
+the shuttle so repairs can be completed!
+
+

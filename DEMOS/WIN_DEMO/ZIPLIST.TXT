@@ -1,0 +1,9 @@
+*.BSC
+FD.EXE
+*.MAP
+*.PCH
+*.PDB
+*.SBR
+*.SBT
+*.OBJ
+*.~*

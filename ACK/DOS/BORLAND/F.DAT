@@ -1,0 +1,14 @@
+Unexpected interrupt 0E (code 670000) at 158:45F327
+TSF32: prev_tsf32 4F74
+SS       160 DS       160 ES       160 FS         0 GS        20
+EAX FFFFE56B EBX        4 ECX   100000 EDX   50080F
+ESI       10 EDI  84253A2 EBP   4B9F6C ESP   4B9F30
+CS:IP  158:0045F327 ID 0E COD   670000 FLG    10282
+CS=  158, USE32, page granular, limit FFFFFFFF, base        0, acc CF9B
+SS=  160, USE32, page granular, limit FFFFFFFF, base        0, acc CF93
+DS=  160, USE32, page granular, limit FFFFFFFF, base        0, acc CF93
+ES=  160, USE32, page granular, limit FFFFFFFF, base        0, acc CF93
+FS=    0, USE16, byte granular, limit        0, base       13, acc  0
+GS=   20, USE16, byte granular, limit     FFFF, base     B910, acc 93
+CR0: PG:1 ET:1 TS:0 EM:0 MP:0 PE:1   CR2: FFFFE56B CR3: E000
+Crash address (unrelocated) =    1:00008327

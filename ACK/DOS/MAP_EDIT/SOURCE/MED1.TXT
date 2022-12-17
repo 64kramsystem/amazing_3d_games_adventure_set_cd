@@ -1,0 +1,138 @@
+                                                  December 25, 1993
+
+Larry,
+
+     Yeah I know....it's Christmas George...get a life!!!  My previous
+message was hastily thrown together and did little else than let you
+know that there was a problem with the map editor.  After openning 
+presents, drinking some more coffee, and occassionaly thinking about
+the map editor; I decided to provide you with something a little more
+substantial to work with (if you have time to help that is).  
+
+     I don't have MASM, but I am using TASM 3.0.  I've tried both compiling
+everything and also everything except the measm.asm file (just in case I 
+was doing something wrong with TASM) and linking to an EXE.  I encountered 
+the same problem both ways.
+
+     The problem is related to the IFF reader...at least that's where the
+program goes nonlinear....if I comment LoadSmallFont() out of Medit.c then
+the program loads and doesn't corrupt the smfont.bbm file (going from
+7K to approx. 71K)...not surprisingly the MapEditor is useless and locks 
+on exit...but at least it loads.  I've looked at the IFF code and didn't
+see anywhere that a write to the file handle "pic" was occurring...so I'm 
+stumped.
+
+The files that I downloaded off of Compuserve regarding the MapEditor are 
+listed below.  I'm hoping that possibly the MapEditor EXE file that was 
+supplied with the AckExp and AckDemo files was compiled with a different
+set.
+
+ACK3D    H        9607 08-26-93  10:56p
+ACKENG   H        1954 08-26-93  10:56p
+MAPEDIT  H        1123 06-27-93  10:48p
+IFF      H        2862 06-10-93   4:14p
+ACKEXT   H        1502 07-15-93   5:39p
+ANGLE    H        1079 08-20-93   2:07a
+        
+MEMOUSE  C        6200 06-10-93   1:15a
+MEDIT    C       33178 08-26-93  11:20p
+MIFF     C        5096 07-13-93  12:29a
+
+MEASM    ASM      2539 06-28-93  11:44p
+
+Now for why I'm interested in alterring the MapEditor...maybe I don't need
+to.....Here's what I've done so far with the kit:
+
+     -    Built my own maps
+     -    Added my own img files for walls and objects
+     -    Added joystick support
+
+So much for successes...now for my first stumble
+
+     -    Add additional doors 
+
+My first attempt to add doors was to place additional TYPE_WALL images 
+files as items 63 and 64 in the example1.l01 file and the example1.c file, 
+then recompile the example.
+
+The MapEditor displayed them but wouldn't assign a MapCode to them (like
+sliding or split)...also the MapEditor would start behaving strangely, 
+displaying the wrong image files and not switching between walls, doors,
+or objects....a possible sign that I had overrun an array, and a sure sign
+that I definitely didn't know what I was doing.
+
+Next, after looking at the code, I noticed in ACK3D.H that the the Xdoors
+and Ydoors were coded 60 and 62 respectively and that Medit.c had ACK3D.H
+listed as an Include file...sooooo, 
+     
+     -    I decided to make two more door codes 63 and 64 for my new X 
+          and Y doors...namely DOOR_XCODE1 AND DOOR_YCODE1....I reasoned 
+          that these codes would be passed to the MapEditor through 
+          ACK3D.H...(I also placed the respective numbers and image files 
+          in the files example1.l01 and example1.c ).
+
+     -    I went to AckDoors.c and changed to function AckCheckOpenDoors()
+          to include logic for identifying new doors as follows: 
+
+/* Check doors along the X walls */
+if (i == 1 && (ae->xGrid[xMapPosn] & 0xFF) == DOOR_XCODE1)
+    {
+    j = FindDoorSlot(xMapPosn,ae);
+    if (j >= 0)
+     {
+     DoorCode = POV_XDOOR;
+
+     LastMapPosn = ae->Door[j].mPos = xMapPosn;
+     if ((int)iLastX > xPlayer)
+         i = xMapPosn + 1;
+     else
+         LastMapPosn = i = xMapPosn - 1;
+
+     if (ae->xGrid[xMapPosn] & DOOR_LOCKED)
+         {
+         ae->Door[j].mPos = -1;
+         return(DoorCode | POV_DOORLOCKED);
+         }
+
+     ae->Door[j].mCode = ae->xGrid[xMapPosn];
+     ae->Door[j].mCode1 = ae->xGrid[i];
+     ae->Door[j].mPos1 = i;
+     ae->Door[j].ColOffset = 1;
+     ae->Door[j].Speed = ae->DoorSpeed;
+     ae->Door[j].Type = DOOR_XCODE1;
+     ae->Door[j].Flags = DOOR_OPENING;
+     }
+    }    
+    
+     The code for the YDOOR look the same except DOOR_XCODE1 was replaced by
+     DOOR_YCODE1.
+
+     I recompiled everyone...typed in "medit example1.l01" and watched the
+     computer lockup....after stepping through the execution sequence of 
+     the medit.exe file I found that it made it past the call for mouse 
+     initialization but went bad there after...I tried to run the old/good
+     medit from the output directory and noticed that it wouldn't work 
+     either...then I started checking files and found that the smfont.bbm
+     file was being corrupted.
+
+Questions:
+
+1.   Am I going about adding doors in the proper way...or have I over
+     complicated the situation?  If so, please straighten me out.
+
+2.   If I am ever able to compile the map editor...do you think it would
+     be possible to add more codes in these squares( maybe they would have 
+     to be cubes) to accommodate ceiling and floor image files?  If so
+     do you have any suggestions?
+
+
+I hope this hasn't rambled too ferociously....and I hope you can help...
+thanks for reading this.
+
+                                             George Kenney
+                                             71043,1007
+                                             818-705-6201, Home
+                                             818-354-5681, Work
+
+
+

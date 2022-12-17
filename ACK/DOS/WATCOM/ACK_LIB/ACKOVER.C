@@ -1,0 +1,71 @@
+/******************* ( Animation Construction Kit 3D ) ***********************/
+/*			Overlay Creation Routines			     */
+/* CopyRight (c) 1993	   Author: Lary Myers				     */
+/*****************************************************************************/
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <dos.h>
+#include <mem.h>
+#include <io.h>
+#include <fcntl.h>
+#include <time.h>
+#include <string.h>
+#include <sys\stat.h>
+#include "ack3d.h"
+#include "ackeng.h"
+
+/****************************************************************************
+**									   **
+****************************************************************************/
+short AckCreateOverlay(ACKENG *ae,UCHAR *sBuf)
+{
+    UINT    bPos,vPos,vLen;
+    UINT    len,sPos,sPos1;
+
+vLen = (ae->WinEndY - ae->WinStartY) * BYTES_PER_ROW;
+vPos = ae->WinStartY * BYTES_PER_ROW;
+bPos = 0;
+sPos = vPos;
+
+while (vLen > 0)
+    {
+    if (sBuf[sPos])
+	{
+	sPos1 = sPos;
+	while (vLen > 0 && sBuf[sPos1++])
+	    vLen--;
+
+	len = (sPos1 - sPos) - 1;
+	(*(short *)&ae->ScreenBuffer[bPos]) = len;
+	bPos += 2;
+	(*(short *)&ae->ScreenBuffer[bPos]) = sPos;
+	bPos += 2;
+	memmove(&ae->ScreenBuffer[bPos],&sBuf[sPos],len);
+	bPos += len;
+	sPos = sPos1;
+	}
+    else
+	{
+	sPos++;
+	vLen--;
+	}
+    }
+
+(*(short *)&ae->ScreenBuffer[bPos]) = 0;
+bPos += 2;
+
+ae->OverlayBuffer = AckMalloc(bPos);
+
+if (ae->OverlayBuffer != NULL)
+    {
+    memmove(ae->OverlayBuffer,ae->ScreenBuffer,bPos);
+    return(0);
+    }
+
+return(ERR_NOMEMORY);
+}
+
+//====== End of Code ==========================================================
+
+

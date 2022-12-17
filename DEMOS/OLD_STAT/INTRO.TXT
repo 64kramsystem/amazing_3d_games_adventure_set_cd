@@ -1,0 +1,13 @@
+
+         Welcome to the ACK-3D Demo.
+
+Objective:
+
+      Find all the repair parts for the
+  last remaining shuttle before time runs
+  out and the station's orbit decays.
+
+               Good Luck!
+
+            <Press ANY key>
+

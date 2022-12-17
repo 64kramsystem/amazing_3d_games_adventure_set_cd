@@ -1,0 +1,1577 @@
+/******************* ( Animation Construction Kit 3D ) ***********************/
+/*			 Build Current Viewport				     */
+/* CopyRight (c) 1993	   Author: Lary Myers				     */
+/*****************************************************************************/
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <dos.h>
+#include <mem.h>
+#include <io.h>
+#include <fcntl.h>
+#include <time.h>
+#include <string.h>
+#include <sys\stat.h>
+
+#include "ack3d.h"
+#include "ackeng.h"
+#include "ackext.h"
+
+extern	long FloorCosTable[];
+
+
+    short   tuFactor = 0;
+    short   tvFactor = 4;
+    long    kduFactor = -8192;
+    long    kdvFactor = 0;
+    long    kxFactor = 0;
+    long    kyFactor = 0;
+
+    short   gWinFullWidth;
+    long    gWinDWORDS;
+    long    gWinStartOffset;
+    short   gWinStartX;
+    short   gWinStartY;
+    short   gWinEndX;
+    short   gWinEndY;
+    short   gWinHeight;
+    short   gWinWidth;
+    short   gCenterRow;
+    short   gCenterOff;
+    UCHAR   *gScrnBuffer;
+    UCHAR   *gBkgdBuffer;
+    UCHAR   *gPalTable;
+
+    UCHAR   **mxGridGlobal;
+    UCHAR   **myGridGlobal;
+
+    UCHAR   gTopColor;
+    UCHAR   gBottomColor;
+
+    UCHAR   *scVid;
+    UCHAR   *scWall;
+    UCHAR   *scPal;
+    short   scdst;
+    short   scwht;
+    short   scmulti;
+    short   sctopht;
+    short   scbotht;
+    short   scsavwht;
+    short   scmulcnt;
+    UCHAR   *scsavVid;
+    UINT    scbNum;
+    UCHAR   *scMulData;
+    UCHAR   *scColumn;
+
+    UCHAR   *gPtr;
+    UCHAR   *gmPtr;
+    short   gBitmapNumber;
+    short   gBitmapColumn;
+    short   gyBitmapNumber;
+    short   gyBitmapColumn;
+    long    gWallDistance;
+    short   gmPos;
+    DOORS   *gDoor;
+    DOORS   *gDoorPosn;
+    short   wFound;
+    UCHAR   *mgPtr;
+
+    short   BegX,EndX;
+
+
+// these defines can change.
+#define MAX_ANGLE	1920
+#define MAX_VIEW_WIDTH	 440
+
+#define MAX_F_HEIGHT	       256
+#define MAX_F_VIEWHEIGHT       300
+#define MAX_F_VIEWHALFHEIGHT   150
+
+//unsigned long HtTableFloor[MAX_F_HEIGHT][MAX_F_VIEWHALFHEIGHT];
+//unsigned long HtTableCeil[MAX_F_HEIGHT][MAX_F_VIEWHALFHEIGHT];
+
+    short   LastVht;
+    long    zdTable[VIEW_WIDTH][200];
+
+//  UCHAR   *SaveBuffer;
+//  UCHAR   *DifBuffer;
+
+void ShowTheWalls(void);
+void FloorLoop(void);
+void CeilLoop(void);
+void DrawSolidCeiling(SOLIDS *s);
+void DrawSolidFloor(SOLIDS *s);
+void BuildSlice(void);
+void BuildSliceMulti(void);
+void DrawSlices(void);
+void FindObject(void);
+void xRaySetup(void);
+UINT xRayCast(void);
+void yRaySetup(void);
+UINT yRayCast(void);
+UINT xRayCastMulti(void);
+UINT yRayCastMulti(void);
+void CheckDoors(void);
+short FindDoor(short MapPosn);
+short BlankSlice(UINT col,UCHAR *bmp);
+void AckDrawFloor(void);
+void ShowCol(void);
+void ShowColMask(void);
+void ShowBottom(SCOL *scol);
+void ShowBottomTexture(SCOL *scol);
+void ShowColLow(void);
+void ShowColMaskLow(void);
+void ShowBottomLow(SCOL *scol);
+void ShowBottomTextureLow(SCOL *scol);
+void BuildSliceAsm(void);
+void DrawFloorCeiling(void);
+
+void BuildUpView(void);
+
+//=============================================================================
+// This is a NEW function that sets up various global variables for the routines
+// to use. Call this routine ONCE before going into the main display loop and
+// then each time a new ACKENG structure is used, or the viewing window size
+// changes or new floor\ceiling colors change, etc.
+//=============================================================================
+void AckRegisterStructure(ACKENG *ae)
+{
+
+aeGlobal    = ae;
+xGridGlobal = ae->xGrid;
+yGridGlobal = ae->yGrid;
+mxGridGlobal = ae->mxGrid;
+myGridGlobal = ae->myGrid;
+WallbMaps   = ae->bMaps;
+gWinStartX  = ae->WinStartX;
+gWinStartY  = ae->WinStartY;
+gWinEndX    = ae->WinEndX;
+gWinEndY    = ae->WinEndY;
+gWinHeight  = ae->WinHeight;
+gWinWidth   = ae->WinWidth;
+gCenterRow  = ae->CenterRow;
+gCenterOff  = ae->CenterOffset;
+gScrnBuffer = ae->ScreenBuffer + 320;
+gBkgdBuffer = ae->BkgdBuffer + 320;
+gPalTable   = ae->PalTable;
+gDoor	    = &ae->Door[0];
+gTopColor   = ae->TopColor;
+gBottomColor = ae->BottomColor;
+
+gWinStartOffset = ae->WinStartOffset;
+
+gWinFullWidth = 0;
+
+if (gWinStartX == 0 && gWinEndX == 319)
+    {
+    gWinFullWidth = 1;
+    gWinDWORDS = (gWinEndY - gWinStartY) * 80;
+    }
+
+
+#if 0
+if (SaveBuffer == NULL)
+    {
+    SaveBuffer = malloc(64000);
+    if (SaveBuffer != NULL)
+	memset(SaveBuffer,0,64000);
+    }
+
+if (DifBuffer == NULL)
+    DifBuffer = malloc(64000);
+#endif
+
+}
+
+//=============================================================================
+// This function builds the floor, ceiling, backdrop and walls into the
+// screen buffer. Use AckDisplayScreen() to copy the buffer to the video.
+//=============================================================================
+void AckBuildView(void)
+{
+//  short     i,BegX,EndX;
+
+
+xPglobal    = aeGlobal->xPlayer;
+xBegGlobal  = xPglobal & GRID_MASK;
+xPglobalHI  = ((long)xPglobal << FP_SHIFT);
+yPglobal    = aeGlobal->yPlayer;
+yBegGlobal  = yPglobal & GRID_MASK;
+yPglobalHI  = ((long)yPglobal << FP_SHIFT);
+PlayerAngle = aeGlobal->PlayerAngle;
+SysFlags    = aeGlobal->SysFlags;
+
+#if 0
+MaxDistance = 0;
+
+if (MoveObjectCount)
+   memmove(ObjectsSeen,MoveObjectList,MoveObjectCount);
+
+FoundObjectCount = MoveObjectCount;
+EndX = gWinEndX;
+if (EndX < VIEW_WIDTH)
+    EndX++;
+
+// Begin looking 30 degrees to the left of our current angle
+if ((ViewAngle = PlayerAngle - INT_ANGLE_30) < 0)
+    ViewAngle += INT_ANGLE_360;
+
+ViewAngle += gWinStartX;
+if (ViewAngle >= INT_ANGLE_360)
+    ViewAngle -= INT_ANGLE_360;
+
+CheckDoors();
+
+for (ViewColumn = gWinStartX; ViewColumn < EndX; ViewColumn++)
+    {
+    sPtr = &Slice[ViewColumn];
+    if (ViewAngle != INT_ANGLE_90 && ViewAngle != INT_ANGLE_270)
+	xRaySetup();
+
+    if (ViewAngle != 0 && ViewAngle != INT_ANGLE_180)
+	yRaySetup();
+
+    BuildSlice();
+
+    if ((SysFlags & SYS_SOLID_CEIL) && sPtr->Next != NULL && sPtr->Distance > 96)
+	{
+	LastWallHeight = 0;
+	BuildSliceMulti();
+	}
+
+    if (++ViewAngle >= INT_ANGLE_360)
+	ViewAngle -= INT_ANGLE_360;
+
+    if (Resolution == RES_LOW)
+	{
+	if (++ViewAngle >= INT_ANGLE_360)
+	    ViewAngle -= INT_ANGLE_360;
+	ViewColumn++;
+	}
+    }
+
+
+FindObject();	// Now build any objects in this scene
+AckDrawFloor(); // Draw floor and ceiling and background if needed
+DrawWalls();	// Overlay the walls onto the background
+#endif
+
+BuildUpView();	// Assembly routine
+
+}
+
+//=============================================================================
+// Internal routine called by AckBuildView()
+// Casts the X and Y rays and builds the slice structure for each column of
+// the viewing window.
+//=============================================================================
+void BuildSlice(void)
+{
+    short   j,index,wFound;
+    UINT    xBitmap,yBitmap,BitmapNumber;
+    short   DoorOpenColumn;
+
+    ULONG   xDistance,yDistance;
+    ULONG   xd,yd,mf;
+
+    long    WallDistance;
+    UINT    distance,LightAdj;
+    UINT    BitmapColumn,yBitmapColumn;
+    short   OldMapPosn,OldMapPosn1;
+    short   HoldAngle,HoldX,HoldY,xp1,yp1;
+    UINT    offset;
+    short   mPos;
+    UINT    *gPtr;
+    UCHAR   *mgPtr;
+    SLICE   *spNext;
+
+WallDistance = 3000000;	    /* Set to a ridiculous distance */
+sPtr->Distance = 0;
+wFound = 0;
+sPtr->Fnc = ShowCol;
+
+if (ViewAngle != INT_ANGLE_90 && ViewAngle != INT_ANGLE_270)
+    {
+    if ((BitmapNumber = xRayCast()) != 0)
+	{
+	wFound = 1;
+	// Use the Y intercept to determine the wall column
+	BitmapColumn = (LastY1 >> FP_SHIFT) & (BITMAP_WIDTH-1);
+
+	// Keep the orientation the same no matter which side we're on
+	if ((short)iLastX < xPglobal)
+	    BitmapColumn = (BITMAP_WIDTH-1) - BitmapColumn;
+
+	// Did we strike a door?
+	if ((BitmapNumber & 0xFF) == DOOR_XCODE)
+	    {
+	    index = FindDoor(xMapPosn);
+	    if (index >= 0)			// This is a valid door
+		{
+		j = aeGlobal->Door[index].ColOffset;  // Get its current pos
+		offset = 0;
+
+	    if (BitmapNumber & DOOR_TYPE_SLIDE)
+		{
+		DoorOpenColumn = BITMAP_WIDTH-1;
+		if ((short)iLastX > xPglobal)	    // Handle orientation
+		    j = -j;
+		BitmapColumn += j;		    // Adjust column to show
+		}
+
+	    if (BitmapNumber & DOOR_TYPE_SPLIT)
+		{
+		DoorOpenColumn = (BITMAP_WIDTH/2)-1;
+		if (BitmapColumn < (BITMAP_WIDTH/2))
+		    {
+		    BitmapColumn += j;
+		    if (BitmapColumn > (BITMAP_WIDTH/2)-1)
+			offset = 1;
+		    }
+		else
+		    {
+		    BitmapColumn -= j;
+		    if (BitmapColumn < (BITMAP_WIDTH/2))
+			offset = 1;
+		    }
+
+		}
+
+
+		if (offset == 1 || BitmapColumn > (BITMAP_WIDTH-1))
+		    {
+		    // Get the grid coordinates for this door
+		    OldMapPosn = aeGlobal->Door[index].mPos;
+		    OldMapPosn1 = aeGlobal->Door[index].mPos1;
+
+		    // Fake the engine into thinking no door is there
+		    xGridGlobal[OldMapPosn] = 0;
+		    xGridGlobal[OldMapPosn1] = 0;
+
+		    // Cast the ray to get walls beyond the door
+		    BitmapNumber = xRayCast();
+
+		    // Put back the door codes if not fully open
+		    if (aeGlobal->Door[index].ColOffset < DoorOpenColumn)
+			{
+			xGridGlobal[OldMapPosn] = aeGlobal->Door[index].mCode;
+			xGridGlobal[OldMapPosn1] = aeGlobal->Door[index].mCode1;
+			}
+
+		    // Calc the new bitmap column of wall behind door
+		    BitmapColumn = (LastY1 >> FP_SHIFT) & (BITMAP_WIDTH-1);
+		    if ((short)iLastX < xPglobal)
+			BitmapColumn = (BITMAP_WIDTH-1) - BitmapColumn;
+		    }
+		}
+	    }
+
+	// Calculate the distance to the wall. Since the X position was
+	// fixed to move 64 or -64 we can use it to determine the actual
+	// wall distance. The InvCosTable values were stored with a fixed
+	// point of 20 decimal places. At this time we'll knock off 14 of
+	// them so we can later multiply with a fixed point value of 16
+
+	xd = iLastX - xPglobal;
+	mf = InvCosTable[ViewAngle];
+	WallDistance = (xd * mf) >> 10;
+
+	if (WallDistance > 33554432L)
+	    WallDistance = 1200000L;
+
+	gPtr = xGridGlobal;
+	mgPtr = mxGridGlobal[xMapPosn];
+	mPos = xMapPosn;
+
+	}
+
+    }
+
+// Don't cast a Y ray if its impossible to intercept any Y walls
+if (ViewAngle != 0 && ViewAngle != INT_ANGLE_180)
+    {
+    if ((yBitmap = yRayCast()) != 0)
+	{
+
+	// Use the X intercept to determine the column of the bitmap
+	yBitmapColumn = (LastX1 >> FP_SHIFT) & (BITMAP_WIDTH-1);
+
+	// Handle orientation from either side of the wall
+	if ((short)iLastY > yPglobal)
+	    yBitmapColumn = (BITMAP_WIDTH-1) - yBitmapColumn;
+
+	// Did we strike a door?
+	if ((yBitmap & 0xFF) == DOOR_YCODE)
+	    {
+	    index = FindDoor(yMapPosn);
+	    if (index >= 0)		    // This is a valid door
+		{
+		// Get the current door column offset
+		j = aeGlobal->Door[index].ColOffset;
+		offset = 0;
+
+	    // Deal with orientation
+	    if (yBitmap & DOOR_TYPE_SLIDE)
+		{
+		DoorOpenColumn = BITMAP_WIDTH-1;
+		if ((short)iLastY < yPglobal)
+		    j = -j;
+		yBitmapColumn += j;
+		}
+
+	    if (yBitmap & DOOR_TYPE_SPLIT)
+		{
+		DoorOpenColumn = (BITMAP_WIDTH/2)-1;
+		if (yBitmapColumn < (BITMAP_WIDTH/2))
+		    {
+		    yBitmapColumn += j;
+		    if (yBitmapColumn > (BITMAP_WIDTH/2)-1)
+			offset = 1;
+		    }
+		else
+		    {
+		    yBitmapColumn -= j;
+		    if (yBitmapColumn < (BITMAP_WIDTH/2))
+			offset = 1;
+		    }
+		}
+
+		// If beyond width of bitmap than cast again
+		if (offset == 1 || yBitmapColumn > (BITMAP_WIDTH-1))
+		    {
+
+		    // Get the yGrid coordinates for this door
+		    OldMapPosn = aeGlobal->Door[index].mPos;
+		    OldMapPosn1 = aeGlobal->Door[index].mPos1;
+
+		    // Fool the engine into thinking no door is there
+		    yGridGlobal[OldMapPosn] = 0;
+		    yGridGlobal[OldMapPosn1] = 0;
+
+		    // Cast again for walls beyond the door
+		    yBitmap = yRayCast();
+
+		    // Put door code back if not fully open
+		    if (aeGlobal->Door[index].ColOffset < DoorOpenColumn)
+			{
+			yGridGlobal[OldMapPosn] = aeGlobal->Door[index].mCode;
+			yGridGlobal[OldMapPosn1] = aeGlobal->Door[index].mCode1;
+			}
+
+		    // Get the bitmap column of wall beyond door
+		    yBitmapColumn = (LastX1 >> FP_SHIFT) & (BITMAP_WIDTH-1);
+		    if ((short)iLastY > yPglobal)
+			yBitmapColumn = (BITMAP_WIDTH-1) - yBitmapColumn;
+
+		    }
+		}
+	    }
+
+
+	// Calculate the distance to the wall. Since the Y position was
+	// fixed to move 64 or -64 we can use it to determine the actual
+	// wall distance. The InvSinTable values were stored with a fixed
+	// point of 20 decimal places. At this time we'll knock off 14 of
+	// them so we can later multiply with a fixed point value of 16
+
+	yd = iLastY - yPglobal;
+	mf = InvSinTable[ViewAngle];
+	yDistance = (yd * mf) >> 8;
+
+	if (yDistance > 33554432L)
+	    yDistance = 120000L;
+
+	// At this point check the distance to the Y wall against the X
+	// wall to see which one is closer. The closer one is the one
+	// we'll draw at this column of the screen.
+	if (yDistance < WallDistance)
+	    {
+	    wFound = 1;
+	    WallDistance = yDistance;
+	    BitmapNumber = yBitmap;
+	    BitmapColumn = yBitmapColumn;
+	    gPtr = yGridGlobal;
+	    mPos = yMapPosn;
+	    mgPtr = myGridGlobal[mPos];
+
+	    }
+	}
+    }
+
+if (wFound)
+    {
+    // To avoid a fishbowl affect we need to adjust the distance so
+    // it appears perpendicular to the center point of the display
+    // which is relative angle 0 from the players current angle. We
+    // started at -30 degrees for the first screen column and will
+    // cycle from -30 down to 0 then back up to +30 degrees. This
+    // cosine value was pre-calculated and placed in ViewCosTable.
+    yd = ViewCosTable[ViewColumn] >> 2;
+    WallDistance *= yd;
+
+    // Now we strip off somemore decimal points and check round-up
+    xd = WallDistance >> 12;
+    if (WallDistance - (xd << 12) >= 2048)
+	xd++;
+
+    // The last decimal points from the multiplication after the X and
+    // Y rays is stripped off and checked for round-up.
+    WallDistance = xd >> 5;
+    if (xd - (WallDistance << 5) >= 16)
+	WallDistance++;
+
+    // Don't really need to, but put it into an integer for fast compare
+    distance = WallDistance;
+
+    // This is an arbitrary minimum distance to look for
+    if (distance < 10)
+	distance = 10;
+
+    // Don't want it to go outside our table boundaries
+    if (distance >= MAX_DISTANCE)
+	distance = MAX_DISTANCE - 1;
+
+    // Save the wall data to display when done with entire screen
+    sPtr->Distance = distance;
+    sPtr->bNumber  = BitmapNumber;
+    sPtr->bColumn  = BitmapColumn;
+    sPtr->bMap	   = WallbMaps;
+    sPtr->Active   = 0;
+    sPtr->Type	   = ST_WALL;
+    sPtr->Fnc	   = ShowCol;
+    sPtr->mPos	   = mPos;
+    sPtr->mPtr	   = mgPtr;
+    spNext	   = sPtr->Next;
+
+    if (distance > MaxDistance)
+	MaxDistance = distance;
+
+    if (CeilMap[mPos])
+	LastWallHeight = 9000;
+
+    if (((BitmapNumber & WALL_TYPE_UPPER) ||
+	(BitmapNumber & WALL_TYPE_TRANS)) &&
+	spNext != NULL)
+	{
+	BitmapColumn = gPtr[mPos];
+	gPtr[mPos]   = 0;
+	sPtr->Active = 1;
+
+	if (BitmapNumber & WALL_TYPE_TRANS)
+	    {
+	    sPtr->Type = ST_OBJECT;
+	    sPtr->Fnc  = ShowColMask;
+	    }
+
+	sPtr		= spNext;
+	spNext->Active	= 0;
+	spNext->bNumber = 0;
+
+	BuildSlice();
+
+	gPtr[mPos] = BitmapColumn;
+
+	if (!sPtr->bNumber)
+	    {
+	    spNext = sPtr->Prev;
+	    if (spNext != NULL)
+		spNext->Active = 0;
+	    }
+	}
+    }
+}
+
+//=============================================================================
+// Internal function called by AckBuildView().
+// Continues the ray cast to determine if any multi-height walls are beyond
+// the normal height walls and adds them to the wall slices. This will allow
+// higher walls to appear over the top of normal walls.
+//=============================================================================
+void BuildSliceMulti(void)
+{
+    short   j,index,wFound;
+    UINT    yHeight;
+    UINT    xBitmap,yBitmap,BitmapNumber;
+    short   DoorOpenColumn;
+    short   xWallHeight,yWallHeight;
+    ULONG   xDistance,yDistance;
+    ULONG   xd,yd,mf;
+
+    long    WallDistance;
+    UINT    distance,LightAdj;
+    UINT    BitmapColumn,yBitmapColumn;
+    short   OldMapPosn,OldMapPosn1;
+    short   HoldAngle,HoldX,HoldY,xp1,yp1;
+    UINT    offset;
+    short   mPos;
+    UINT    *gPtr;
+    UCHAR   *mgPtr;
+    SLICE   *spNext;
+
+WallDistance = 3000000;	    // Set to a ridiculous distance
+wFound = 0;
+
+if (ViewAngle != INT_ANGLE_90 && ViewAngle != INT_ANGLE_270)
+    {
+    if ((BitmapNumber = xRayCastMulti()) != 0)
+	{
+	xBitmap = BitmapNumber & 0xFF;
+	if (((BitmapNumber & WALL_TYPE_MULTI) ||
+	    (BitmapNumber & WALL_TYPE_UPPER)) &&
+	    (xBitmap > LastWallHeight))
+	    {
+	//  LastWallHeight = xBitmap;
+	    wFound = 1;
+	    // Use the Y intercept to determine the wall column
+	    BitmapColumn = (LastY1 >> FP_SHIFT) & (BITMAP_WIDTH-1);
+
+	    // Keep the orientation the same no matter which side we're on
+	    if ((short)iLastX < xPglobal)
+		BitmapColumn = (BITMAP_WIDTH-1) - BitmapColumn;
+
+	    xd = iLastX - xPglobal;
+	    mf = InvCosTable[ViewAngle];
+	    WallDistance = (xd * mf) >> 10;
+
+	    if (WallDistance > 33554432L)
+		WallDistance = 1200000L;
+
+	    gPtr = xGridGlobal;
+	    mPos = xMapPosn;
+	    mgPtr = mxGridGlobal[mPos];
+	    }
+	}
+
+    }
+
+// Don't cast a Y ray if its impossible to intercept any Y walls
+if (ViewAngle != 0 && ViewAngle != INT_ANGLE_180)
+    {
+    if ((yBitmap = yRayCastMulti()) != 0)
+	{
+	yHeight = yBitmap & 0xFF;
+	if (((yBitmap & WALL_TYPE_MULTI) ||
+	    (yBitmap & WALL_TYPE_UPPER)) &&
+	    (yHeight > LastWallHeight))
+	    {
+	    yWallHeight = yHeight;
+
+	    // Use the X intercept to determine the column of the bitmap
+	    yBitmapColumn = (LastX1 >> FP_SHIFT) & (BITMAP_WIDTH-1);
+
+	    // Handle orientation from either side of the wall
+	    if ((short)iLastY > yPglobal)
+		yBitmapColumn = (BITMAP_WIDTH-1) - yBitmapColumn;
+
+	    yd = iLastY - yPglobal;
+	    mf = InvSinTable[ViewAngle];
+	    yDistance = (yd * mf) >> 8;
+
+	    if (yDistance > 33554432L)
+		yDistance = 120000L;
+
+	    // At this point check the distance to the Y wall against the X
+	    // wall to see which one is closer. The closer one is the one
+	    // we'll draw at this column of the screen.
+	    if (yDistance < WallDistance)
+		{
+		wFound = 1;
+		WallDistance = yDistance;
+		BitmapNumber = yBitmap;
+		BitmapColumn = yBitmapColumn;
+		gPtr = yGridGlobal;
+		mPos = yMapPosn;
+		xBitmap = yHeight;
+		mgPtr = myGridGlobal[mPos];
+		}
+	    }
+	}
+
+    }
+
+if (wFound)
+    {
+    LastWallHeight = xBitmap;
+    yd = ViewCosTable[ViewColumn] >> 2;
+    WallDistance *= yd;
+
+    // Now we strip off somemore decimal points and check round-up
+    xd = WallDistance >> 12;
+    if (WallDistance - (xd << 12) >= 2048)
+	xd++;
+
+    // The last decimal points from the multiplication after the X and
+    // Y rays is stripped off and checked for round-up.
+    WallDistance = xd >> 5;
+    if (xd - (WallDistance << 5) >= 16)
+	WallDistance++;
+
+    // Don't really need to, but put it into an integer for fast compare
+    distance = WallDistance;
+
+    // This is an arbitrary minimum distance to look for
+    if (distance < 10)
+	distance = 10;
+
+    // Don't want it to go outside our table boundaries
+    if (distance >= MAX_DISTANCE)
+	distance = MAX_DISTANCE - 1;
+
+    // Save the wall data to display when done with entire screen
+    sPtr->Active = 1;
+    sPtr	 = sPtr->Next;
+    if (sPtr == NULL)
+	return;
+
+    sPtr->Distance = distance;
+    sPtr->bNumber  = BitmapNumber;
+    sPtr->bColumn  = BitmapColumn;
+    sPtr->bMap	   = WallbMaps;
+    sPtr->Active   = 0;
+    sPtr->Type	   = ST_WALL;
+    sPtr->Fnc	   = ShowCol;
+    sPtr->mPos	   = mPos;
+    sPtr->mPtr	   = mgPtr;
+    spNext	   = sPtr->Next;
+
+    if (spNext != NULL)
+	{
+//	BitmapColumn = gPtr[mPos];
+//	gPtr[mPos]   = 0;
+
+	BuildSliceMulti();
+
+//	gPtr[mPos]   = BitmapColumn;
+	}
+    }
+
+}
+
+//=============================================================================
+// Internal function called by AckInitialize().
+// Sets up the shading pointers for the floor\ceiling routines to use.
+//=============================================================================
+void SetupFloors(ACKENG *ae)
+{
+    short   i;
+    int	    ht,scanline,ht1;
+    int	    Scale_Fac;
+    long    scan1,scan2,f;
+
+    for ( i=0; i<12;i++ ) scantables[i] = ae->PalTable + (7*256);
+    for ( i=12;i<24;i++ ) scantables[i] = ae->PalTable + (6*256);
+    for ( i=24;i<36;i++ ) scantables[i] = ae->PalTable + (5*256);
+    for ( i=36;i<48;i++ ) scantables[i] = ae->PalTable + (4*256);
+    for ( i=48;i<60;i++ ) scantables[i] = ae->PalTable + (3*256);
+    for ( i=60;i<72;i++ ) scantables[i] = ae->PalTable + (2*256);
+    for ( i=72;i<84;i++ ) scantables[i] = ae->PalTable + (1*256);
+    for ( i=84;i<96;i++ ) scantables[i] = ae->PalTable;
+
+Scale_Fac = (89 - ViewHeight) * 5;   // 295;
+
+#if 0
+for ( ht=MAX_F_HEIGHT-1; ht >= 0; ht-- )
+  {
+  for (scanline = 1; scanline < MAX_F_VIEWHALFHEIGHT; scanline++)
+     {
+     scan1 = (ht * Scale_Fac) / (scanline+1);
+     scan2 = (ht * Scale_Fac) / scanline;
+     HtTableFloor[ht][scanline] = scan2;
+//   HtTableCeil[ht][scanline] = (ht * Scale_Fac)/ scanline;
+     }
+  }
+#endif
+
+ht = 89 - ViewHeight;
+
+for (i = 0; i < VIEW_WIDTH; i++)
+    {
+    f = FloorCosTable[i];
+    for (scanline = 1; scanline < MAX_F_VIEWHALFHEIGHT; scanline++)
+	{
+	scan2 = (ht * Scale_Fac) / scanline;
+	zdTable[i][scanline] = (f * scan2) >> 14;
+	}
+    }
+
+}
+
+//=============================================================================
+//
+//=============================================================================
+/* return values */
+#define DONT_INTERSECT 0
+#define DO_INTERSECT   1
+#define COLLINEAR      2
+
+
+/* The SAME_SIGNS macro assumes arithmetic where the exclusive-or    */
+/* operation will work on sign bits.  This works for twos-complement,*/
+/* and most other machine arithmetic.				     */
+#define SAME_SIGNS( a, b ) \
+	(((long) ((unsigned long) a ^ (unsigned long) b)) >= 0 )
+
+
+/* The use of some short working variables allows this code to run   */
+/* faster on 16-bit computers, but is not essential.  It should not  */
+/* affect operation on 32-bit computers.  The short working variables*/
+/* to not restrict the range of valid input values, as these were    */
+/* constrained in any case, due to algorithm restrictions.           */
+
+
+int lines_intersect(x1,y1,x2,y2,x3,y3,x4,y4,x,y)
+long x1,y1,x2,y2,x3,y3,x4,y4,*x,*y;
+{
+
+long Ax,Bx,Cx,Ay,By,Cy,d,e,f,temp,num,offset;
+short x1lo,x1hi,x3lo,x3hi,y1lo,y1hi,y3lo,y3hi;
+
+Ax = x2-x1;
+Bx = x3-x4;
+
+if(Ax<0) {						/* X bound box test*/
+  x1lo=(short)x2; x1hi=(short)x1;
+  } else {
+  x1hi=(short)x2; x1lo=(short)x1;
+  }
+if(Bx>0) {
+  if(x1hi < (short)x4 || (short)x3 < x1lo) return DONT_INTERSECT;
+  } else {
+  if(x1hi < (short)x3 || (short)x4 < x1lo) return DONT_INTERSECT;
+  }
+
+Ay = y2-y1;
+By = y3-y4;
+
+if(Ay<0) {						/* Y bound box test*/
+  y1lo=(short)y2; y1hi=(short)y1;
+  } else {
+  y1hi=(short)y2; y1lo=(short)y1;
+  }
+if(By>0) {
+  if(y1hi < (short)y4 || (short)y3 < y1lo) return DONT_INTERSECT;
+  } else {
+  if(y1hi < (short)y3 || (short)y4 < y1lo) return DONT_INTERSECT;
+  }
+
+
+Cx = x1-x3;
+Cy = y1-y3;
+d = By*Cx - Bx*Cy;					/* alpha numerator*/
+f = Ay*Bx - Ax*By;					/* both denominator*/
+if(f>0) {						/* alpha tests*/
+  if(d<0 || d>f) return DONT_INTERSECT;
+  } else {
+  if(d>0 || d<f) return DONT_INTERSECT;
+  }
+
+e = Ax*Cy - Ay*Cx;					/* beta numerator*/
+if(f>0) {						/* beta tests*/
+  if(e<0 || e>f) return DONT_INTERSECT;
+  } else {
+  if(e>0 || e<f) return DONT_INTERSECT;
+  }
+
+/*compute intersection coordinates*/
+
+if(f==0) return COLLINEAR;
+num = d*Ax;						/* numerator */
+offset = SAME_SIGNS(num,f) ? f/2 : -f/2;		/* round direction*/
+*x = x1 + (num+offset) / f;				/* intersection x */
+
+num = d*Ay;
+offset = SAME_SIGNS(num,f) ? f/2 : -f/2;
+*y = y1 + (num+offset) / f;				/* intersection y */
+
+return DO_INTERSECT;
+}
+
+//=============================================================================
+//
+//=============================================================================
+void ShowSlice(long x,long y,long mpos,long scrpos,int va,int vc)
+{
+    long    xDist,yDist,mf,bx,by,bx1,by1,rx,ry;
+    long    xDist1,yDist1;
+    int	    bcol,ybcol,bCode,wFound;
+    UCHAR   *bMap;
+
+
+by = mpos & 0xFFC0;
+bx = (mpos - by) << 6;
+bx1 = bx + 63;
+by1 = by + 63;
+
+xDist = yDist = 45000000;
+wFound = 0;
+
+if (lines_intersect(xPglobal,yPglobal,x,y,bx,by,bx,by1,&rx,&ry) == DO_INTERSECT)
+    {
+    bcol = ry & 63;
+    xDist = bx - xPglobal;
+    mf = InvCosTable[va];
+    xDist = (xDist * mf) >> 10;
+    wFound = 1;
+    bCode = xGridGlobal[mpos];
+    }
+
+if (lines_intersect(xPglobal,yPglobal,x,y,bx1,by,bx1,by1,&rx,&ry) == DO_INTERSECT)
+    {
+    xDist1 = bx1 - xPglobal;
+    mf = InvCosTable[va];
+    xDist1 = (xDist1 * mf) >> 10;
+    if (xDist1 < xDist)
+	{
+	bcol = ry & 63;
+	xDist = xDist1;
+	wFound = 1;
+	bCode = xGridGlobal[mpos+1];
+	}
+    }
+
+
+if (lines_intersect(xPglobal,yPglobal,x,y,bx,by,bx1,by,&rx,&ry) == DO_INTERSECT)
+    {
+    yDist = by - yPglobal;
+    mf = InvSinTable[va];
+    yDist = (yDist * mf) >> 10;
+    if (yDist < xDist)
+	{
+	xDist = yDist;
+	bcol = rx & 63;
+	wFound = 1;
+	bCode = yGridGlobal[mpos+1];
+	}
+    }
+
+if (lines_intersect(xPglobal,yPglobal,x,y,bx,by1,bx1,by1,&rx,&ry) == DO_INTERSECT)
+    {
+    yDist = by - yPglobal;
+    mf = InvSinTable[va];
+    yDist = (yDist * mf) >> 10;
+    if (yDist < xDist)
+	{
+	xDist = yDist;
+	bcol = rx & 63;
+	wFound = 1;
+	bCode = yGridGlobal[mpos+GRID_WIDTH];
+	}
+    }
+
+if (wFound)
+    {
+
+    mf = ViewCosTable[vc] >> 2;
+    xDist *= mf;
+
+    // Now we strip off somemore decimal points and check round-up
+    mf = xDist >> 12;
+    if (xDist - (mf << 12) >= 2048)
+	mf++;
+
+    // The last decimal points from the multiplication after the X and
+    // Y rays is stripped off and checked for round-up.
+    xDist = mf >> 5;
+    if (mf - (xDist << 5) >= 16)
+	xDist++;
+
+    bMap = WallbMaps[bCode & 0xFF];
+    bMap += (bcol << 6);
+    mf = 0;
+
+    while (scrpos >= 0)
+	{
+	bcol = mf >> 8;
+	if (bcol < 0 || bcol > 63)
+	    break;
+
+	bcol = 63 - bcol;
+
+	gScrnBuffer[scrpos] = bMap[bcol];
+	mf += xDist;
+	scrpos -= 320;
+	}
+
+    }
+
+
+}
+
+
+
+//=============================================================================
+//
+//=============================================================================
+void AckDrawFloor(void)
+{
+    long    c,s,a,center,y,bmx,bmy;
+    long    zdist,f,sy,ey;
+    long    *htf,*ht,*htc,*ht1,*zdPtr;
+    UCHAR   *fscrn,*cscrn,*wscrn;
+    int	    height,pos,cnum,bmpos,LastPos,Scale_Fac;
+    long    abeg,u,scan2;
+    short   startscreeny,LastFht,CurHt;
+    int	    endscreeny = gWinEndY;
+    int	    column,va,brow,bcol;
+    unsigned short gCode;
+    UCHAR   pixLow;
+    UINT    pix;
+    UCHAR   *bmap,*ba,*ba1;
+
+bcol = PlayerAngle - 160;
+if (bcol < 0) bcol += INT_ANGLE_360;
+bcol = bcol % 640;
+
+height = 89 - ViewHeight;
+Scale_Fac = height * (height * 5);
+
+va = PlayerAngle - INT_ANGLE_30;
+if (va < 0) va += INT_ANGLE_360;
+
+center = gWinHeight >> 1;
+sy=1;
+ey=endscreeny-center;
+
+if (ViewHeight != LastVht)
+    {
+    LastVht = ViewHeight;
+    SetupFloors(aeGlobal);
+
+    }
+
+//htc=(long *)&HtTableFloor[height-1][ey];
+
+abeg = 320 * gWinEndY;
+//CurHt = LastFht = 0;
+
+for (column = 0; column < 320; column += 2)
+    {
+
+    // Look up the cosine and sine of the current angle, and save them.
+    c=CosTable[va];
+    s=SinTable[va];
+    f=FloorCosTable[column];
+
+    fscrn = &gScrnBuffer[abeg];
+    cscrn = &gScrnBuffer[column];
+
+    ba = BackArray[bcol++];
+    if (bcol > 639) bcol = 0;
+    ba1 = BackArray[bcol++];
+    if (bcol > 639) bcol = 0;
+//  ht1 = htc;
+
+    zdPtr = (long *)&zdTable[column][ey];
+
+    for (y = ey; y >= sy; y--)
+	{
+//	scan2 = Scale_Fac / y;
+//	zdist = (f * scan2) >> 14;
+	zdist = *zdPtr;
+	zdPtr--;
+	bmx = xPglobal+((c*zdist)>>16);
+	bmy = yPglobal+((s*zdist)>>16);
+	pos = (bmy & 0xFC0) + (bmx >> 6);
+	gCode = Grid[pos] & 0xFF;
+	cnum = FloorMap[pos];
+	bmap = WallbMaps[cnum];
+	bmpos = ((bmy&63)<<6) + (bmx&63);
+	pixLow = bmap[bmpos];
+	pix = (pixLow << 8) | pixLow;
+
+	if (cnum == 0x1B)
+	    {
+	    u = 6912L / zdist;
+	    wscrn = fscrn;
+	    while (u-- > 0 && wscrn >= gScrnBuffer)
+		{
+		(*(UINT *)wscrn)=pix;
+		wscrn -= 320;
+		}
+	    }
+	else
+	    (*(UINT *)fscrn)=pix;
+
+#if 0
+	zdist = (f * (*ht1)) >> 14;
+	ht1--;
+	bmx = xPglobal+((c*zdist)>>16);
+	bmy = yPglobal+((s*zdist)>>16);
+	pos = (bmy & 0xFC0) + (bmx >> 6);
+#endif
+
+	cnum = CeilMap[pos];
+	if (cnum)
+	    {
+    //	    bmpos = ((bmy&63)<<6) + (bmx&63);
+	    bmap = WallbMaps[cnum];
+	    pixLow = bmap[bmpos];
+	    pix = (pixLow << 8) | pixLow;
+	    (*(UINT *)cscrn)=pix;
+	    }
+	else
+	    {
+	    *cscrn=*ba;
+	    cscrn[1]=*ba1;
+	    }
+
+
+    #if 0
+	if (gCode != 0 && gCode != DOOR_XCODE && gCode != DOOR_YCODE)
+	    {
+	    LastPos = pos;
+	    gCode &= 0xFF;
+	    bmap = WallbMaps[gCode];
+	    pos = bmx & 63;
+	    a = 63 - pos;
+	    if (a < 2 || a > 61)
+		pos = bmy & 63;
+
+	    bmap += (pos << 6);
+	    u = 0;
+	    while (fscrn >= gScrnBuffer)
+		{
+		a = u >> 8;
+		if (a > 63)
+		    break;
+		a = 63 - a;
+		pixLow = bmap[a];
+		pix = (pixLow << 8) | pixLow;
+		(*(UINT *)fscrn) = pix;
+		fscrn -= 320;
+		u += zdist;
+		y--;
+		}
+
+	    break;
+	    }
+    #endif
+
+	fscrn -= 320;
+	cscrn += 320;
+	ba++;
+	ba1++;
+	}
+
+    va += 2;
+    if (va >= INT_ANGLE_360) va -= INT_ANGLE_360;
+    abeg += 2;
+    }
+
+
+}
+
+//=============================================================================
+// Internal function called by FindObject(). The application may also use this
+// function if it needs to find the angle between two points. DX and DY are the
+// deltas between the two points. (ie. DX = X1 - X and DY = Y1 - Y)
+//
+//	Quadrants
+//	  2 | 3		If the object is in quadrants 0 or 2 then we need
+//	 ---+---	to add the resulting angle to the quad value less
+//	  1 | 0		than the resulting angle. If the object is in
+//			quadrants 1 or 3 then we need to subtract the
+//			resulting angle from the next higher quadrant
+//			value. This is because quads 1 and 3 are negative
+//			values returned from arctan, while 0 and 2 are
+//			positive.
+//=============================================================================
+short AckGetObjectAngle(long dx,long dy)
+{
+    short     i,quadrant,objAngle;
+    short     Beg;
+    long    avalue;
+
+if (dx == 0 || dy == 0)
+    {
+    if (dx == 0)
+	{
+	if (dy < 0)
+	    return(INT_ANGLE_270);
+	return(INT_ANGLE_90);
+	}
+
+    if (dx < 0)
+	return(INT_ANGLE_180);
+
+    return(0);
+    }
+
+quadrant = 0;
+
+if (dx < 0 && dy > 0)
+    quadrant = INT_ANGLE_180;
+else
+    {
+    if (dx < 0 && dy < 0)
+	quadrant = INT_ANGLE_270;
+    else
+	{
+	if (dx > 0 && dy < 0)
+	    quadrant = INT_ANGLE_360;
+	}
+    }
+
+// Get the absolute values to use for our ratio
+
+if (dy < 0)
+    dy = -dy;
+
+if (dx < 0)
+    dx = -dx;
+
+//	The first thing is to get the delta Y into
+// the same fixed point size as our tangent table, then divide by the
+// delta X to get the objects ratio so we can determine the angle that
+// the object is located. We then use the ratio to search the tan table
+// and use the index into the table as our base angle (0-90 degrees).
+// This angle is then adjusted based on what quadrant we are in.
+
+dy = dy << FP_SHIFT;	// Make the dividend the same fixed point as the table
+
+avalue = dy / dx;	// Get our ratio to search for
+
+if (LongTanTable[INT_ANGLE_90-1] <= avalue)
+    return(INT_ANGLE_90-1);
+
+objAngle = 0;
+
+// This is where a binary lookup may be faster. Currently searching the list
+// sequentially to find the first value higher than our ratio.
+
+Beg = 0;
+
+if (LongTanTable[INT_ANGLE_45] < avalue)
+    {
+    if (LongTanTable[360] < avalue)	// Midpoint between 45 and 90
+	Beg = 360;
+    else
+	Beg = INT_ANGLE_45;
+    }
+
+for (i = Beg; i < INT_ANGLE_90; i++)
+    {
+    if (LongTanTable[i] > avalue)
+	{
+	objAngle = i - 1;
+	break;
+	}
+
+    }
+
+
+if (objAngle < 0)
+    objAngle = 0;
+
+
+// Now we adjust the resulting angle based on the quadrant. If we are in
+// quadrant 0 we do nothing, quadrants 1 and 3 we subtract the angle from
+// the next higher quadrant angle, quadrant 2 we add the angle to the next
+// lower quadrant angle to get the actual angle (0-1920) of the object.
+if (quadrant)
+    {
+    if (quadrant != INT_ANGLE_270)
+	objAngle = quadrant - objAngle;
+    else
+	objAngle += INT_ANGLE_180;
+    }
+
+return(objAngle);
+}
+
+//=============================================================================
+// Internal function which returns a short square root of a long value passed
+//=============================================================================
+static short near long_sqrt(long v)
+{
+    short	i;
+    unsigned	short result,tmp;
+    unsigned	long low,high;
+
+if (v <= 1L) return((unsigned)v);
+
+low = v;
+high = 0L;
+result = 0;
+
+for (i = 0; i < 16; i++)
+    {
+    result += result;
+    high = (high << 2) | ((low >>30) & 0x3);
+    low <<= 2;
+
+    tmp = result + result + 1;
+    if (high >= tmp)
+	{
+	result++;
+	high -= tmp;
+	}
+    }
+
+return(result);
+}
+
+//=============================================================================
+// Internal function called by AckBuildView().
+// Checks the list of objects and combines them into the wall slice structures
+// created in the BuildSlice() function above.
+//=============================================================================
+void FindObject(void)
+{
+    short   i,j,StartX,EndX;
+    short   oCount;
+    short   minAngle,maxAngle,objAngle;
+    short   objColumn;
+    UINT    distance;
+    long    dx,dy;
+    short   count,SaveCenter;
+    short   ObjNum,oQuad,pQuad,numsides,afact;
+    short   NewX,NewY,LightFlag;
+    short   MaxOpp,Column,ColBeg,ColEnd;
+    short   wt,ObjIndex;
+    short   vidwt,vidht,hoff;
+    short   MaxObjs;
+    short   SliceLen;
+    UINT    BmpColumn;
+    long    xp,yp;
+    short   wht;
+    UCHAR   *wall,*ScreenBuffer;
+    UCHAR   *pTable;
+    UCHAR   **omaps;
+    SLICE   *sa,*sa2,*saNext;
+    UCHAR   *bmpFlags;
+    NEWOBJECT **oList;
+    NEWOBJECT	*oPtr;
+
+if (FoundObjectCount)
+    {
+    oList = &aeGlobal->ObjList;
+
+    StartX = gWinStartX;
+    EndX = gWinEndX;
+
+    minAngle = PlayerAngle - (INT_ANGLE_30 + 10);
+    if (minAngle < 0)
+	minAngle += INT_ANGLE_360;
+
+    maxAngle = PlayerAngle + (INT_ANGLE_30 + 10);
+    if (maxAngle >= INT_ANGLE_360)
+	maxAngle -= INT_ANGLE_360;
+
+    TotalObjects = 0;
+
+    SliceLen = sizeof(SLICE) - 9;
+
+    for (oCount = 0; oCount < FoundObjectCount; oCount++)
+	{
+	i = ObjectsSeen[oCount];
+	oPtr = oList[i];
+
+	if (oPtr == NULL)
+	    continue;
+
+	if (!oPtr->Active)
+	    continue;
+
+	dx = oPtr->x - xPglobal;
+	dy = oPtr->y - yPglobal;
+
+	if ((objAngle = AckGetObjectAngle(dx,dy)) < 0)
+	    continue;
+
+	if (minAngle > maxAngle)
+	    {
+	    if (objAngle >= minAngle)
+		objColumn = objAngle - minAngle;
+	    else
+		objColumn = (objAngle+INT_ANGLE_360) - minAngle;
+	    }
+	else
+	    {
+	    objColumn = objAngle - minAngle;
+	    }
+
+	distance = long_sqrt((dx * dx) + (dy * dy));
+
+	if (objColumn >= 0 && objColumn < 320)
+	    {
+	    yp = ViewCosTable[objColumn] >> 2;
+	    xp = distance * yp;
+
+	    // Now we strip off somemore decimal points and check round-up
+	    yp = xp >> 12;
+	    if (xp - (yp << 12) >= 4096)
+		yp++;
+
+	    if (yp > 32L)
+		distance = yp;
+	    }
+
+	if (distance >= MaxDistance)
+	    continue;
+
+    // Place the objects in the correct order so further ones are behind
+	j = TotalObjects;
+	if (j)
+	    {
+	    for (count = 0; count < TotalObjects; count++)
+		{
+		if (distance <= ObjRelDist[count])
+		    {
+		    for (j = TotalObjects; j > count; j--)
+			{
+			ObjRelDist[j] = ObjRelDist[j-1];
+			ObjNumber[j]  = ObjNumber[j-1];
+			ObjColumn[j]  = ObjColumn[j-1];
+			ObjAngle[j]   = ObjAngle[j-1];
+			}
+
+		    j = count;
+		    count = TotalObjects;
+		    }
+		}
+	    }
+
+    // Hold onto relavant data for the object found
+	ObjNumber[j]  = i;
+	ObjRelDist[j] = distance;
+	ObjColumn[j]  = objColumn;
+	ObjAngle[j] = objAngle;
+	TotalObjects++;
+	ObjRelDist[TotalObjects] = 0L;
+	}
+
+    // Didn't find any objects on the above pass, so we're done
+    if (!TotalObjects)
+	return;
+
+    omaps = &aeGlobal->oMaps[0];
+    pQuad = PlayerAngle / INT_ANGLE_45;
+
+    for (i = 0; i < TotalObjects; i++)
+	{
+	ObjIndex = ObjNumber[i];
+	oPtr = oList[ObjIndex];
+	ObjNum = oPtr->CurrentBitmaps[oPtr->CurrentBm];
+
+	distance = ObjRelDist[i];
+
+	if (distance >= (MAX_DISTANCE - 10))
+	    distance = MAX_DISTANCE-11;
+
+	wt = DistanceTable[distance];
+
+    /* Keep the width of the object reasonable */
+
+	if (wt > 300)
+	    continue;
+
+	if (wt < 6) wt = 6;
+
+	yp = AdjustTable[distance];
+	xp = 0;			    // First col of the object to display
+
+	NewX = ObjColumn[i];
+
+	if (oPtr->Flags & OF_MULTIVIEW)
+	    {
+	    afact = oPtr->aFactor;
+	    numsides = oPtr->Sides;
+	    pQuad = ObjAngle[i] / afact;
+	    oQuad = oPtr->Dir / afact;
+	    j = (pQuad - oQuad) + (numsides >> 1);
+
+	    if (j >= numsides)
+		j -= numsides;
+
+	    if (j < 0)
+		j += numsides;
+
+	    j *= oPtr->BitmapsPerView;
+	    j += oPtr->CurrentBm;
+
+	    ObjNum = oPtr->CurrentBitmaps[j];
+	    }
+
+	ColEnd = NewX + wt;
+	wall = omaps[ObjNum];
+	bmpFlags = &wall[BITMAP_SIZE];
+	j = distance - 32;
+
+	for (Column = NewX - wt; Column < ColEnd; Column++)
+	    {
+	    if (Column >= StartX && Column <= EndX)
+		{
+		BmpColumn = xp >> FP_SHIFT;
+
+		if (bmpFlags[BmpColumn])    // If transparent column
+		    goto keepgoing;
+
+		sa = &Slice[Column];
+
+		if (sa->Active)
+		    {
+		    while (sa != NULL)
+			{
+			if (j <= sa->Distance)
+			    {
+			    sa2 = sa;
+			    while (sa2->Next != NULL)
+				sa2 = sa2->Next;
+
+			    saNext = sa2->Prev;
+			    while (sa2 != sa)
+				{
+				memmove(sa2,saNext,sizeof(SLICE)-9);
+				sa2->Active = saNext->Active;
+				sa2 = sa2->Prev;
+				saNext = saNext->Prev;
+				}
+
+			    sa->Distance = distance;
+			    sa->bNumber	 = ObjNum;
+			    sa->bColumn	 = BmpColumn;
+			    sa->bMap	 = omaps;
+			    sa->Active	 = 1;
+			    sa->Type	 = ST_OBJECT;
+			    sa->Fnc	 = ShowColMask;
+			    break;
+			    }
+
+			if (!sa->Active)
+			    break;
+
+			sa = sa->Next;
+			}
+		    }
+		else
+		    {
+		    if (j <= sa->Distance)
+			{
+			sa->Active = 1;
+			saNext = sa->Next;
+			memmove(saNext,sa,sizeof(SLICE)-9);
+			sa->Distance = distance;
+			sa->bColumn  = BmpColumn;
+			sa->bNumber  = ObjNum;
+			sa->bMap     = omaps;
+			sa->Type     = ST_OBJECT;
+			sa->Fnc	     = ShowColMask;
+			saNext->Active = 0;
+			}
+		    }
+		}
+
+    keepgoing:
+	    xp += yp;	/* Advance the next column to display (scaling) */
+
+	    }
+	}
+    }
+
+}
+
+//====== End of Code ==========================================================
+
+

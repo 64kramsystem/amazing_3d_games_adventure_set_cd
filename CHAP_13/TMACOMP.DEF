@@ -1,0 +1,22 @@
+;---------------------------------------------------------------------------
+;
+;	File:			TMACOMP.DEF
+;	Programmer: 	Bob Provencher
+;	Create Date:	12/5/94
+;	Last Mod Date:	1/2/94
+;	Description:	Text map compiler module definition file
+;
+;	Copyright (c) 1994, 1995. Aesir Software, Inc.
+;	All Rights Reserved.
+;
+;---------------------------------------------------------------------------
+
+NAME	    	TMACOMP
+DESCRIPTION 	'Text MAP Compiler'
+EXETYPE     	WINDOWS
+STUB	    	'WINSTUB.EXE'
+CODE  			PRELOAD MOVEABLE DISCARDABLE
+DATA  			PRELOAD MOVEABLE MULTIPLE
+HEAPSIZE		1024
+STACKSIZE		20480
+

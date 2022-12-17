@@ -1,0 +1,957 @@
+
+	IDEAL
+	JUMPS
+	P386		; 386 specific opcodes and shit allowed.
+	P387		; Allow 386 processor
+
+
+	MASM
+	.MODEL FLAT	;32-bit OS/2 model
+	.CODE
+	IDEAL
+
+
+	include "ackrtn.inc"
+
+	extrn	_FloorMap:word
+	extrn	_CeilMap:word
+	extrn	_LastWallHeight:word
+	extrn	_ViewAngle:word
+	extrn	_ScreenOffset:word
+	extrn	_xPglobal:word
+	extrn	_yPglobal:word
+	extrn	_xBegGlobal:word
+	extrn	_yBegGlobal:word
+	extrn	_aeGlobal:dword
+	extrn	_xGridGlobal:dword
+	extrn	_yGridGlobal:dword
+	extrn	_xPglobalHI:dword
+	extrn	_yPglobalHI:dword
+	extrn	_rbaTable:dword
+	extrn	_rsHandle:word
+	extrn	_LastX1:dword
+	extrn	_LastY1:dword
+	extrn	_iLastX:dword
+	extrn	_iLastY;dword
+	extrn	_MaxDistance:word
+	extrn	_ErrorCode:word
+	extrn	_xMapPosn:word
+	extrn	_yMapPosn:word
+	extrn	_Grid:dword
+	extrn	_ObjGrid:dword
+	extrn	_WallbMaps:dword
+	extrn	_ViewHeight:word
+	extrn	_CeilingHeight:word
+	extrn	_gTopColor:byte
+	extrn	_gBottomColor:byte
+	extrn	_PlayerAngle:word
+	extrn	_kduFactor:dword
+	extrn	_tvFactor:word
+	extrn	_gScrnBuffer:dword
+	extrn	_gBkgdBuffer:dword
+	extrn	_gCenterOff:word
+	extrn	_gWinStartOffset:dword
+	extrn	_gWinHeight:word
+	extrn	_SysFlags:word
+
+	extrn	_xSecretmPos:word
+	extrn	_xSecretmPos1:word
+	extrn	_xSecretColumn:word
+
+	extrn	_ySecretmPos:word
+	extrn	_ySecretmPos1:word
+	extrn	_ySecretColumn:word
+
+	extrn	_TotalSecret:word
+	extrn	_ViewColumn:word
+	extrn	_SinTable:dword
+	extrn	_CosTable:dword
+	extrn	_LongTanTable:dword
+	extrn	_LongInvTanTable:dword
+	extrn	_InvCosTable:byte
+	extrn	_InvSinTable:byte
+	extrn	_LongCosTable:dword
+	extrn	_ViewCosTable:dword
+	extrn	_xNextTable:dword
+	extrn	_yNextTable:dword
+
+	extrn	_LastMapPosn:word
+	extrn	_LastObjectHit:word
+	extrn	_TotalObjects:word
+	extrn	_FoundObjectCount:word
+	extrn	_ObjectsSeen:byte
+	extrn	_MoveObjectCount:word
+	extrn	_MoveObjectList:byte
+	extrn	_ObjNumber:byte
+	extrn	_ObjRelDist:byte
+	extrn	_ObjColumn:byte
+
+	extrn	_x_xPos:dword
+	extrn	_x_yPos:dword
+	extrn	_x_xNext:dword
+	extrn	_x_yNext:dword
+	extrn	_y_xPos:dword
+	extrn	_y_yPos:dword
+	extrn	_y_xNext:dword
+	extrn	_y_yNext:dword
+
+	extrn	_Resolution:word
+	extrn	_Flooru:dword
+	extrn	_Floorv:dword
+	extrn	_Floordu:dword
+	extrn	_Floordv:dword
+	extrn	_Floorkx:dword
+	extrn	_Floorky:dword
+	extrn	_Floorku:dword
+	extrn	_Floorkv:dword
+	extrn	_Floorkdu:dword
+	extrn	_Floorkdv:dword
+	extrn	_Floorbm:dword
+	extrn	_Floorscr:dword
+	extrn	_Floors1:dword
+	extrn	_Floors2:dword
+	extrn	_FloorscrTop:dword
+	extrn	_Floorptr2:dword
+	extrn	_Floorht:dword
+	extrn	_Floorwt:dword
+	extrn	_Floorvht:word
+	extrn	_Flooreht:word
+	extrn	_FloorLastbNum:dword
+	extrn	_FloorLastbm:dword
+
+	extrn	_bmDistance:word
+	extrn	_scwht:word
+	extrn	_scWall:dword
+	extrn	_scPal:dword
+	extrn	_scVid:dword
+	extrn	_scantables:dword
+	extrn	_bmWall:dword
+
+;;;	extrn	_fRowTable:dword
+;;;	extrn	_uRowTable:dword
+;;;	extrn	_vRowTable:dword
+;;;	extrn	_duRowTable:dword
+;;;	extrn	_dvRowTable:dword
+
+	extrn	DrawBackDrop_:near
+
+	public	DrawVertColumn_
+	public	FloorLoop_
+	public	CeilLoop_
+	public	AckDrawFloor_
+;;;	public	FloorRowCalc_
+
+;==============================================================================
+;
+;==============================================================================
+Proc DrawVertColumn_ near
+    push    ecx
+    push    edi
+    mov	    ch,63
+    mov	    ebx,[_scPal]
+    mov	    eax,250
+    mov	    edx,eax
+    shr	    edx,1Fh
+    idiv    ebx
+    mov	    edx,eax
+    shr	    bx,1
+    mov	    cl,bl
+    inc	    cl
+    mov	    ebx,0
+;   add	    esi,63
+;   mov	    [_bmWall],esi
+    mov	    al,[esi]
+    mov	    ah,al
+
+dvc010:
+    mov	    [edi],ax
+    sub	    edi,320
+    cmp	    edi,[dword ptr _gBkgdBuffer]
+    jl	    short dvc090
+    add	    ebx,edx
+    cmp	    bh,ch
+    jge	    short dvc090
+    dec	    cl
+    jnz	    dvc010
+
+;   movzx   eax,bh
+;   mov	    esi,[_bmWall]
+;   sub	    esi,eax
+;   mov	    al,[esi]
+;   mov	    ah,al
+;   mov	    [edi],ax
+;   sub	    edi,320
+;   cmp	    edi,[dword ptr _Floors1]
+;   jl	    short dvc090
+;   add	    ebx,edx
+;   cmp	    bh,ch
+;   jge	    short dvc090
+;   dec	    cl
+;   jnz	    dvc010
+
+dvc090:
+    pop	    edi
+    pop	    ecx
+    ret
+    endp
+
+
+;==============================================================================
+;
+;==============================================================================
+Proc FloorLoop_ near
+    push    ebp
+    push    esi
+    push    edi
+    mov	    esi,[_Floorbm]
+    mov	    edi,[_Floors1]
+
+    mov	    ebp,0
+    mov	    [_scPal],ebp
+
+    movzx   ebx,[word ptr _Floorvht]
+    cmp	    [word ptr _Resolution],1
+    jl	    fl010
+
+
+rfl010:
+    mov	    ebp,[_scPal]
+    add	    [dword ptr _scPal],4
+    mov	    ebp,[_scantables+ebp]
+
+    mov	    eax,[_Floorku]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,10
+    add	    eax,[dword ptr _Floorkx]
+    mov	    [_Flooru],eax
+    mov	    eax,[_Floorkv]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,10
+    add	    eax,[dword ptr _Floorky]
+    mov	    [_Floorv],eax
+    mov	    eax,[_Floorkdu]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,3
+    mov	    [_Floordu],eax
+    mov	    eax,[_Floorkdv]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,3
+    mov	    [_Floordv],eax
+
+    mov	    ecx,160
+    push    ebx
+
+rfl020:
+
+    mov	    eax,[_Flooru]
+    sar	    eax,10
+    mov	    ebx,eax
+    sar	    eax,12
+    and	    eax,63
+    mov	    edx,63
+    sub	    edx,eax
+
+    mov	    esi,[_Floorv]
+    sar	    esi,16
+    mov	    [_Floorwt],esi
+    mov	    eax,4096
+    sub	    eax,esi
+
+    and	    eax,0FC0h
+    add	    eax,edx
+    mov	    [dword ptr _iLastY],0
+
+    mov	    esi,[_FloorLastbm]
+    cmp	    eax,[_FloorLastbNum]
+    je	    short rfl024
+
+    mov	    [dword ptr _iLastY],1
+    mov	    edx,eax
+
+    shl	    eax,1
+    movzx   eax,[word ptr _FloorMap+eax]
+    cmp	    eax,0
+    jz	    rfl025
+
+    mov	    [_iLastX],eax
+
+
+    cmp	    eax,1Fh
+    je	    short rfl021a
+    shl	    eax,2
+    mov	    edx,[_WallbMaps]
+    mov	    esi,[edx+eax]
+    and	    ebx,0FC0h
+    mov	    edx,[_Floorwt]
+    and	    edx,63
+    add	    ebx,edx
+    add	    esi,ebx
+    call    DrawVertColumn_
+    jmp	    rfl025
+
+rfl021a:
+    mov	    [_FloorLastbNum],edx
+
+rfl022:
+    shl	    eax,2
+    mov	    edx,[_WallbMaps]
+    mov	    esi,[edx+eax]
+
+    mov	    [_FloorLastbm],esi
+
+rfl024:
+    and	    ebx,0FC0h
+    mov	    [_LastY1],ebx
+    mov	    edx,[_Floorwt]
+    and	    edx,63
+    mov	    [_LastX1],edx
+    add	    ebx,edx
+    movzx   edx,[byte ptr esi+ebx]
+    mov	    eax,[ebp+edx]
+    mov	    ah,al
+    mov	    [edi],ax
+
+    jmp	    short rfl025
+
+    cmp	    [dword ptr _iLastX],1Fh
+    je	    short rfl025
+
+    cmp	    [dword ptr _iLastY],0
+    je	    short rfl025
+
+;   cmp	    [dword ptr _LastY1],4032
+;   je	    short rfl023a
+;   cmp	    [dword ptr _LastX1],63
+;   jne	    short rfl025
+
+rfl023a:
+    mov	    ebx,[_iLastX]
+    mov	    edx,[_scPal]
+    shr	    edx,1
+    mov	    dh,bl
+    inc	    dh
+    dec	    dl
+    push    edi
+    mov	    ebx,[_Floors1]
+
+rfl024a:
+    sub	    edi,320
+    cmp	    edi,ebx
+    jl	    short rfl024b
+    mov	    [edi],ax
+    dec	    dh
+    jz	    short rfl024b
+    dec	    dl
+    jnz	    rfl024a
+
+rfl024b:
+    pop	    edi
+
+rfl025:
+;;; inc	    edi
+;;; inc	    edi
+    add	    edi,large 2
+
+    mov	    eax,[_Floordu]
+    add	    [dword ptr _Flooru],eax
+    mov	    eax,[_Floordv]
+    add	    [dword ptr _Floorv],eax
+    dec	    cx
+    jnz	    rfl020
+
+    pop	    ebx
+
+;;; inc	    ebx
+;;; inc	    ebx
+    add	    ebx,large 2
+    cmp	    bx,[word ptr _Flooreht]
+    jb	    rfl010
+;;; jmp	    fl_done
+    pop	    edi
+    pop	    esi
+    pop	    ebp
+    ret
+
+
+fl010:
+    mov	    ebp,[_scPal]
+    add	    [dword ptr _scPal],4
+    mov	    ebp,[_scantables+ebp]
+    mov	    eax,[_Floorku]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,10
+    add	    eax,[dword ptr _Floorkx]
+    mov	    [_Flooru],eax
+    mov	    eax,[_Floorkv]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,10
+    add	    eax,[dword ptr _Floorky]
+    mov	    [_Floorv],eax
+    mov	    eax,[_Floorkdu]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,2
+    mov	    [_Floordu],eax
+    mov	    eax,[_Floorkdv]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,2
+    mov	    [_Floordv],eax
+
+    push    ebx
+    mov	    ecx,320
+
+fl020:
+
+    mov	    eax,[_Flooru]
+    sar	    eax,10
+    mov	    ebx,eax
+    sar	    eax,12
+
+    and	    eax,63
+    mov	    esi,63
+    sub	    esi,eax
+
+    mov	    eax,[_Floorv]
+    sar	    eax,16
+    mov	    [_Floorwt],eax
+    mov	    edx,4096
+    sub	    edx,eax
+
+    and	    edx,0FC0h
+    add	    edx,esi
+    shl	    edx,1
+    movzx   eax,[word ptr _FloorMap+edx]
+    or	    al,al
+    jz	    short fl025
+
+    shl	    eax,2
+    mov	    edx,[_WallbMaps]
+    mov	    esi,[edx+eax]
+
+    and	    ebx,0FC0h
+    mov	    edx,[_Floorwt]
+    and	    edx,63
+    add	    ebx,edx
+
+    movzx   eax,[byte ptr esi+ebx]
+    mov	    al,[ebp+eax]
+    mov	    [edi],al
+
+fl025:
+    inc	    edi
+    mov	    edx,[_Floordu]
+    add	    [dword ptr _Flooru],edx
+    mov	    eax,[_Floordv]
+    add	    [dword ptr _Floorv],eax
+    dec	    cx
+    jnz	    fl020
+
+    pop	    ebx
+
+    inc	    ebx
+    inc	    ebx
+    cmp	    bx,[word ptr _Flooreht]
+    jb	    fl010
+
+fl_done:
+    pop	    edi
+    pop	    esi
+    pop	    ebp
+    ret
+    endp
+
+;==============================================================================
+;
+;==============================================================================
+Proc CeilLoop_ near
+    push    ebp
+    push    esi
+    push    edi
+
+    mov	    esi,[_Floorbm]
+    mov	    edi,[_Floors2]
+    movzx   ebx,[word ptr _Floorvht]
+    mov	    ebp,0
+    mov	    [_scPal],ebp
+    cmp	    [word ptr _Resolution],1
+    jl	    cl010
+
+
+rcl010:
+    mov	    ebp,[_scPal]
+    add	    [dword ptr _scPal],4
+    mov	    ebp,[_scantables+ebp]
+    mov	    eax,[_Floorku]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,10
+    add	    eax,[dword ptr _Floorkx]
+    mov	    [_Flooru],eax
+    mov	    eax,[_Floorkv]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,10
+    add	    eax,[dword ptr _Floorky]
+    mov	    [_Floorv],eax
+    mov	    eax,[_Floorkdu]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,3
+    mov	    [_Floordu],eax
+    mov	    eax,[_Floorkdv]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,3
+    mov	    [_Floordv],eax
+
+    push    ebx
+    mov	    ecx,160
+
+rcl020:
+
+    mov	    eax,[_Flooru]
+    sar	    eax,10
+    mov	    ebx,eax
+    sar	    eax,12
+
+    and	    eax,63
+    mov	    edx,63
+    sub	    edx,eax
+
+    mov	    esi,[_Floorv]
+    sar	    esi,16
+    mov	    [_Floorwt],esi
+    mov	    eax,4096
+    sub	    eax,esi
+
+    and	    eax,0FC0h
+    add	    eax,edx
+
+    mov	    esi,[_FloorLastbm]
+    cmp	    eax,[_FloorLastbNum]
+    je	    short rcl024
+    mov	    edx,eax
+
+    shl	    eax,1
+    movzx   eax,[word ptr _CeilMap+eax]
+    or	    al,al
+    jz	    short rcl025
+
+    mov	    [_FloorLastbNum],edx
+
+    shl	    eax,2
+
+    mov	    edx,[_WallbMaps]
+    mov	    esi,[edx+eax]
+    mov	    [_FloorLastbm],esi
+
+rcl024:
+    and	    ebx,0FC0h
+    mov	    edx,[_Floorwt]
+    and	    edx,63
+    add	    ebx,edx
+    movzx   eax,[byte ptr esi+ebx]
+    mov	    eax,[ebp+eax]
+    mov	    ah,al
+    mov	    [edi],ax
+
+rcl025:
+;;; inc	    edi
+;;; inc	    edi
+    add	    edi,large 2
+
+    mov	    eax,[_Floordu]
+    add	    [dword ptr _Flooru],eax
+    mov	    eax,[_Floordv]
+    add	    [dword ptr _Floorv],eax
+    dec	    cx
+    jnz	    rcl020
+
+    pop	    ebx
+    sub	    edi,640
+;;; inc	    ebx
+;;; inc	    ebx
+    add	    ebx,large 2
+    cmp	    bx,[word ptr _Flooreht]
+    jb	    rcl010
+;;; jmp	    cl_done
+    pop	    edi
+    pop	    esi
+    pop	    ebp
+    ret
+
+
+cl010:
+    mov	    ebp,[_scPal]
+    add	    [dword ptr _scPal],4
+    mov	    ebp,[_scantables+ebp]
+    mov	    eax,[_Floorku]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,10
+    add	    eax,[dword ptr _Floorkx]
+    mov	    [_Flooru],eax
+    mov	    eax,[_Floorkv]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,10
+    add	    eax,[dword ptr _Floorky]
+    mov	    [_Floorv],eax
+    mov	    eax,[_Floorkdu]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,2
+    mov	    [_Floordu],eax
+    mov	    eax,[_Floorkdv]
+    mov	    edx,eax
+    sar	    edx,1fh
+    idiv    ebx
+    shl	    eax,2
+    mov	    [_Floordv],eax
+
+    push    ebx
+    mov	    ecx,320
+
+cl020:
+
+    mov	    eax,[_Flooru]
+    sar	    eax,10
+    mov	    ebx,eax
+    sar	    eax,12
+
+    and	    eax,63
+    mov	    edx,63
+    sub	    edx,eax
+
+    mov	    esi,[_Floorv]
+    sar	    esi,16
+    mov	    [_Floorwt],esi
+    mov	    eax,4096
+    sub	    eax,esi
+
+    and	    eax,0FC0h
+    add	    eax,edx
+    shl	    eax,1
+    movzx   eax,[word ptr _CeilMap+eax]
+    or	    al,al
+    jz	    short cl025
+
+    shl	    eax,2
+
+    mov	    edx,[_WallbMaps]
+    mov	    esi,[edx+eax]
+
+    and	    ebx,0FC0h
+    mov	    edx,[_Floorwt]
+    and	    edx,63
+    add	    ebx,edx
+    movzx   eax,[byte ptr esi+ebx]
+    mov	    al,[ebp+eax]
+    mov	    [edi],al
+
+cl025:
+    inc	    edi
+    mov	    eax,[_Floordu]
+    add	    [dword ptr _Flooru],eax
+    mov	    eax,[_Floordv]
+    add	    [dword ptr _Floorv],eax
+    dec	    cx
+    jnz	    cl020
+
+    pop	    ebx
+    sub	    edi,640
+    inc	    ebx
+    inc	    ebx
+    cmp	    bx,[word ptr _Flooreht]
+    jb	    cl010
+
+cl_done:
+    pop	    edi
+    pop	    esi
+    pop	    ebp
+    ret
+    endp
+
+;==============================================================================
+;
+;==============================================================================
+Proc AckDrawFloor_ near
+    push    ebp
+    push    esi
+    push    edi
+    movzx   eax,[_xPglobal]
+    shl	    eax,16
+    neg	    eax
+    mov	    [_Floorkx],eax
+    movzx   eax,[_yPglobal]
+    shl	    eax,16
+    neg	    eax
+    mov	    [_Floorky],eax
+
+    movzx   ebx,[_PlayerAngle]
+    shl	    ebx,2
+    mov	    eax,[_SinTable]
+    mov	    edi,[eax+ebx]	    ;c
+    sar	    edi,1
+    mov	    eax,[_CosTable]
+    mov	    esi,[eax+ebx]	    ;s
+    sar	    esi,1
+
+    movzx   ecx,[_CeilingHeight]
+    sub	    ecx,2		    ;z0
+    mov	    ebp,160
+    imul    ebp,ecx
+    neg	    ebp			; tu
+    movzx   ebx,[_tvFactor]
+    add	    ebx,ecx
+    neg	    ebx			; tv
+    mov	    eax,ebp
+    imul    eax,edi		;c*tu
+    sar	    eax,8
+    mov	    [_Floorku],eax
+    mov	    eax,ebx
+    imul    eax,esi		;s*tv
+    add	    [dword ptr _Floorku],eax
+    imul    ebx,edi		;c*tv
+    imul    ebp,esi		;s*tu
+    sar	    ebp,8
+    sub	    ebx,ebp		;(c*tv) - ((s*tu)>>8)
+    mov	    [_Floorkv],ebx
+    imul    edi,ecx		;c*z0
+    mov	    eax,[_kduFactor]
+    add	    edi,eax		; +kduFactor
+    mov	    [_Floorkdu],edi
+    imul    esi,ecx		;s*z0
+    neg	    esi
+    mov	    [_Floorkdv],esi
+
+    mov	    eax,1
+    mov	    [_Floorvht],ax
+    movzx   ebx,[_gWinHeight]
+    add	    eax,ebx
+    mov	    [_Flooreht],ax
+    mov	    eax,[_gBkgdBuffer]
+    movzx   ebx,[_gCenterOff]
+    add	    eax,ebx
+    mov	    [_Floors2],eax
+
+    mov	    si,[_SysFlags]
+    test    si,SYS_SOLID_CEIL
+    jz	    short dfc_not_solid
+
+dfc_no_ceil:
+    test    si,SYS_SOLID_BACK
+    jz	    short dfc_no_back
+
+    mov	    eax,[_gScrnBuffer]
+
+    add	    eax,[_gWinStartOffset]
+
+    mov	    [_Floors1],eax
+    call    DrawBackDrop_
+    jmp	    short dfc_floors
+
+dfc_no_back:
+    mov	    edi,[_gScrnBuffer]
+    movzx   ecx,[_gCenterOff]
+    mov	    al,[_gTopColor]
+    mov	    ah,al
+    mov	    dx,ax
+    shl	    eax,16
+    mov	    ax,dx
+    mov	    ebx,ecx
+    shr	    ecx,2
+    rep	    stosd
+    mov	    ecx,ebx
+    and	    ecx,3
+    rep	    stosb
+
+dfc_not_solid:
+    mov	    eax,[_gBkgdBuffer]
+    add	    eax,[_gWinStartOffset]
+    mov	    [_Floors1],eax
+    call    DrawBackDrop_
+;;  call    CeilLoop_
+
+    mov	    edi,[_gScrnBuffer]
+    mov	    esi,[_gBkgdBuffer]
+    movzx   ecx,[_gCenterOff]
+    mov	    ebx,ecx		    ;hold onto center offset
+    shr	    ecx,2
+    rep	    movsd
+    mov	    ecx,ebx
+    and	    ecx,3
+    rep	    movsb
+
+dfc_floors:
+    mov	    edi,[_gBkgdBuffer]
+    movzx   ebx,[_gCenterOff]
+    add	    edi,ebx
+    mov	    ecx,64000
+    sub	    ecx,ebx
+    mov	    ebx,ecx
+    mov	    al,[_gBottomColor]
+    mov	    ah,al
+    mov	    dx,ax
+    shl	    eax,16
+    mov	    ax,dx
+    shr	    ecx,2
+    rep	    stosd
+    mov	    ecx,ebx
+    and	    ecx,3
+    rep	    stosb
+
+    test    [word ptr _SysFlags],SYS_SOLID_FLOOR
+    jnz	    dfc_no_floor
+
+
+    movzx   ebx,[_PlayerAngle]
+    shl	    ebx,2
+    mov	    eax,[_SinTable]
+    mov	    edi,[eax+ebx]	    ;c
+    sar	    edi,1
+    mov	    eax,[_CosTable]
+    mov	    esi,[eax+ebx]	    ;s
+    sar	    esi,1
+
+    movzx   eax,[_ViewHeight]
+    mov	    ecx,61
+    sub	    ecx,eax
+    mov	    ebp,160
+    imul    ebp,ecx
+    neg	    ebp			; tu
+    movzx   ebx,[_tvFactor]
+    add	    ebx,ecx
+    neg	    ebx			; tv
+    mov	    eax,ebp
+    imul    eax,edi		;c*tu
+    sar	    eax,8
+    mov	    [_Floorku],eax
+    mov	    eax,ebx
+    imul    eax,esi		;s*tv
+    add	    [dword ptr _Floorku],eax
+    imul    ebx,edi		;c*tv
+    imul    ebp,esi		;s*tu
+    sar	    ebp,8
+    sub	    ebx,ebp		;(c*tv) - ((s*tu)>>8)
+    mov	    [_Floorkv],ebx
+    imul    edi,ecx		;c*z0
+    mov	    eax,[_kduFactor]
+    add	    edi,eax		; +kduFactor
+    mov	    [_Floorkdu],edi
+    imul    esi,ecx		;s*z0
+    neg	    esi
+    mov	    [_Floorkdv],esi
+
+    mov	    eax,1
+    mov	    [_Floorvht],ax
+    movzx   ebx,[_gWinHeight]
+    add	    eax,ebx
+    mov	    [_Flooreht],ax
+    mov	    eax,[_gBkgdBuffer]
+    movzx   ebx,[_gCenterOff]
+    add	    eax,ebx
+    mov	    [_Floors1],eax
+    call    FloorLoop_
+
+dfc_no_floor:
+
+;   movzx   ebx,[_gCenterOff]
+;   mov	    edi,[_gScrnBuffer]
+;   add	    edi,ebx
+;   mov	    esi,[_gBkgdBuffer]
+;   add	    esi,ebx
+;   mov	    ecx,64000
+;   sub	    ecx,ebx
+
+    mov	    edi,[_gScrnBuffer]
+    mov	    esi,[_gBkgdBuffer]
+    mov	    ecx,64000
+
+
+
+    mov	    ebx,ecx
+    shr	    ecx,2
+    rep	    movsd
+    mov	    ecx,ebx
+    and	    ecx,3
+    rep	    movsb
+
+    pop	    edi
+    pop	    esi
+    pop	    ebp
+    ret
+    endp
+
+
+;==============================================================================
+;
+;==============================================================================
+;Proc FloorRowCalc_ near
+;    movsx   ebx,[word ptr _Floorvht]
+;    mov     ecx,0
+;
+;frc010:
+;;   mov     ecx,ebx
+;;   shl     ecx,2
+;
+;    mov     eax,[_Floorku]
+;    mov     edx,eax
+;    sar     edx,1fh
+;    idiv    ebx
+;    shl     eax,10
+;    sub     eax,[dword ptr _Floorkx]
+;    mov     [dword ptr _uRowTable+ecx],eax
+;    mov     eax,[_Floorkv]
+;    mov     edx,eax
+;    sar     edx,1fh
+;    idiv    ebx
+;    shl     eax,10
+;    add     eax,[dword ptr _Floorky]
+;    mov     [dword ptr _vRowTable+ecx],eax
+;    mov     eax,[_Floorkdu]
+;    mov     edx,eax
+;    sar     edx,1fh
+;    idiv    ebx
+;    shl     eax,2
+;    mov     [dword ptr _duRowTable+ecx],eax
+;    mov     eax,[_Floorkdv]
+;    mov     edx,eax
+;    sar     edx,1fh
+;    idiv    ebx
+;    shl     eax,2
+;    mov     [dword ptr _dvRowTable+ecx],eax
+;    add     ecx,4
+;    inc     ebx
+;    inc     ebx
+;    cmp     bx,[word ptr _Flooreht]
+;    jb	     short frc010
+;    ret
+;    endp
+
+    end
+
+
+

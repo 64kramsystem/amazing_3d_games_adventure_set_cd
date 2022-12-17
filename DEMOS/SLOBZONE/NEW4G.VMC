@@ -1,0 +1,6 @@
+minmem=512
+maxmem=1096
+virtualsize=4384
+deleteswap
+swapname=c:\dos4gvm.swp
+

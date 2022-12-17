@@ -1,0 +1,81 @@
+LICENSE
+
+DEEP RIVER PUBLISHING, INC.
+END-USER LICENSE AGREEMENT
+
+
+YOU SHOULD CAREFULLY READ THE FOLLOWING TERMS AND CONDITIONS BEFORE
+USING THIS DEEP RIVER MULTIMEDIA WORK.  INSTALLING AND USING THIS WORK
+INDICATES YOUR ACCEPTANCE OF THESE TERMS AND CONDITIONS.  IF YOU DO NOT
+AGREE WITH THEM, YOU SHOULD PROMPTLY RETURN THE WORK UNUSED AND YOUR
+MONEY WILL BE REFUNDED.
+
+1.  GRANT OF LICENSE.  Deep River grants to you, the Licensee, a nonexclusive
+license to use Slob Zone 3D game (the "Work") on one hardware system (that is,
+a system containing no more than one central processing unit and one CD drive)
+at a time.  If you want to use the Work on more than one hardware system at a
+time, or to network the Work, you must obtain separate licenses from Deep River.
+
+2.  OWNERSHIP OF THE WORK.  Deep River, and other licensers of Deep River own
+and will retain all title, copyright, trademark and other proprietary rights
+in and to the Work.  This License is NOT a sale of the Work or any copy of it.
+You, the Licensee, obtain only such rights as are provided in this Agreement.
+You understand and agree as follows:
+        2.1.  You may NOT make any copies of all or any part of the Work except
+              for archival copies of the computer software components of the
+              Work as permitted by the United States Copyright Law.
+        2.2.  You may NOT reverse compile, reverse assemble, reverse engineer,
+              modify, incorporate in whole or in part in any other product or
+              create derivative works based on all or any part of the Work.
+        2.3.  You may NOT remove any copyright, trademark, proprietary rights,
+              disclaimer or warning notice included on or embedded in any part
+              of the Work.
+        2.4.  You may NOT transfer the Work unless you permanently transfer
+              the entire Work (including all components and archival copies,
+              if any), and the person to whom the Work is transferred is
+              informed of and agrees to the terms and conditions of this
+              Agreement.
+        2.5 You may NOT copy or make any other use of the music outside of
+            this Work without the written approval of the composer, Michael
+            McInnis of Portland, Maine.
+3.  LICENSEE'S RESPONSIBILITIES FOR USE OF THE WORK.  You, and not Deep River,
+are responsible for all uses of the Work.
+4.  WARRANTY.
+        4.1.  Limited Warranty.  Subject to the other provisions in Articles 3
+and 4 of this Agreement, Deep River warrants to you, the original licensee,
+that the media on which the Work is recorded will be free of defects in
+material and workmanship under normal use for a period of ninety (90) days
+from purchase, and that the Work will perform substantially in accordance with
+the user guide for a period of ninety (90) days from purchase.  Deep River's
+sole responsibility under this warranty will be, at its option, (1) to use
+reasonable efforts to correct any defects that are reported to it within the
+foregoing warranty period or (2) to refund the full purchase price.  Deep River
+does not warrant that the Work will be error free, nor that all program
+errors will be corrected.  All requests for warranty assistance shall be
+directed to Deep River at the following address: Deep River Publishing, Inc.,
+Attn:  Warranty Service, P.O. Box 9715-975, Portland, ME  04104, Telephone:
+(207) 871-1684
+        4.2.  Limitations on Warranties.  THE  EXPRESS WARRANTY SET FORTH IN
+THIS ARTICLE 4 IS THE ONLY WARRANTY GIVEN BY DEEP RIVER WITH RESPECT TO THE
+WORK; DEEP RIVER MAKES NO OTHER WARRANTIES, EXPRESS, IMPLIED OR ARISING BY
+CUSTOM OR TRADE USAGE, AND SPECIFICALLY DISCLAIMS THE IMPLIED WARRANTIES OR
+NON-INFRINGEMENT, MERCHANTABILITY OR OF FITNESS FOR ANY PARTICULAR PURPOSE.
+DEEP RIVER SHALL NOT BE HELD RESPONSIBLE FOR THE PERFORMANCE OF THE WORK
+NOR FOR ANY LIABILITY TO ANY OTHER PARTY ARISING OUT OF USE OF THE WORK OR
+OF DESIGNS CREATED BY USE OF THE WORK.
+     SOME STATES DO NOT ALLOW LIMITATIONS ON HOW LONG AN IMPLIED WARRANTY
+LASTS, SO THE ABOVE LIMITATION MAY NOT APPLY TO YOU.  THIS WARRANTY GIVES
+YOU SPECIFIC LEGAL RIGHTS, AND YOU MAY ALSO HAVE OTHER RIGHTS WHICH VARY
+FROM STATE TO STATE.
+
+
+Shareware SlobZone is freely distributable to anyone and everyone so
+long as it is distributed in UNMODIFIED FORM and no fees of any kind fees
+are charged.
+
+In order to include Slob Zone in a rackware, disk or cd-rom collection,
+you need to cotact Deep River publishing for permission.
+
+
+
+

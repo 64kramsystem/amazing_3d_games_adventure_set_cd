@@ -1,0 +1,121 @@
+
+
+                      _______
+                 ____|__     |               (R)
+              --|       |    |-------------------
+                |   ____|__  |  Association of
+                |  |       |_|  Shareware
+                |__|   o   |    Professionals
+              -----|   |   |---------------------
+                   |___|___|    MEMBER
+
+
+
+
+
+                         PAINT SHOP PRO
+                         --------------
+
+                          Version 2.01
+                          ------------
+
+               V E N D O R    I N F O R M A T I O N
+              --------------------------------------
+
+
+
+This file provides information for Shareware Distributors, Disk
+Vendors and BBS SYSOPs who wish to distribute Paint Shop Pro.
+
+
+-----------------------------------------------------------------
+                  Part 1:  Program Information:
+-----------------------------------------------------------------
+
+Program Name, Category, Keywords:
+---------------------------------
+   Name     - Paint Shop Pro
+   Category - Windows (Graphics)
+   Keywords - WINDOWS
+              IMAGE VIEWER
+              FILE FORMAT CONVERTER
+              IMAGE EDITOR
+              SCREEN CAPTURE
+              OLE
+              SCANNING
+              BMP, CLP, CUT, DIB, EPS, GIF, IFF, IMG,
+              JAS, JIF, JPG, LBM, MAC, MSP, PCD, PIC,
+              PCX, RAS, RLE, TGA, TIFF, WMF, WPG
+
+
+
+Short Description:
+------------------
+   Paint Shop Pro is a Windows program that will allow you to work with
+   multiple images at a time. With Paint Shop Pro you can display, convert,
+   alter, scan and print images. Paint Shop Pro supports 23 of the most
+   popular bitmap formats, including JPEG and Kodak Photo CD. Altering
+   includes resizing, cropping, applying filters, dithering, palette
+   manipulation, color adjusting, and much more. All TWAIN-compliant
+   scanners are supported. Use Paint Shop Pro as an OLE server to enhance
+   your documents. Paint Shop Pro also does screen capturing.
+   Winner - 1992 Shareware Industry Awards
+
+Longer Description:
+-------------------
+    Paint Shop Pro is a Windows program that will allow you to work with
+  multiple images at a time. With Paint Shop Pro you can display, convert,
+  alter, scan and print images. In addition, it is a screen capture utility.
+    Paint Shop Pro supports the file formats; BMP, CLP, CUT, DIB, EPS, GIF,
+  IFF, IMG, JAS, JIF, JPG (JPEG), LBM, MAC, MSP, PCD (Kodak Photo CD), PIC,
+  PCX, RAS, RLE, TGA, TIFF, WMF and WPG. Paint Shop Pro includes a batch
+  conversion for those large conversion jobs.
+    Scan your images directly into Paint Shop Pro using any TWAIN-compliant
+  scanner. Make your adjustments, then save the image to exactly the file
+  type you will need.
+    Add image support to your other applications with Paint Shop Pro's OLE
+  server support.
+    Paint Shop Pro displays images in many ways, including zooming in and
+  out.
+    Altering the image includes flipping, mirroring, rotating in one-degree
+  increments, resizing, resampling, cropping, adding a border and 19
+  standard filters. Paint Shop Pro supports user defined filters to allow
+  you to create, edit, delete and apply your own filters.
+    You can also work with the colors of an image by adjusting the
+  brightness/contrast, highlight/shadow, gamma correction and red/green/blue.
+  Alter the colors by greyscaling, solarizing and creating a negative.
+  Palette manipulation allows you to change individual color values, save
+  and load palettes. Change the image type by increasing or decreasing the
+  color depth.
+  Winner - 1992 Shareware Industry Awards
+
+-----------------------------------------------------------------
+                Part 2:  Distribution Requirements
+-----------------------------------------------------------------
+The shareware version of Paint Shop Pro may be freely distributed,
+with the following restrictions; permission must be received to
+distribute Paint Shop Pro on retail racks, on CD Roms, or bundled
+with any other product.
+
+BBSs - please name the file PSP201.xxx.
+
+ASP approved vendors will automatically receive the latest version.
+
+Non ASP vendors may receive the latest version by contacting JASC, Inc.
+
+
+When distributing Paint Shop Pro the following files must be distributed
+together.
+SETUP.EXE
+SETUP.INF
+PSP1.CMP
+PSP2.CMP
+README.TXT
+VENDOR.DOC
+FILE_ID.DIZ
+
+Disk Vendors, Shareware Distributors and BBS(s) may charge a nominal fee for
+distribution of the program. The recipient of Paint Shop Pro must be informed,
+in advance, that the fee paid to acquire Paint Shop Pro does not relieve the
+recipient from purchasing the Licensed Version of Paint Shop Pro if the
+recipient continues to use Paint Shop Pro.

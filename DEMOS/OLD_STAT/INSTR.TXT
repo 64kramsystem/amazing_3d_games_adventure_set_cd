@@ -1,0 +1,15 @@
+           Demo Instructions
+
+      F1  - Toggles mouse mode
+      D   - Drop object
+      H   - This screen
+      I   - Inventory HUD
+      M   - Overhead Map
+      Esc - Exits
+
+                  Mouse:
+      Right button fires plasma bolt
+
+           Press the ENTER key
+
+

@@ -1,0 +1,251 @@
+;---------------------------------------------------------------------------
+;
+;	File:			WINGBMP2.ASM
+;	Programmer: 	Bob Provencher
+;	Create Date:	12/22/94
+;	Last Mod Date:	1/2/94
+;	Description:	Tile assembler module
+;
+;	Copyright (c) 1994, 1995. Aesir Software, Inc.
+;	All Rights Reserved.
+;
+;---------------------------------------------------------------------------
+
+.386P
+
+SEL_SHIFT	equ		3			; shift for selectors
+SEL_INC		equ		8			; increment for selectors
+LINE_SHIFT	equ		5			; shift for one tile width or height
+TILE_SHIFT	equ		10			; shift for one tile width and height
+DWORD_SHIFT	equ		2			; shift for dword count of array
+DWORD_MASK	equ		3			; mask for remainder of dword count of array
+TILE_WIDTH	equ		32			; tile width
+TILE_HEIGHT	equ		32			; tile height
+MAP_WIDTH	equ		128			; map width
+MAP_HEIGHT	equ		128			; map height
+EDGE_MASK	equ		31			; mask for low LINE_SHIFT bits
+TILE_DWORDS equ     8           ; number of dwords in a TILE_WIDTH
+
+WINGBMP2_TEXT	segment word public use16 'CODE'
+
+ASSUME	CS:WINGBMP2_TEXT
+
+;----------------------------------------------------------------------------
+;
+;	increment es:di by dx:ax
+;
+;----------------------------------------------------------------------------
+
+inc_huge	macro
+LOCAL	chksel, done
+		shl		dx, SEL_SHIFT	; multiply selector inc by SEL_INC
+		add		di, ax			; add offset
+		jnc		chksel	 		; no carry? check selector
+		add		dx, SEL_INC		; increment for carry
+chksel:
+		or		dx, dx			; check selector increment
+		jz		done			; nothing to add to selector
+		mov		ax, es			; get selector
+		add		ax, dx			; add selector increment
+		mov		es, ax			; restore selector
+done:
+		endm
+
+;----------------------------------------------------------------------------
+;
+;	decrement es:di by dx:ax
+;
+;----------------------------------------------------------------------------
+
+dec_huge	macro
+LOCAL	chksel, done
+		shl		dx, SEL_SHIFT	; multiply selector decrement by 8
+		sub		di, ax			; subtract offset portion
+		jnc		chksel			; no wrap, check selector
+		add		dx, SEL_INC
+chksel:
+		or		dx, dx			; check selector decrement
+		jz		done			; nothing to add to selector
+		mov		ax, es			; get selector
+		sub		ax, dx			; subtract from selector
+		mov		es, ax			; store
+done:
+		endm
+
+;----------------------------------------------------------------------------
+;
+;	_Tile parameters
+;
+;----------------------------------------------------------------------------
+
+dib				equ	[ bp + 6 ]		; LPVOID dib
+w				equ	[ bp + 10 ]		; WORD w
+h				equ	[ bp + 12 ]		; WORD h
+orient			equ	[ bp + 14 ]		; WORD orient
+tiles			equ	[ bp + 16 ]		; LPVOID tiles
+map				equ	[ bp + 20 ]		; LPVOID map
+tile_w 			equ	[ bp + 24 ]		; WORD tile_w
+tile_h 			equ	[ bp + 26 ]		; WORD tile_h
+
+;----------------------------------------------------------------------------
+;
+;	_Tile locals
+;
+;----------------------------------------------------------------------------
+
+line    		equ	[ bp -  2 ]		; current line
+lines_left		equ [ bp -  4 ]     ; left in entire dib
+tile_lines_left	equ [ bp -  6 ]    	; left in row
+map_line   		equ [ bp -  8 ]     ; current line in map
+map_pos			equ [ bp - 10 ]     ; current position in map
+
+STACK_SIZE			equ	20
+
+;----------------------------------------------------------------------------
+;
+;	The actual tile module
+;
+;----------------------------------------------------------------------------
+
+		PUBLIC	_Tile
+
+_Tile	proc	FAR
+
+		push	bp
+		mov		bp, sp
+		sub		sp, STACK_SIZE		; make room for locals
+
+		push	ds					; save some regs
+		push	es
+		push	fs
+		push	di
+		push	si
+
+;
+;       set up selectors and offsets
+;
+
+		lds	si, tiles				; source tiles start
+		les	di, dib 				; destination dib start
+		lfs	bx, map					; map
+		mov	map_line, bx			; save offset to current map line
+        mov map_pos, bx				; and current position
+
+		mov	dx, tile_h					; loop counter for dib lines
+		shl dx, LINE_SHIFT 	    	    ; store loop counter
+        mov word ptr lines_left, dx
+        mov word ptr tile_lines_left, TILE_HEIGHT
+        mov word ptr line, 0
+
+;
+;       now get starting position for dib.  either last scan line or first
+;
+
+		cmp	word ptr orient, 0	    ; check orientation
+		jl	start_next_scan_line
+
+;
+;		invert start position for bottom up dib
+;
+
+		mov	ax, h					; get height
+        mov dx, w
+		dec	ax
+        mul dx                      ; offset in dx:ax
+        inc_huge					; add to es:di
+
+start_next_scan_line:
+        mov bx, tile_w              ; loop counter for row of tiles
+
+;
+;       jump here for next tile in a row of tiles
+;
+
+blit_tile_line:
+        push bx                     ; save bx
+        mov bx, map_pos             ; get current position
+        xor ax, ax                  ; zero out high nibble
+        mov al, fs:[ bx ]           ; get tile
+        pop bx                      ; restore
+        shl ax, TILE_SHIFT          ; shift to correct tile
+        mov dx, line                ; get current line
+        and dx, EDGE_MASK           ; get current line in current tile
+        shl dx, LINE_SHIFT          ; shift to correct line in current tile
+        add ax, dx                  ; add to ax
+        mov si, ax                  ; into offset reg
+        mov cx, TILE_DWORDS         ; always dword aligned
+        rep movsd                   ; move it
+
+;
+;       if di is zero, then the segment has wrapped, so we
+;       have to increment it.
+;
+
+        or  di,di                        
+        jnz nowrap
+
+        mov ax, es                  ; increment selector
+        add ax, SEL_INC                      
+        mov es, ax                        
+
+nowrap:
+        inc    word ptr map_pos     ; next map position
+        dec    bx                           
+        jnz    blit_tile_line
+
+setup_next_line:
+        mov    ax, tile_w                   ; get width in tiles
+        shl    ax, LINE_SHIFT               ; width of a line
+        mov    dx, 0                        ; 
+
+        dec_huge                            ; back to start position
+
+        mov    ax, w
+        mov    dx, 0
+        cmp    word ptr orient, 0
+        jl     top_down
+
+        dec_huge                            ; previous line
+
+        jmp     setup_next_line2
+
+top_down:
+
+        inc_huge                            ; next line
+
+setup_next_line2:
+        inc    word ptr line                ; line counter
+        mov    ax, map_line                 ; back to start of map line
+        mov    map_pos,ax                   
+        dec    word ptr lines_left          ; total lines to go   
+        dec    word ptr tile_lines_left     ; tile row lines to go
+
+        jnz    start_next_scan_line
+
+        add    ax, MAP_WIDTH                ; next map row
+        mov    map_line, ax                   
+        mov    map_pos, ax                   
+        mov    ax, lines_left               ; any lines left?
+        or     ax, ax                        
+        jz     done
+        mov    word ptr tile_lines_left, TILE_HEIGHT        
+        jmp    start_next_scan_line
+
+done:
+        pop    si                           
+        pop    di                           
+        pop    fs                           
+        pop    es                           
+        pop    ds                           
+
+        mov    sp,bp                        
+        pop    bp                           
+
+        retf                                
+
+        endp
+		ends
+        end
+
+
+

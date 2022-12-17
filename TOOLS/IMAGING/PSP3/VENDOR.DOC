@@ -1,0 +1,143 @@
+
+
+		      _______
+		 ____|__     |               (R)
+	      --|       |    |-------------------
+		|   ____|__  |  Association of
+		|  |       |_|  Shareware
+		|__|   o   |    Professionals
+	      -----|   |   |---------------------
+		   |___|___|    MEMBER
+
+
+
+
+
+	      Paint Shop Pro
+	     -----------------
+
+	       Version 3.0
+	       ------------
+
+	       V E N D O R    I N F O R M A T I O N
+	      --------------------------------------
+
+
+
+This file provides information for Shareware Distributors, Disk
+Vendors and BBS SYSOPs who wish to distribute Paint Shop Pro.
+
+
+-----------------------------------------------------------------
+		  Part 1:  Program Information:
+-----------------------------------------------------------------
+
+Program Name, Category, Keywords:
+---------------------------------
+   Name     - Paint Shop Pro
+   Category - Windows (Graphics)
+   Keywords - WINDOWS
+	  GRAPHICS
+	  PAINTING
+	  IMAGE EDITOR
+	  PHOTO RETOUCHING
+	  THUMBNAILS
+	  IMAGE VIEWER
+	  SCREEN CAPTURE
+	  SCANNING
+	  PRINTING
+	  FILE FORMAT CONVERSION
+	  BMP, CDR, CGM, CLP, CUT, DIB, DRW, DXF, EPS, GEM, GIF,
+	  HPGL, IFF, IMG, JIF, JPG, LBM, MAC, MSP, PCD, PCX, PIC, 
+	  PBM, PGM, PPM, PSD, RAW, RAS, RLE, TIFF, TGA, WMF, WPG
+
+
+
+
+Description:
+------------
+    Paint Shop Pro is the only Photo Retouching, Painting, Image Format
+Conversion, and Screen Capturing program you will need.
+
+Features include:
+
+Painting - Paint Shop Pro supports 8 different brushes including pen, pencil,
+marker, crayon, chalk, charcoal, airbrush, and paintbrush to edit an existing
+image, or create your own.  A user defined brush allows you to combine
+elements of any of the other brushes to create a unique effect, while the
+fill tool allows easy filling of large areas.  No need to worry about errors
+since the undo brush allows mistakes to be easily corrected.
+
+Photo Retouching - Work on existing images with the clone brush for easy
+duplication of image areas, or with the magic wand for quick selection of
+similar areas for manipulation.  Also provided are a push brush for easy
+touch-up, a sharpen brush to enhance detail in small areas, and a smooth
+brush for easy blending.  You can also use the eye dropper to pick up and
+analyze a color from an image.
+
+Image Enhancement and Editing - Paint Shop Pro allows you to perform flip,
+mirror, rotate, and crop operations, plus the ability to add borders and
+frames, or resize and resample your image.  Paint Shop Pro ships with 20
+standard image filters plus any user definable filters you create.
+Also included are 12 image deformations, including skew and circle.
+Filter and deformation browsers are also provided. Paint Shop Pro supports
+Adobe compatible plugin filters.
+
+Color Enhancement - With Paint Shop Pro, you can alter the hue, saturation,
+lightness and RGB levels.  Adjustments to brightness and contrast and changes
+to highlight, shadow, and midtone can also be made.  Palette editing and
+direct palette mapping allow global changes to multiple images.  Gamma
+correction and color reduction are also provided.
+
+Image Browser - The browser, using thumbnails, allows you to visually search
+directories for those easy to lose images.  The thumbnails may optionally be
+saved for super-quick access.  You can also select multiple images to be
+loaded directly into Paint Shop Pro for editing. Complete file management
+functions allow you to easily keep track of images.
+
+Batch Conversion - When it comes to converting a large number of images from
+one format to another, Paint Shop Pro has made it as easy as possible.  All
+messages during the conversion are sent to the log window for unattended
+operation, and the log may be saved to a file for later inspection.
+
+Paint Shop Pro also provides image viewing and printing functions to provide
+you complete control over how your images appear.  Support for TWAIN
+compliant scanners is also included.  Paint Shop Pro provides support for the
+following image file formats:
+
+      BMP, CDR, CGM, CLP, CUT, DIB, DRW, DXF, EPS, GEM, GIF,
+      HPGL, IFF, IMG, JIF, JPG, LBM, MAC, MSP, PCD, PCX, PIC, 
+      PBM, PGM, PPM, PSD, RAW, RAS, RLE, TIFF, TGA, WMF, WPG
+
+
+
+
+-----------------------------------------------------------------
+		Part 2:  Distribution Requirements
+-----------------------------------------------------------------
+The shareware version of Paint Shop Pro may be freely distributed,
+with the following restrictions; written permission must be received to
+distribute Paint Shop Pro on retail racks, on CD Roms, or bundled
+with any other product.
+
+BBSs - please name the file PSP30.xxx.
+
+ASP approved vendors will automatically receive the latest version.
+
+Non ASP vendors may receive the latest version by contacting JASC, Inc.
+
+
+When distributing Paint Shop Pro the following files must be distributed
+together.
+SETUP.EXE
+SETUP.INF
+PSP1.CMP
+README.TXT
+VENDOR.DOC
+FILE_ID.DIZ
+
+Disk Vendors, Shareware Distributors and BBS(s) may charge a nominal fee for
+distribution of the program. The recipient of Paint Shop Pro must be
+informed, in advance, that the fee paid to acquire Paint Shop Pro does not
+relieve the recipient from purchasing the Licensed Version of Paint Shop
+Pro if the recipient continues to use Paint Shop Pro.

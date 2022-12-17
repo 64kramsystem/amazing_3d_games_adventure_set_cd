@@ -1,0 +1,56 @@
+/*
+ *    Static.RC
+ *
+ *    (C) Copyright Microsoft Corp. 1993.  All rights reserved.
+ *
+ *    You have a royalty-free right to use, modify, reproduce and 
+ *    distribute the Sample Files (and/or any modified version) in 
+ *    any way you find useful, provided that you agree that 
+ *    Microsoft has no warranty obligations or liability for any 
+ *    Sample Application Files which are modified. 
+ */
+
+#include <windows.h>
+#include "Static.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+STATICAPP  ICON   DISCARDABLE Static.ico
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+STATICAPP DIALOG DISCARDABLE  22, 17, 144, 75
+STYLE DS_MODALFRAME | WS_POPUP
+FONT 8, "System"
+BEGIN
+    ICON    "STATICAPP",		       -1,9,23,18,20
+    CTEXT   "Microsoft Windows",	       -1,40,5,63,8
+    CTEXT   "Static: A Sample Application",    -1,27,14,91,8
+    LTEXT   "By Robert B. Hess",	       -1,41,23,62,8
+    CTEXT   "Version 1.00",		       -1,51,32,42,8
+    CTEXT   "Copyright 1994, Microsoft Corp.", -1,20,47,103,8
+    DEFPUSHBUTTON   "OK",IDOK,53,59,32,14,WS_GROUP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+STATICAPP MENU DISCARDABLE
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&About...",                   MENU_ABOUT
+        MENUITEM "E&xit",                       MENU_EXIT
+    END
+END
